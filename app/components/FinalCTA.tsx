@@ -102,9 +102,8 @@ export default function FinalCTA() {
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="h-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
             >
-              מוכן לבית דיגיטלי
-              <br />
-              <span className="gradient-text">שעובד בשבילך?</span>
+              רוצה לבדוק אם{" "}
+              <span className="gradient-text">אתר כזה מתאים</span> לעסק שלך?
             </motion.h2>
 
             <motion.p
@@ -114,13 +113,11 @@ export default function FinalCTA() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="mt-7 text-base md:text-lg text-cream/80 leading-relaxed"
             >
-              השאר פרטים — אחזור אליך{" "}
-              <span className="text-accent font-bold">בהקדם האפשרי</span> לשיחת
-              ייעוץ של 45 דקות, ללא עלות וללא התחייבות.
-              <br />
-              אם אחרי השיחה אתה לא משוכנע — נפרדים כידידים.
-              <br />
-              אם כן — תוך זמן קצר יש לך אתר שמוכר.
+              השאר פרטים ואחזור אליך לשיחת ייעוץ קצרה. נבין{" "}
+              <span className="text-accent font-bold">
+                מה חסר באתר הנוכחי שלך
+              </span>
+              , מה נכון לבנות, והאם בכלל יש התאמה לעבודה יחד.
             </motion.p>
 
             {/* Trust signals */}
@@ -132,9 +129,9 @@ export default function FinalCTA() {
               className="mt-10 space-y-3 text-sm text-cream/75 hidden lg:block"
             >
               {[
-                "מענה אישי ומהיר",
-                "ללא עלות, ללא התחייבות",
-                "פרטיות מלאה — הפרטים שלך לא מועברים לאף אחד",
+                "מחיר ותהליך ברורים מראש",
+                "ליווי אישי — ישירות מול נועם",
+                "30 יום ליווי אחרי העלייה לאוויר",
               ].map((t) => (
                 <li key={t} className="flex items-center gap-3">
                   <span className="grid place-items-center w-6 h-6 rounded-full bg-accent/15 text-accent">
@@ -183,11 +180,11 @@ export default function FinalCTA() {
                         </svg>
                       </div>
                       <h3 className="text-2xl md:text-3xl font-extrabold mb-3">
-                        קיבלתי! חוזר אליך בהקדם האפשרי.
+                        קיבלתי. נדבר בקרוב.
                       </h3>
                       <p className="text-cream/75 max-w-md mx-auto">
-                        בינתיים — אם תרצה לראות עוד עבודות, אתה מוזמן לרדת
-                        לסקציית "עבודות נבחרות" או לבדוק אותי ב-LinkedIn.
+                        בינתיים — אם תרצה לראות אתרים שבניתי, אתה מוזמן לרדת
+                        לסקציית "לקוחות מספרים" ולבדוק אותם בעצמך.
                       </p>
                       <button
                         onClick={() => setStatus("idle")}
@@ -278,16 +275,17 @@ export default function FinalCTA() {
                             </>
                           ) : (
                             <>
-                              <span>שלח — ואחזור אליך בהקדם</span>
+                              <span>שלח פרטים — נדבר בקרוב</span>
                               <span aria-hidden>←</span>
                             </>
                           )}
                         </button>
 
-                        <p className="mt-4 text-xs text-cream/50">
-                          בלחיצה על "שלח" אתה מסכים שאצור איתך קשר. הפרטים שלך
-                          לא נשלחים לאף אחד אחר. <em>זמינות מוגבלת — עד 4
-                          פרויקטים בחודש.</em>
+                        <p className="mt-4 text-xs text-cream/55 leading-relaxed">
+                          בלי ספאם. בלי רשימות תפוצה.{" "}
+                          <span className="text-cream/75">
+                            רק שיחה אחת כדי להבין אם יש כאן התאמה.
+                          </span>
                         </p>
 
                         {status === "error" && (

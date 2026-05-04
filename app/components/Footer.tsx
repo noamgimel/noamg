@@ -19,7 +19,7 @@ export default function Footer() {
                 נועם גמליאל
               </div>
               <div className="text-xs text-cream/45 mt-0.5">
-                בית דיגיטלי שעובד בשבילך
+                אתרי תדמית שמייצרים פניות
               </div>
             </div>
           </div>

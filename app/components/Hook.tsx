@@ -42,15 +42,15 @@ export default function Hook() {
           >
             <div className="text-7xl font-black text-brand-900/8 mb-4 leading-none tabular-num">01</div>
             <h3 className="text-2xl font-extrabold text-brand-900 mb-4">
-              אתרים ש"קיימים"
+              אתר ש"קיים"
             </h3>
             <p className="text-brand-900/70 leading-relaxed">
-              כתובת באינטרנט. דף 'אודות', דף 'שירותים', טלפון בתחתית. הלקוחות
-              נוחתים, מסתכלים שלוש שניות, וממשיכים הלאה.
+              כתובת באינטרנט. דף 'אודות', דף 'שירותים', טלפון בתחתית. גולש נוחת,
+              לא מבין תוך חמש שניות למה דווקא אצלך — וממשיך הלאה.
             </p>
             <div className="mt-6 inline-flex items-center gap-2 text-sm text-brand-900/40">
               <span className="w-8 h-px bg-brand-900/20" />
-              <span>סבבה. לא יותר.</span>
+              <span>נראה בסדר. לא מוכר.</span>
             </div>
           </motion.div>
 
@@ -69,27 +69,56 @@ export default function Hook() {
             <div className="relative">
               <div className="text-7xl font-black text-accent/30 mb-4 leading-none tabular-num">02</div>
               <h3 className="text-2xl font-extrabold mb-4">
-                אתרים ש<span className="text-accent">עובדים</span>
+                אתר ש<span className="text-accent">עובד</span>
               </h3>
               <p className="text-cream/85 leading-relaxed">
-                שמספרים סיפור. שגורמים למישהו זר להגיד "זה הבן אדם שאני רוצה".
-                שממירים גולש למתעניין, מתעניין ללקוח, ולקוח לממליץ.
+                שמסביר תוך 5 שניות למה לבחור דווקא בך. שמרכז את כל הפניות במקום
+                אחד. שמוביל את הגולש לפעולה — שיחה, וואטסאפ, או טופס. שעוזר
+                ללקוח לסמוך עליך עוד לפני שדיברתם.
               </p>
               <div className="mt-6 inline-flex items-center gap-2 text-sm text-accent">
                 <span className="w-8 h-px bg-accent" />
-                <span>זה מה שאני עושה.</span>
+                <span>זה מה שאני בונה.</span>
               </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Pain — what you're losing right now */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-16 max-w-4xl"
+        >
+          <p className="text-sm font-bold uppercase tracking-widest text-brand-700/60 mb-5">
+            מה זה עולה לך עכשיו
+          </p>
+          <ul className="space-y-3 sm:space-y-2">
+            {[
+              "גולש נכנס, לא מבין תוך 5 שניות למה לבחור דווקא בך — ויוצא.",
+              "יש לך המלצות, ניסיון ושירות מצוין — אבל האתר לא מצליח להעביר את זה.",
+              "פניות מתפזרות בין טלפון, וואטסאפ, פייסבוק וטפסים — וקשה לעקוב מי חזר ומי לא.",
+              "האתר נראה בסדר, אבל הוא לא מוביל את הגולש לפעולה — לא טופס, לא שיחה, לא וואטסאפ.",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-brand-900/80 text-base sm:text-lg leading-relaxed">
+                <span className="grid place-items-center w-6 h-6 rounded-full bg-brand-700/8 text-brand-700/60 shrink-0 mt-1 text-xs">
+                  ✕
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
         {/* Closing line */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 text-2xl md:text-3xl font-bold text-brand-900 max-w-3xl leading-snug"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-14 text-2xl md:text-3xl font-bold text-brand-900 max-w-3xl leading-snug"
         >
           ההבדל הוא לא העיצוב.{" "}
           <span className="text-brand-700/55">

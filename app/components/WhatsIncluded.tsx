@@ -2,17 +2,45 @@
 
 import { motion } from "framer-motion";
 
-const features = [
-  "עיצוב מותאם אישית — לא תבנית, לא 'וריאציה' של עיצוב קיים",
-  "אסטרטגיית תוכן וניסוח — אני כותב את הטקסטים יחד איתך",
-  "רספונסיביות מלאה — מובייל, טאבלט, דסקטופ, כל גודל מסך",
-  "מהירות טעינה מקצועית",
-  "SEO בסיסי — כותרות, מטא, מבנה נכון לגוגל",
-  "טפסי יצירת קשר עם הגעה ישירות למייל / וואטסאפ",
-  "אינטגרציה ל-Google Analytics + Meta Pixel",
-  "אוטומציות בסיסיות שחוסכות לך זמן",
-  "דומיין + אחסון לשנה ראשונה",
-  "הדרכה אישית של 30 דקות איך לעדכן בעצמך",
+const categories = [
+  {
+    title: "אסטרטגיה ותוכן",
+    desc: "מה אומרים, למי, ובאיזה סדר",
+    items: [
+      "אפיון מסרים — מה הגולש צריך להבין ב-5 שניות הראשונות",
+      "ניסוח טקסטים יחד איתך, בעברית של בני אדם",
+      "סדר עדיפויות ברור — מה ראשון, מה שני, ומה לא נכנס בכלל",
+    ],
+  },
+  {
+    title: "עיצוב ובנייה",
+    desc: "אתר שמרגיש בדיוק כמוך",
+    items: [
+      "עיצוב מותאם אישית — לא תבנית, לא 'וריאציה' של עיצוב קיים",
+      "רספונסיביות מלאה — מובייל, טאבלט, דסקטופ, כל גודל מסך",
+      "מהירות טעינה שלא תאט את הגולש",
+      "הדרכה אישית כדי שתוכל לעדכן בעצמך",
+    ],
+  },
+  {
+    title: "חיבור לפניות ולמדידה",
+    desc: "אף ליד לא נעלם",
+    items: [
+      "טפסים שמגיעים אליך ישירות — כדי שלא תפספס פנייה",
+      "כפתור וואטסאפ פעיל בכל הדפים",
+      "בסיס נכון לגוגל — כותרות, תיאורים ומבנה שמאפשר להיסרק כמו שצריך",
+      "חיבורים קטנים שחוסכים התעסקות — מיילים, מדידה, או כלים רלוונטיים לעסק",
+      "דומיין + אחסון לשנה הראשונה",
+    ],
+  },
+  {
+    title: "ליווי אחרי השקה",
+    desc: "אתה לא נשאר לבד",
+    items: [
+      "30 יום ליווי מלא — כל בקשת שינוי, ללא ספירת זמן",
+      "אחראי זמין שאפשר לחזור אליו, גם אחרי שנה",
+    ],
+  },
 ];
 
 export default function WhatsIncluded() {
@@ -85,30 +113,42 @@ export default function WhatsIncluded() {
             </motion.div>
           </div>
 
-          {/* Features grid */}
+          {/* Categories grid — 1 col on mobile, 2 cols on tablet+ */}
           <div className="lg:col-span-7">
-            <ul className="grid sm:grid-cols-2 gap-3">
-              {features.map((feature, i) => (
-                <motion.li
-                  key={feature}
+            <div className="grid sm:grid-cols-2 gap-4 lg:gap-5">
+              {categories.map((cat, i) => (
+                <motion.div
+                  key={cat.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                  whileHover={{ y: -3 }}
-                  className="flex items-start gap-3 p-4 rounded-2xl glass-dark hover:bg-cream/[0.06] transition-all duration-300 group"
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
                 >
-                  <span className="grid place-items-center w-7 h-7 rounded-full bg-accent/15 text-accent shrink-0 mt-0.5 group-hover:bg-accent group-hover:text-brand-900 transition-colors duration-300">
-                    <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
-                      <path d="M2.5 6.5l2 2 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <span className="text-cream/85 leading-relaxed group-hover:text-cream transition-colors text-sm md:text-base">
-                    {feature}
-                  </span>
-                </motion.li>
+                  <div className="h-full p-5 md:p-6 rounded-2xl glass-dark">
+                    <div className="mb-4 pb-4 border-b border-cream/10">
+                      <div className="text-base md:text-lg font-extrabold text-cream">
+                        {cat.title}
+                      </div>
+                      <div className="mt-0.5 text-xs text-accent/85 font-semibold">
+                        {cat.desc}
+                      </div>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {cat.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm text-cream/80 leading-relaxed">
+                          <span className="grid place-items-center w-5 h-5 rounded-full bg-accent/15 text-accent shrink-0 mt-0.5">
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                              <path d="M2.5 6.5l2 2 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

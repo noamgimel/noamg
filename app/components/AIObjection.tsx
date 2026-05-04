@@ -12,11 +12,11 @@ const comparison = [
 ];
 
 const aiCants = [
-  "AI לא יודע איך הלקוחות שלך מקבלים החלטות",
-  "AI לא ראה מאות אתרים נופלים על אותן טעויות",
-  "AI לא יחזור בעוד שלושה חודשים לתקן בלי שתתחנן",
-  "AI לא יקרא את ההיסוס שלך בשיחה ויבנה סביבך אסטרטגיה",
-  "AI לא ייקח אחריות אם משהו לא עובד",
+  "אסטרטגיית מכירה — להבין את הקהל שלך, להחליט מה חשוב לומר ראשון, ומה מיותר",
+  "טעם — לדעת מתי משהו 'נראה בסדר' אבל לא מספיק טוב כדי שמישהו יבחר בך",
+  "אחריות — מי יחזור בעוד שלושה חודשים כשמשהו ישתבש או כשתרצה שינוי",
+  "ניסיון — מאות אתרים שנפלו על אותן טעויות, ויודעים מה כן ולא עובד בפועל",
+  "ליווי אישי — לקרוא את ההיסוס שלך בשיחה ולבנות סביבך, לא סביב פרומפט",
 ];
 
 export default function AIObjection() {
@@ -50,7 +50,7 @@ export default function AIObjection() {
           transition={{ duration: 0.8 }}
           className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] max-w-4xl"
         >
-          "רגע — אני יכול לבנות את זה לבד עם AI.
+          "אני יכול לבנות אתר לבד עם AI —
           <br />
           <span className="gradient-text">למה אני צריך אותך?"</span>
         </motion.h2>
@@ -62,10 +62,11 @@ export default function AIObjection() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="mt-6 text-lg text-cream/75 max-w-3xl leading-relaxed"
         >
-          אתה צודק. אתה <span className="font-bold text-cream">יכול</span>. תפתח כלי AI מודרני,
-          תכניס פרומפט, ובתוך שעתיים יהיה לך אתר. השאלה היא לא <em>אם</em> תצליח
-          לבנות אתר. השאלה היא{" "}
-          <span className="text-accent font-bold">איזה אתר</span> תבנה.
+          אפשר לבנות אתר עם AI. בדיוק כמו שאפשר לצלם לבד, לעצב לבד ולכתוב לבד.
+          <br />
+          השאלה היא לא <em>אם</em> יהיה לך אתר — אלא אם הוא{" "}
+          <span className="text-accent font-bold">יגרום ללקוח הנכון</span>{" "}
+          לעצור, להבין, לסמוך עליך, ולהשאיר פרטים.
         </motion.p>
 
         {/* Comparison glass card */}
@@ -114,12 +115,14 @@ export default function AIObjection() {
         >
           <div className="relative pr-8 border-r-2 border-accent">
             <p className="text-2xl md:text-3xl font-bold leading-snug">
-              AI הוא כלי מעולה — בידיים של מי שיודע מה לבקש ממנו.
+              AI יכול לבנות עמוד.
+              <br />
+              <span className="text-accent">הוא לא יודע לבנות עבורך אסטרטגיית מכירה.</span>
             </p>
             <p className="mt-4 text-cream/75 text-lg leading-relaxed">
-              אני לא נגד AI. אני <span className="text-accent font-semibold">משתמש</span>{" "}
-              ב-AI — הוא אחד הכלים החדים ביותר שיש לי. ההבדל הוא שאני יודע מתי
-              להשתמש בו, מתי לא, ומה הוא <strong>לא</strong> יכול לתת לך:
+              הבעיה היא לא הכלי — אלא מי מכוון אותו. אני{" "}
+              <span className="text-accent font-semibold">משתמש</span>{" "}
+              ב-AI כדי לעבוד מהר יותר, אבל מוסיף עליו את מה שאף כלי לא נותן:
             </p>
           </div>
 
@@ -133,7 +136,7 @@ export default function AIObjection() {
                 transition={{ duration: 0.5, delay: i * 0.07 }}
                 className="flex items-start gap-3 p-4 rounded-2xl glass-dark"
               >
-                <span className="grid place-items-center w-6 h-6 rounded-full border border-accent/40 text-accent text-xs shrink-0 mt-0.5">×</span>
+                <span className="grid place-items-center w-6 h-6 rounded-full bg-accent/15 border border-accent/40 text-accent text-xs shrink-0 mt-0.5 font-bold">+</span>
                 <span className="text-cream/85 leading-relaxed">{item}</span>
               </motion.li>
             ))}
@@ -148,13 +151,13 @@ export default function AIObjection() {
           transition={{ duration: 0.8 }}
           className="mt-20 text-2xl md:text-3xl font-extrabold leading-snug max-w-3xl"
         >
-          תשקיע 20 שעות —{" "}
+          תשקיע 20 שעות לבד —{" "}
           <span className="gradient-text">
-            ובסוף תקבל אתר שנראה כמו של כל מתחרה אחר שלך.
+            ובסוף יהיה לך אתר שנראה כמו של כל מתחרה אחר.
           </span>
           <br />
           <span className="text-cream/60 font-medium">
-            אתה לא 'כמו כל אחד אחר'. אז למה האתר שלך יהיה?
+            עסק בולט לא נבנה מכלי. הוא נבנה מהחלטות.
           </span>
         </motion.p>
       </div>

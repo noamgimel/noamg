@@ -73,13 +73,9 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="h-display text-[2rem] sm:text-[2.75rem] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5rem] max-w-5xl"
         >
-          בית דיגיטלי לעסק שלך —
-          <br />
-          <span className="gradient-text">שלא רק נראה מדהים,</span>
-          <br />
-          אלא עובד בשבילך{" "}
+          אתר תדמית שמייצר{" "}
           <span className="relative inline-block">
-            24/7
+            <span className="gradient-text">אמון, פניות ולקוחות</span>
             <svg
               viewBox="0 0 100 12"
               className="absolute -bottom-2 right-0 left-0 w-full h-3 text-accent/60"
@@ -94,7 +90,8 @@ export default function Hero() {
               />
             </svg>
           </span>
-          .
+          <br />
+          — לא רק נוכחות באינטרנט.
         </motion.h1>
 
         {/* Subheadline */}
@@ -105,12 +102,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mt-7 md:mt-9 text-base md:text-lg lg:text-xl text-cream/80 max-w-2xl leading-relaxed"
         >
-          אתר תדמית מקצועי הוא לא כרטיס ביקור — הוא הכלי שהופך גולשים סקרנים
-          ללקוחות משלמים. ליווי אישי, עיצוב ייחודי, ואוטומציות שעובדות בשבילך
-          גם בלילה.{" "}
+          אני בונה לעסקים אתרים מעוצבים, מהירים ומדויקים שמסבירים{" "}
           <span className="text-accent font-semibold">
-            מהיר ממה שאתה רגיל. אישי יותר ממה שציפית.
+            למה לבחור דווקא בהם
           </span>
+          {" "}— ומחוברים לטפסים, וואטסאפ ואוטומציות כדי שאף ליד לא ילך לאיבוד.
         </motion.p>
 
         {/* CTAs — full width on mobile, inline on tablet+ */}
@@ -126,7 +122,7 @@ export default function Hero() {
             <span aria-hidden>←</span>
           </a>
           <a href="#testimonials" className="btn-ghost-light justify-center">
-            ראה דוגמאות עבודה
+            ראה דוגמאות לאתרים שבניתי
           </a>
         </motion.div>
 
@@ -138,9 +134,9 @@ export default function Hero() {
           className="mt-10 sm:mt-14 flex flex-wrap gap-x-5 sm:gap-x-7 gap-y-2.5 sm:gap-y-3 text-xs sm:text-sm text-cream/65"
         >
           {[
-            "ליווי אישי לכל אורך הדרך",
-            "עיצוב מותאם — לא תבנית",
-            "30 יום ליווי כלולים",
+            "45 דקות",
+            "בלי התחייבות",
+            "יוצאים עם כיוון ברור — גם אם לא ממשיכים יחד",
           ].map((item) => (
             <li key={item} className="flex items-center gap-2">
               <svg width="16" height="16" viewBox="0 0 16 16" className="text-accent shrink-0" fill="none">

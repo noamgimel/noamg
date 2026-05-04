@@ -5,26 +5,34 @@ import { motion } from "framer-motion";
 const steps = [
   {
     num: "01",
-    title: "שיחת היכרות — 45 דקות",
-    body: "אני מתקשר אליך. בלי טפסים, בלי שאלון מוקדם, בלי 'תכין חומרים'. אני שואל שאלות, אתה מדבר על העסק. בסוף השיחה אתה יודע בדיוק מה הולך להיות לך, מתי, ובכמה.",
+    title: "שיחת מיקוד",
+    subtitle: "מבינים מה האתר צריך למכור",
+    body: "אני מתקשר אליך. בלי טפסים מקדימים, בלי שאלון, בלי 'תכין חומרים'. אני שואל, אתה מספר על העסק — ויחד אנחנו מבררים מה האתר צריך לעשות בפועל ואם יש לנו התאמה לעבודה יחד.",
+    outcome: "כיוון ברור — מה האתר אמור להשיג, ואם בכלל נכון להמשיך יחד.",
     badge: "₪0 · ללא התחייבות",
   },
   {
     num: "02",
-    title: "אסטרטגיה ועיצוב",
-    body: "אני בונה את הסיפור של האתר ואת העיצוב המדויק. שולח לך בקובץ אחד. אתה מאשר, מעיר, מבקש שינויים — עד שזה בדיוק מה שאתה רוצה.",
+    title: "אסטרטגיה ותוכן",
+    subtitle: "מחדדים מסרים לפני עיצוב",
+    body: "לפני שאני נוגע בפיקסל, אנחנו סוגרים מסרים, היררכיה ותוכן. מי הקהל, מה הוא צריך להרגיש, מה אומרים ראשון — ומה לא נכנס בכלל. כך לא מבזבזים זמן על עיצוב שלא יחזיק את הסיפור.",
+    outcome: "מסרים מנוסחים, סדר עדיפויות ברור, ותוכן מוכן לעיצוב.",
     badge: "סבבי שינויים",
   },
   {
     num: "03",
-    title: "בנייה והשקה",
-    body: "אתר חי, מהיר, רספונסיבי לכל מסך, מאובטח, עם SEO בסיסי, עם טפסים שעובדים, עם אוטומציות שעובדות בשבילך גם בלילה.",
+    title: "עיצוב ובנייה",
+    subtitle: "אתר מהיר, יפה ומחובר לפניות",
+    body: "אתר חי, רספונסיבי לכל מסך, מאובטח, עם SEO בסיסי, עם טפסים שמגיעים אליך, עם וואטסאפ ואוטומציות שעובדות גם בלילה. אתה מאשר כל שלב — ורואה את הקצב מתקדם.",
+    outcome: "אתר באוויר, מחובר לכל ערוצי הפנייה, ועם מדידה ברקע.",
     badge: "תהליך מתוקתק",
   },
   {
     num: "04",
-    title: "חודש ליווי — בלי שעון",
-    body: "30 יום של 'תקן לי את זה', 'תוסיף את זה', 'תזיז את זה לכאן'. בלי לספור זמן. בלי 'זה לא בחבילה'.",
+    title: "ליווי אחרי השקה",
+    subtitle: "לא נעלם ברגע שהאתר באוויר",
+    body: "30 יום של 'תקן לי את זה', 'תוסיף את זה', 'תזיז את זה'. בלי לספור זמן, בלי 'זה לא בחבילה'. ואחרי? אתה יודע איפה למצוא אותי.",
+    outcome: "מערכת שעובדת בשבילך — ואחראי שאפשר לחזור אליו.",
     badge: "כלול במחיר",
   },
 ];
@@ -83,7 +91,7 @@ export default function Process() {
 
                 {/* Content */}
                 <div className="pt-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
                     <h3 className="text-2xl md:text-[1.65rem] font-extrabold text-brand-900">
                       {step.title}
                     </h3>
@@ -91,9 +99,27 @@ export default function Process() {
                       {step.badge}
                     </span>
                   </div>
+                  <p className="text-sm md:text-base text-brand-700 font-semibold mb-3">
+                    {step.subtitle}
+                  </p>
                   <p className="text-base md:text-lg text-brand-900/70 leading-relaxed max-w-2xl">
                     {step.body}
                   </p>
+                  <div className="mt-4 inline-flex items-start gap-2 text-sm text-brand-900/80 font-medium">
+                    <svg viewBox="0 0 16 16" className="w-4 h-4 mt-0.5 text-accent shrink-0" fill="none">
+                      <path
+                        d="M3 8l4 4 6-8"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <span>
+                      <span className="text-brand-900/55">בסוף השלב יהיה לך: </span>
+                      {step.outcome}
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>

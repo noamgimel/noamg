@@ -9,8 +9,10 @@ import WhatsIncluded from "./components/WhatsIncluded";
 import RiskReversal from "./components/RiskReversal";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
+import WhoFor from "./components/WhoFor";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -26,8 +28,10 @@ export default function Home() {
       <RiskReversal />
       <Testimonials />
       <FAQ />
+      <WhoFor />
       <FinalCTA />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }
