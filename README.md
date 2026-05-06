@@ -31,7 +31,7 @@ npm start
 │       ├── Hero.tsx          # מסך פתיחה עם פרלקסה
 │       ├── Hook.tsx          # "שני סוגי אתרים בעולם"
 │       ├── AIObjection.tsx   # ★ הסקציה המרכזית — להפלת ההתנגדות
-│       ├── About.tsx         # קצת עליי + תעודה + סטטים
+│       ├── About.tsx         # קצת עליי + תעודה ++ סטטים
 │       ├── Process.tsx       # 4 שלבי התהליך
 │       ├── Differentiators.tsx # 3 בידולים
 │       ├── WhatsIncluded.tsx # מה כלול
