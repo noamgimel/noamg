@@ -17,8 +17,8 @@ const notFits = [
 export default function WhoFor() {
   return (
     <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream-warm overflow-hidden">
-      <div className="orb orb-accent w-96 h-96 -top-32 -left-32 opacity-40" />
-      <div className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -right-32 opacity-40" />
+      <div aria-hidden="true" className="orb orb-accent w-96 h-96 -top-32 -left-32 opacity-40" />
+      <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -right-32 opacity-40" />
 
       <div className="container-x relative">
         <motion.div
@@ -112,7 +112,7 @@ export default function WhoFor() {
           >
             <div className="h-full p-7 md:p-8 rounded-3xl bg-brand-900/[0.025] border border-brand-900/10">
               <div className="flex items-center gap-3 mb-6">
-                <div className="grid place-items-center w-10 h-10 rounded-2xl bg-brand-900/8 text-brand-900/50">
+                <div className="grid place-items-center w-10 h-10 rounded-2xl bg-brand-900/8 text-brand-900/65">
                   <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
                     <path
                       d="M6 6l12 12M18 6L6 18"
@@ -132,14 +132,14 @@ export default function WhoFor() {
                     key={item}
                     className="flex items-start gap-3 text-base text-brand-900/65 leading-relaxed"
                   >
-                    <span className="grid place-items-center w-5 h-5 rounded-full bg-brand-900/8 text-brand-900/45 shrink-0 mt-1 text-xs">
+                    <span className="grid place-items-center w-5 h-5 rounded-full bg-brand-900/8 text-brand-900/65 shrink-0 mt-1 text-xs">
                       ✕
                     </span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 pt-6 border-t border-brand-900/10 text-sm text-brand-900/55 italic leading-relaxed">
+              <p className="mt-6 pt-6 border-t border-brand-900/10 text-sm text-brand-900/70 italic leading-relaxed">
                 במקרים האלה אני אעדיף לכוון אותך לפתרון אחר שעשוי להתאים יותר.
               </p>
             </div>

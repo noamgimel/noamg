@@ -27,8 +27,8 @@ const ShieldIcon = () => (
 export default function RiskReversal() {
   return (
     <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream overflow-hidden">
-      <div className="orb orb-brand w-[28rem] h-[28rem] -top-40 -right-40 opacity-40 drift-slow" />
-      <div className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50 drift" />
+      <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -top-40 -right-40 opacity-40 drift-slow" />
+      <div aria-hidden="true" className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50 drift" />
 
       <div className="container-x relative">
         <div className="max-w-3xl">

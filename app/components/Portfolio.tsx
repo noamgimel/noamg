@@ -29,8 +29,8 @@ const projects = [
 export default function Portfolio() {
   return (
     <section id="portfolio" className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream-warm overflow-hidden">
-      <div className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-40 opacity-50 drift" />
-      <div className="orb orb-brand w-96 h-96 bottom-20 -right-20 opacity-40 drift-slow" />
+      <div aria-hidden="true" className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-40 opacity-50 drift" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 bottom-20 -right-20 opacity-40 drift-slow" />
 
       <div className="container-x relative">
         <motion.div
@@ -89,7 +89,7 @@ export default function Portfolio() {
               >
                 {!p.placeholder && (
                   <>
-                    <div className="absolute inset-0 grain pointer-events-none opacity-50" />
+                    <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none opacity-50" />
                     <div className="absolute -top-32 -right-32 w-72 h-72 rounded-full bg-accent/15 blur-3xl group-hover:scale-125 transition-transform duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/30 to-transparent opacity-90" />
 

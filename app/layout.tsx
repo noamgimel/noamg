@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
+import SkipLink from "./components/SkipLink";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -96,7 +100,11 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={heebo.variable}>
       <body className="font-sans antialiased bg-cream text-ink">
-        {children}
+        <SkipLink />
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

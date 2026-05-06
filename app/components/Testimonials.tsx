@@ -43,11 +43,11 @@ export default function Testimonials() {
       id="testimonials"
       className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-emerald text-cream overflow-hidden"
     >
-      <div className="absolute inset-0 grain pointer-events-none opacity-50" />
+      <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none opacity-50" />
 
       {/* Floating orbs */}
-      <div className="orb orb-accent w-96 h-96 -top-32 -right-20 opacity-40 drift-slow" />
-      <div className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -left-40 opacity-50 drift" />
+      <div aria-hidden="true" className="orb orb-accent w-96 h-96 -top-32 -right-20 opacity-40 drift-slow" />
+      <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -left-40 opacity-50 drift" />
 
       <div className="container-x relative">
         <motion.div
@@ -124,11 +124,11 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       <div className="flex flex-col gap-4 h-full">
         <div className="aspect-[9/16] rounded-[1.75rem] glass-dark border-2 border-dashed border-cream/15 grid place-items-center text-center p-8 hover:border-accent/40 transition-colors">
           <div>
-            <div className="text-cream/40 text-xs font-bold uppercase tracking-widest mb-3">
+            <div className="text-cream/60 text-xs font-bold uppercase tracking-widest mb-3">
               {t.role}
             </div>
             <div className="text-2xl font-extrabold text-cream/65 mb-3">{t.name}</div>
-            <p className="text-sm text-cream/50 leading-relaxed">
+            <p className="text-sm text-cream/70 leading-relaxed">
               הסרטון השלישי בדרך — בקרוב יופיע כאן.
             </p>
           </div>
@@ -148,6 +148,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           playsInline
           controls={playing}
           preload="metadata"
+          aria-label={`סרטון המלצה של ${t.name}`}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
           className="absolute inset-0 w-full h-full object-cover bg-brand-900"
@@ -156,13 +157,17 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         {/* Play overlay (hidden when playing) */}
         {!playing && (
           <button
+            type="button"
             onClick={togglePlay}
             className="absolute inset-0 grid place-items-center bg-gradient-to-t from-brand-900/80 via-brand-900/20 to-brand-900/40 hover:bg-brand-900/30 transition-colors duration-300"
             aria-label={`נגן את ההמלצה של ${t.name}`}
           >
             {/* Play button */}
-            <span className="grid place-items-center w-20 h-20 rounded-full bg-gradient-to-br from-accent to-accent-bright text-brand-900 shadow-2xl shadow-accent/40 group-hover:scale-110 transition-transform duration-300 pulse-glow">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 mr-1" aria-hidden>
+            <span
+              aria-hidden="true"
+              className="grid place-items-center w-20 h-20 rounded-full bg-gradient-to-br from-accent to-accent-bright text-brand-900 shadow-2xl shadow-accent/40 group-hover:scale-110 transition-transform duration-300 pulse-glow"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 mr-1">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </span>
@@ -174,7 +179,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       <div className="flex items-center justify-between gap-3 px-1">
         <div className="min-w-0">
           <div className="text-xl font-extrabold text-cream truncate">{t.name}</div>
-          <div className="text-xs text-cream/55 truncate">{t.role}</div>
+          <div className="text-xs text-cream/70 truncate">{t.role}</div>
         </div>
 
         {t.siteUrl && (
@@ -183,7 +188,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-bright transition-colors group/link"
-            aria-label={`לאתר של ${t.name}`}
+            aria-label={`לאתר של ${t.name} (נפתח בחלון חדש)`}
           >
             <span className="hidden md:inline">צפה באתר</span>
             <span className="md:hidden">אתר</span>
@@ -191,6 +196,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
               viewBox="0 0 16 16"
               className="w-3.5 h-3.5 transition-transform group-hover/link:-translate-x-0.5"
               fill="none"
+              aria-hidden="true"
             >
               <path d="M10 3l-7 0M10 3v7M10 3L3 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -198,17 +204,15 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         )}
       </div>
 
-      {/* Domain — small visual on bottom */}
+      {/* Domain — display only (the same URL is already linked above) */}
       {t.siteLabel && (
-        <a
-          href={t.siteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <span
           dir="ltr"
-          className="text-[0.7rem] text-cream/40 hover:text-cream/70 transition-colors px-1 truncate font-mono tabular-num"
+          aria-hidden="true"
+          className="text-[0.7rem] text-cream/65 px-1 truncate font-mono tabular-num"
         >
           {t.siteLabel} ↗
-        </a>
+        </span>
       )}
     </div>
   );

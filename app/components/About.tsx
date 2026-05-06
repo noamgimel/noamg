@@ -6,8 +6,8 @@ export default function About() {
   return (
     <section id="about" className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream-warm overflow-hidden">
       {/* Decorative orbs */}
-      <div className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-40 opacity-50 drift-slow" />
-      <div className="orb orb-brand w-96 h-96 -bottom-32 -right-32 opacity-40 drift" />
+      <div aria-hidden="true" className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-40 opacity-50 drift-slow" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 -bottom-32 -right-32 opacity-40 drift" />
 
       <div className="container-x relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -54,7 +54,7 @@ export default function About() {
             </div>
 
             {/* Note for user during dev — remove after files are saved */}
-            <p className="mt-12 text-xs text-brand-900/40 italic lg:hidden">
+            <p className="mt-12 text-xs text-brand-900/60 italic lg:hidden">
               {/* טיפ: שמור את התמונה האישית ב-public/noam.jpg ואת התעודה ב-public/wix-certified.png */}
             </p>
           </motion.div>

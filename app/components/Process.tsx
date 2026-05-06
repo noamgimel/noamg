@@ -43,8 +43,8 @@ export default function Process() {
       id="process"
       className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream overflow-hidden"
     >
-      <div className="orb orb-brand w-96 h-96 -top-32 -right-32 opacity-40" />
-      <div className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 -top-32 -right-32 opacity-40" />
+      <div aria-hidden="true" className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50" />
 
       <div className="container-x relative">
         <motion.div
@@ -116,7 +116,7 @@ export default function Process() {
                       />
                     </svg>
                     <span>
-                      <span className="text-brand-900/55">בסוף השלב יהיה לך: </span>
+                      <span className="text-brand-900/70">בסוף השלב יהיה לך: </span>
                       {step.outcome}
                     </span>
                   </div>

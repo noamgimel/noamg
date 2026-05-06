@@ -43,8 +43,8 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream overflow-hidden">
-      <div className="orb orb-brand w-96 h-96 -top-32 -right-32 opacity-40 drift-slow" />
-      <div className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50 drift" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 -top-32 -right-32 opacity-40 drift-slow" />
+      <div aria-hidden="true" className="orb orb-accent w-72 h-72 bottom-20 -left-20 opacity-50 drift" />
 
       <div className="container-x relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
@@ -77,6 +77,8 @@ export default function FAQ() {
             <div className="rounded-3xl glass-light card-glow overflow-hidden">
               {faqs.map((f, i) => {
                 const isOpen = open === i;
+                const buttonId = `faq-button-${i}`;
+                const panelId = `faq-panel-${i}`;
                 return (
                   <motion.div
                     key={f.q}
@@ -86,34 +88,43 @@ export default function FAQ() {
                     transition={{ duration: 0.5, delay: i * 0.04 }}
                     className="border-b border-brand-700/8 last:border-b-0"
                   >
-                    <button
-                      onClick={() => setOpen(isOpen ? null : i)}
-                      className="w-full text-right py-5 px-6 md:px-8 flex items-start justify-between gap-6 group hover:bg-brand-700/[0.03] transition-colors"
-                      aria-expanded={isOpen}
-                    >
-                      <span
-                        className={`text-base md:text-lg font-bold transition-colors ${
-                          isOpen ? "text-brand-700" : "text-brand-900 group-hover:text-brand-700"
-                        }`}
+                    <h3 className="m-0">
+                      <button
+                        type="button"
+                        id={buttonId}
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        onClick={() => setOpen(isOpen ? null : i)}
+                        className="w-full text-right py-5 px-6 md:px-8 flex items-start justify-between gap-6 group hover:bg-brand-700/[0.03] transition-colors"
                       >
-                        {f.q}
-                      </span>
-                      <span
-                        className={`shrink-0 grid place-items-center w-9 h-9 rounded-full transition-all duration-300 ${
-                          isOpen
-                            ? "bg-gradient-to-br from-accent to-accent-bright text-brand-900 rotate-45"
-                            : "bg-brand-700/8 text-brand-700 group-hover:bg-brand-700/15"
-                        }`}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                        </svg>
-                      </span>
-                    </button>
+                        <span
+                          className={`text-base md:text-lg font-bold transition-colors ${
+                            isOpen ? "text-brand-700" : "text-brand-900 group-hover:text-brand-700"
+                          }`}
+                        >
+                          {f.q}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className={`shrink-0 grid place-items-center w-9 h-9 rounded-full transition-all duration-300 ${
+                            isOpen
+                              ? "bg-gradient-to-br from-accent to-accent-bright text-brand-900 rotate-45"
+                              : "bg-brand-700/8 text-brand-700 group-hover:bg-brand-700/15"
+                          }`}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                          </svg>
+                        </span>
+                      </button>
+                    </h3>
 
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={buttonId}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}

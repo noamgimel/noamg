@@ -16,6 +16,41 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-fo
 html, body { background: var(--cream); color: #0A0A0A; overflow-x: hidden; }
 
 ::selection { background: var(--brand-700); color: var(--cream); }
+
+/* ===== ACCESSIBILITY — FOCUS =====
+   Visible, high-contrast focus ring for keyboard users only.
+   Never visible on mouse click (focus-visible isolates that), so the design
+   stays clean while keyboard nav stays clear.
+*/
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid #C9A961;
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 5px rgba(15, 61, 46, 0.2);
+}
+/* Inputs/textareas: their own focus style is already strong; just suppress
+   double-ring (CSS box-shadow is preferred for inputs since the borders are tight). */
+.input-base:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.45);
+}
+
+/* Skip-link visibility (utility for SkipLink component fallback) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+.focus\:not-sr-only:focus,
+.focus-visible\:not-sr-only:focus-visible {
+  position: fixed;
+  width: auto; height: auto;
+  margin: 0; overflow: visible; clip: auto;
+  white-space: normal;
+}
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--brand-700), var(--brand-900)); border-radius: 8px; }
@@ -254,6 +289,62 @@ html, body { background: var(--cream); color: #0A0A0A; overflow-x: hidden; }
   .orb { filter: blur(28px); }
   .drift, .drift-slow { animation-duration: 40s; }
 }
+
+/* ===== LEGAL PROSE =====
+   Typography for legal pages (terms, accessibility statement).
+   Strong hierarchy, comfortable line-height, accessible link styling.
+*/
+.legal-prose h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #0F3D2E;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .legal-prose h2 { font-size: 1.75rem; }
+}
+.legal-prose h3 {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #0A0A0A;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p { margin: 0.75rem 0; }
+.legal-prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0;
+}
+.legal-prose ul > li {
+  position: relative;
+  padding-inline-start: 1.5rem;
+  margin: 0.5rem 0;
+}
+.legal-prose ul > li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.85em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #C9A961;
+}
+.legal-prose a {
+  color: #0F3D2E;
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 169, 97, 0.6);
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.legal-prose a:hover { color: #1F7A47; text-decoration-color: #C9A961; }
+.legal-prose strong { color: #0A0A0A; font-weight: 700; }
 
 /* ===== VIDEO FULLSCREEN FIX =====
    Testimonial videos use object-cover inside their card frame for a clean

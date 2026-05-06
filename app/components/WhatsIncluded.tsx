@@ -46,11 +46,11 @@ const categories = [
 export default function WhatsIncluded() {
   return (
     <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-dark text-cream overflow-hidden">
-      <div className="absolute inset-0 grain pointer-events-none opacity-50" />
+      <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none opacity-50" />
 
       {/* Floating orbs */}
-      <div className="orb orb-accent w-96 h-96 -top-40 -left-32 opacity-50 drift-slow" />
-      <div className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -right-40 opacity-50 drift" />
+      <div aria-hidden="true" className="orb orb-accent w-96 h-96 -top-40 -left-32 opacity-50 drift-slow" />
+      <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -right-40 opacity-50 drift" />
 
       <div className="container-x relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">

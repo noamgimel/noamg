@@ -60,11 +60,11 @@ export default function FinalCTA() {
       id="contact"
       className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-deep text-cream overflow-hidden"
     >
-      <div className="absolute inset-0 grain pointer-events-none opacity-50" />
+      <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none opacity-50" />
 
       {/* Floating orbs */}
-      <div className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-32 opacity-50 drift-slow" />
-      <div className="orb orb-brand w-96 h-96 -bottom-40 -right-32 opacity-60 drift" />
+      <div aria-hidden="true" className="orb orb-accent w-[28rem] h-[28rem] -top-40 -left-32 opacity-50 drift-slow" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 -bottom-40 -right-32 opacity-60 drift" />
 
       {/* Animated rings — hidden on small screens for performance */}
       <div className="hidden md:grid absolute inset-0 place-items-center pointer-events-none">
@@ -166,6 +166,8 @@ export default function FinalCTA() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.5 }}
+                      role="status"
+                      aria-live="polite"
                       className="text-center py-12"
                     >
                       <div className="grid place-items-center w-20 h-20 rounded-full bg-gradient-to-br from-accent to-accent-bright mx-auto mb-6 glow-accent">
@@ -201,8 +203,14 @@ export default function FinalCTA() {
                       exit={{ opacity: 0 }}
                       onSubmit={onSubmit}
                       noValidate
+                      aria-label="טופס יצירת קשר"
                       className="space-y-5"
                     >
+                      <p className="text-xs text-cream/70">
+                        <span aria-hidden="true" className="text-accent">*</span>{" "}
+                        שדות חובה
+                      </p>
+
                       <div className="grid sm:grid-cols-2 gap-4">
                         <Field
                           id="name"
@@ -212,6 +220,7 @@ export default function FinalCTA() {
                           onChange={update("name")}
                           error={errors.name}
                           required
+                          autoComplete="name"
                         />
                         <Field
                           id="phone"
@@ -223,6 +232,8 @@ export default function FinalCTA() {
                           error={errors.phone}
                           required
                           dir="ltr"
+                          autoComplete="tel"
+                          inputMode="tel"
                         />
                       </div>
 
@@ -236,15 +247,19 @@ export default function FinalCTA() {
                         error={errors.email}
                         required
                         dir="ltr"
+                        autoComplete="email"
+                        inputMode="email"
                       />
 
                       {/* Message textarea */}
                       <div>
                         <label htmlFor="message" className="block text-sm font-semibold text-cream/85 mb-2">
-                          ספר לי קצת על העסק <span className="text-cream/50 font-normal">(אופציונלי)</span>
+                          ספר לי קצת על העסק{" "}
+                          <span className="text-cream/70 font-normal">(אופציונלי)</span>
                         </label>
                         <textarea
                           id="message"
+                          name="message"
                           rows={4}
                           placeholder="מה אתה עושה? למי? מה אתה רוצה שהאתר יעשה בשבילך?"
                           value={form.message}
@@ -258,12 +273,25 @@ export default function FinalCTA() {
                         <button
                           type="submit"
                           disabled={status === "loading"}
+                          aria-busy={status === "loading"}
                           className="btn-primary shine w-full sm:w-auto !px-9 !py-4 disabled:opacity-70 disabled:cursor-not-allowed"
                         >
                           {status === "loading" ? (
                             <>
-                              <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeOpacity="0.25" strokeWidth="3" />
+                              <svg
+                                className="w-5 h-5 animate-spin"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true"
+                              >
+                                <circle
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeOpacity="0.25"
+                                  strokeWidth="3"
+                                />
                                 <path
                                   d="M22 12a10 10 0 0 1-10 10"
                                   stroke="currentColor"
@@ -276,23 +304,25 @@ export default function FinalCTA() {
                           ) : (
                             <>
                               <span>שלח פרטים — נדבר בקרוב</span>
-                              <span aria-hidden>←</span>
+                              <span aria-hidden="true">←</span>
                             </>
                           )}
                         </button>
 
-                        <p className="mt-4 text-xs text-cream/55 leading-relaxed">
+                        <p className="mt-4 text-xs text-cream/65 leading-relaxed">
                           בלי ספאם. בלי רשימות תפוצה.{" "}
                           <span className="text-cream/75">
                             רק שיחה אחת כדי להבין אם יש כאן התאמה.
                           </span>
                         </p>
 
-                        {status === "error" && (
-                          <p className="mt-3 text-sm text-red-300">
-                            משהו השתבש בשליחה. נסה שוב או שלח אימייל ישירות.
-                          </p>
-                        )}
+                        <div role="status" aria-live="polite" aria-atomic="true">
+                          {status === "error" && (
+                            <p className="mt-3 text-sm text-red-300 font-semibold">
+                              משהו השתבש בשליחה. נסה שוב או שלח אימייל ישירות.
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </motion.form>
                   )}
@@ -317,34 +347,70 @@ type FieldProps = {
   error?: string;
   required?: boolean;
   dir?: "ltr" | "rtl";
+  autoComplete?: string;
+  inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search";
 };
 
-function Field({ id, label, type = "text", placeholder, value, onChange, error, required, dir }: FieldProps) {
+function Field({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  error,
+  required,
+  dir,
+  autoComplete,
+  inputMode,
+}: FieldProps) {
+  const errorId = `${id}-error`;
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-semibold text-cream/85 mb-2">
         {label}
-        {required && <span className="text-accent mr-1">*</span>}
+        {required && (
+          <>
+            <span aria-hidden="true" className="text-accent mr-1">*</span>
+            <span className="sr-only"> (שדה חובה)</span>
+          </>
+        )}
       </label>
       <input
         id={id}
+        name={id}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         dir={dir}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        required={required}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
         className={`input-base ${error ? "!border-red-400/60 !bg-red-400/5 focus:!shadow-[0_0_0_4px_rgba(248,113,113,0.15)]" : ""}`}
       />
       {error && (
         <motion.p
+          id={errorId}
+          role="alert"
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-2 text-xs text-red-300 flex items-center gap-1.5"
+          className="mt-2 text-sm text-red-300 flex items-center gap-1.5 font-semibold"
         >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0">
-            <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M6 3.5v3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            <circle cx="6" cy="8.5" r="0.5" fill="currentColor" />
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 12 12"
+            fill="none"
+            aria-hidden="true"
+            className="shrink-0"
+          >
+            <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.4" />
+            <path d="M6 3.5v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            <circle cx="6" cy="8.5" r="0.6" fill="currentColor" />
           </svg>
           {error}
         </motion.p>

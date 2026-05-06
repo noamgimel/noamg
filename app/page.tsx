@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Hook from "./components/Hook";
 import AIObjection from "./components/AIObjection";
@@ -11,13 +10,10 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import WhoFor from "./components/WhoFor";
 import FinalCTA from "./components/FinalCTA";
-import Footer from "./components/Footer";
-import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function Home() {
   return (
-    <main>
-      <Header />
+    <>
       <Hero />
       <Hook />
       <AIObjection />
@@ -30,8 +26,6 @@ export default function Home() {
       <FAQ />
       <WhoFor />
       <FinalCTA />
-      <Footer />
-      <WhatsAppButton />
-    </main>
+    </>
   );
 }

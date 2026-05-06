@@ -43,8 +43,8 @@ const items = [
 export default function Differentiators() {
   return (
     <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream-warm overflow-hidden">
-      <div className="orb orb-accent w-96 h-96 top-20 -right-32 opacity-40" />
-      <div className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -left-40 opacity-50" />
+      <div aria-hidden="true" className="orb orb-accent w-96 h-96 top-20 -right-32 opacity-40" />
+      <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -left-40 opacity-50" />
 
       <div className="container-x relative">
         <motion.div

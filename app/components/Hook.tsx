@@ -6,8 +6,8 @@ export default function Hook() {
   return (
     <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-cream overflow-hidden">
       {/* Decorative orbs */}
-      <div className="orb orb-accent w-72 h-72 -top-20 -right-20 opacity-50" />
-      <div className="orb orb-brand w-96 h-96 -bottom-32 -left-20 opacity-40" />
+      <div aria-hidden="true" className="orb orb-accent w-72 h-72 -top-20 -right-20 opacity-50" />
+      <div aria-hidden="true" className="orb orb-brand w-96 h-96 -bottom-32 -left-20 opacity-40" />
 
       <div className="container-x relative">
         <motion.div
@@ -48,7 +48,7 @@ export default function Hook() {
               כתובת באינטרנט. דף 'אודות', דף 'שירותים', טלפון בתחתית. גולש נוחת,
               לא מבין תוך חמש שניות למה דווקא אצלך — וממשיך הלאה.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 text-sm text-brand-900/40">
+            <div className="mt-6 inline-flex items-center gap-2 text-sm text-brand-900/60">
               <span className="w-8 h-px bg-brand-900/20" />
               <span>נראה בסדר. לא מוכר.</span>
             </div>
@@ -62,7 +62,7 @@ export default function Hook() {
             transition={{ duration: 0.8, delay: 0.25 }}
             className="relative p-8 md:p-10 rounded-3xl mesh-dark text-cream overflow-hidden glow-brand"
           >
-            <div className="absolute inset-0 grain pointer-events-none" />
+            <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none" />
             <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-accent/15 blur-3xl float-y" />
             <div className="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-brand-500/20 blur-3xl" />
 
@@ -121,7 +121,7 @@ export default function Hook() {
           className="mt-14 text-2xl md:text-3xl font-bold text-brand-900 max-w-3xl leading-snug"
         >
           ההבדל הוא לא העיצוב.{" "}
-          <span className="text-brand-700/55">
+          <span className="text-brand-700/70">
             זה האסטרטגיה שמאחורי כל פיקסל.
           </span>
         </motion.p>
