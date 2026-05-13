@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const fits = [
   "יש לך עסק טוב, אבל האתר לא משקף את הרמה שלך.",
@@ -145,6 +146,8 @@ export default function WhoFor() {
             </div>
           </motion.div>
         </div>
+
+        <InlineCTA text="זה נשמע מתאים לי — בוא נדבר" />
       </div>
     </section>
   );

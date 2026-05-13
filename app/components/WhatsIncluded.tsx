@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const categories = [
   {
@@ -151,6 +152,8 @@ export default function WhatsIncluded() {
             </div>
           </div>
         </div>
+
+        <InlineCTA text="רוצה להבין מה נכון לאתר שלך?" />
       </div>
     </section>
   );

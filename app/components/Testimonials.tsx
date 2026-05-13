@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import InlineCTA from "./InlineCTA";
 
 type Testimonial = {
   name: string;
@@ -101,6 +102,8 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+
+        <InlineCTA text="רוצה אתר שמרגיש ברמה הזאת? בוא נדבר" />
       </div>
     </section>
   );

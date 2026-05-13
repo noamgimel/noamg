@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const comparison = [
   { ai: "תבנית שעובדת לכולם", me: "אסטרטגיה שעובדת לך" },
@@ -160,6 +161,8 @@ export default function AIObjection() {
             עסק בולט לא נבנה מכלי. הוא נבנה מהחלטות.
           </span>
         </motion.p>
+
+        <InlineCTA text="בוא נבנה אתר עם אסטרטגיה, לא רק AI" />
       </div>
     </section>
   );

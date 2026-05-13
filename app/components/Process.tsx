@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const steps = [
   {
@@ -144,6 +145,8 @@ export default function Process() {
             השאלה היא לא איך אני מהיר. היא למה האחרים איטיים.
           </p>
         </motion.div>
+
+        <InlineCTA text="יאללה, נבדוק התאמה" />
       </div>
     </section>
   );

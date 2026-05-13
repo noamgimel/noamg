@@ -1,30 +1,30 @@
 import Hero from "./components/Hero";
-import Hook from "./components/Hook";
 import Testimonials from "./components/Testimonials";
+import Hook from "./components/Hook";
+import WhatsIncluded from "./components/WhatsIncluded";
+import Differentiators from "./components/Differentiators";
+import Process from "./components/Process";
+import RiskReversal from "./components/RiskReversal";
 import AIObjection from "./components/AIObjection";
 import About from "./components/About";
-import Process from "./components/Process";
-import Differentiators from "./components/Differentiators";
-import WhatsIncluded from "./components/WhatsIncluded";
-import RiskReversal from "./components/RiskReversal";
-import FAQ from "./components/FAQ";
 import WhoFor from "./components/WhoFor";
+import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Hook />
       <Testimonials />
+      <Hook />
+      <WhatsIncluded />
+      <Differentiators />
+      <Process />
+      <RiskReversal />
       <AIObjection />
       <About />
-      <Process />
-      <Differentiators />
-      <WhatsIncluded />
-      <RiskReversal />
-      <FAQ />
       <WhoFor />
+      <FAQ />
       <FinalCTA />
     </>
   );

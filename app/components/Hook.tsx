@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 export default function Hook() {
   return (
@@ -125,6 +126,8 @@ export default function Hook() {
             זה האסטרטגיה שמאחורי כל פיקסל.
           </span>
         </motion.p>
+
+        <InlineCTA text="בדוק אם האתר שלך מפספס פניות" />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const guarantees = [
   {
@@ -96,6 +97,8 @@ export default function RiskReversal() {
             והמקצוען הזה לוקח על עצמו את הסיכון בשבילך.
           </span>
         </motion.p>
+
+        <InlineCTA text="אפשר להתחיל בשיחה בלי התחייבות" />
       </div>
     </section>
   );

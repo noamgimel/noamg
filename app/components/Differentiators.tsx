@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InlineCTA from "./InlineCTA";
 
 const items = [
   {
@@ -99,6 +100,8 @@ export default function Differentiators() {
             </motion.div>
           ))}
         </div>
+
+        <InlineCTA text="קבע שיחת התאמה קצרה" />
       </div>
     </section>
   );
