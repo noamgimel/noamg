@@ -45,9 +45,14 @@ export default function FinalCTA() {
     setStatus("loading");
 
     try {
-      // ⚠️ TODO: חבר ל-API / Formspree / Netlify Forms / endpoint משלך.
-      // כרגע — דמה של שליחה כדי לראות את החוויה.
-      await new Promise((resolve) => setTimeout(resolve, 1400));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error(`status ${res.status}`);
+
       setStatus("success");
       setForm(emptyForm);
     } catch (err) {
@@ -184,15 +189,12 @@ export default function FinalCTA() {
                       <h3 className="text-2xl md:text-3xl font-extrabold mb-3">
                         קיבלתי. נדבר בקרוב.
                       </h3>
-                      <p className="text-cream/75 max-w-md mx-auto">
-                        בינתיים — אם תרצה לראות אתרים שבניתי, אתה מוזמן לרדת
-                        לסקציית "לקוחות מספרים" ולבדוק אותם בעצמך.
-                      </p>
                       <button
                         onClick={() => setStatus("idle")}
-                        className="mt-8 text-sm text-accent hover:text-accent-bright transition-colors"
+                        className="mt-8 text-sm text-accent hover:text-accent-bright transition-colors inline-flex items-center gap-1.5 mx-auto"
                       >
-                        ← לשליחה חוזרת
+                        <span>לשליחה חוזרת</span>
+                        <span aria-hidden="true">←</span>
                       </button>
                     </motion.div>
                   ) : (
@@ -390,7 +392,7 @@ function Field({
         aria-required={required || undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`input-base ${error ? "!border-red-400/60 !bg-red-400/5 focus:!shadow-[0_0_0_4px_rgba(248,113,113,0.15)]" : ""}`}
+        className={`input-base ${dir === "ltr" ? "placeholder:text-right" : ""} ${error ? "!border-red-400/60 !bg-red-400/5 focus:!shadow-[0_0_0_4px_rgba(248,113,113,0.15)]" : ""}`}
       />
       {error && (
         <motion.p
