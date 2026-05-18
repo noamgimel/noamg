@@ -5,19 +5,32 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
-const navLinks = [
-  { label: "עליי", hash: "#about" },
-  { label: "תהליך", hash: "#process" },
-  { label: "לקוחות", hash: "#testimonials" },
-  { label: "שאלות", hash: "#faq" },
+/**
+ * Nav links during Phase 1 of the new positioning:
+ *   - `#how-it-works` is a placeholder anchor for the new section that will
+ *     be added in the next phase. Until it exists, the link is a no-op scroll
+ *     but doesn't error.
+ *   - `/websites` hosts the legacy website-building landing.
+ *
+ * Other links (about / process / testimonials / faq) were removed for now
+ * because their sections no longer live on home; they'll be re-added as new
+ * funnel-themed sections come online.
+ */
+type NavLink = { label: string; href: string };
+const navLinks: NavLink[] = [
+  { label: "איך זה עובד", href: "#how-it-works" },
+  { label: "בניית אתרים", href: "/websites" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Pages that render a dark hero behind the header — keep the chrome dark
+  // at the top until the user scrolls.
+  const isOverDarkHero = isHome || pathname === "/websites";
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lightChrome, setLightChrome] = useState(!isHome);
+  const [lightChrome, setLightChrome] = useState(!isOverDarkHero);
 
   // Scroll progress bar
   const { scrollY, scrollYProgress } = useScroll();
@@ -28,8 +41,8 @@ export default function Header() {
 
   // Normalized 0→1 progress over the first 90px of scroll
   const rawProgress = useTransform(smoothY, [0, 90], [0, 1], { clamp: true });
-  // Non-home pages always look "scrolled"
-  const progress = useTransform(rawProgress, (v) => (!isHome ? 1 : v));
+  // Pages without a dark hero always look "scrolled"
+  const progress = useTransform(rawProgress, (v) => (!isOverDarkHero ? 1 : v));
 
   // Two background layers that cross-fade instead of swapping gradients (which CSS can't tween)
   const darkBgOpacity = useTransform(progress, [0, 1], [1, 0]);
@@ -40,9 +53,9 @@ export default function Header() {
 
   // Keep a boolean for text-color classes (threshold at 50% of scroll)
   useEffect(() => {
-    if (!isHome) return;
+    if (!isOverDarkHero) return;
     return progress.on("change", (v) => setLightChrome(v > 0.45));
-  }, [progress, isHome]);
+  }, [progress, isOverDarkHero]);
 
   // Close mobile menu on Escape
   useEffect(() => {
@@ -54,7 +67,14 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  const homeHash = (hash: string) => (isHome ? hash : `/${hash}`);
+  /** Resolve a nav href against the current page.
+   *  - Pure hashes (`#foo`) stay as `#foo` on home and become `/#foo` elsewhere.
+   *  - Absolute paths and external hrefs are returned unchanged.
+   */
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#")) return isHome ? href : `/${href}`;
+    return href;
+  };
 
   return (
     <>
@@ -112,8 +132,8 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-7" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <a
-                key={link.hash}
-                href={homeHash(link.hash)}
+                key={link.href}
+                href={resolveHref(link.href)}
                 className={`relative text-sm font-medium transition-colors duration-500 group ${
                   lightChrome
                     ? "text-brand-900/80 hover:text-brand-700"
@@ -133,7 +153,7 @@ export default function Header() {
 
           {/* CTA */}
           <a
-            href={homeHash("#contact")}
+            href={resolveHref("#contact")}
             className="hidden md:inline-flex btn-primary !py-2.5 !px-5 text-sm"
           >
             <span>קבע שיחה</span>
@@ -183,8 +203,8 @@ export default function Header() {
           <nav className="container-x py-6 flex flex-col gap-5" aria-label="ניווט ראשי במובייל">
             {navLinks.map((link) => (
               <a
-                key={link.hash}
-                href={homeHash(link.hash)}
+                key={link.href}
+                href={resolveHref(link.href)}
                 onClick={() => setMobileOpen(false)}
                 tabIndex={mobileOpen ? 0 : -1}
                 className="text-base font-medium text-brand-900/80 hover:text-brand-700 transition-colors"
@@ -193,7 +213,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href={homeHash("#contact")}
+              href={resolveHref("#contact")}
               onClick={() => setMobileOpen(false)}
               tabIndex={mobileOpen ? 0 : -1}
               className="btn-primary justify-center"
