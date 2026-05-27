@@ -114,20 +114,6 @@ export default function LeadFunnelHero() {
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10 items-center">
           {/* === COPY SIDE === */}
           <div>
-            {/* Eyebrow */}
-            <motion.div
-              variants={fadeUp}
-              initial="initial"
-              animate="animate"
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2.5 mb-6 sm:mb-7 px-4 py-2 rounded-full border border-accent/40 bg-brand-900/50 backdrop-blur-md text-sm font-semibold tracking-wide text-cream shadow-lg shadow-brand-900/30"
-            >
-              <span className="text-accent">
-                <FunnelIcon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-              </span>
-              <span>משפך לידים לעסקים · אתר + Lidup</span>
-            </motion.div>
-
             {/* Headline */}
             <motion.h1
               variants={fadeUp}
@@ -154,19 +140,6 @@ export default function LeadFunnelHero() {
               <span className="text-accent font-semibold">משפך דיגיטלי</span>{" "}
               שמסנן פניות לא רלוונטיות, מחמם לידים שבאמת מעוניינים, ומרכז את כולם במקום אחד מסודר —
               כדי שאף ליד רציני לא יפול בין הכיסאות.
-            </motion.p>
-
-            {/* Supporting text */}
-            <motion.p
-              variants={fadeUp}
-              initial="initial"
-              animate="animate"
-              transition={{ duration: 0.8, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 md:mt-5 text-sm md:text-[0.95rem] text-cream/65 max-w-2xl leading-relaxed"
-            >
-              המשפך כולל אתר מקצועי לעסק, טופס חכם שמחובר ישירות למערכת{" "}
-              <span className="text-cream/90 font-semibold">Lidup</span>,
-              ותהליך מעקב שמאפשר לדעת מי פנה, מאיפה הוא הגיע, מה הסטטוס שלו ומה צריך לעשות איתו עכשיו.
             </motion.p>
 
             {/* CTAs */}

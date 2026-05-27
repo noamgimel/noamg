@@ -363,7 +363,9 @@ video:-moz-full-screen {
 
 /* =====================================================================
    LIDUP HERO VISUAL — scoped under .lidup-hero
-   Animated funnel: channels → core dashboard → lead cards
+   Funnel: channels → core dashboard → floating lead cards
+   The hero is a transparent positioning container — it overlays on the
+   parent section's dark green background.
    ===================================================================== */
 .lidup-hero {
   /* Palette mapped to project brand (forest green + gold) */
@@ -376,6 +378,7 @@ video:-moz-full-screen {
   --lh-accent: #C9A961;
   --lh-urgent: #E0786A;
   --lh-good: #3F9C66;
+  --lh-info: #4FA0E0;
   --lh-text: #FAFAF7;
   --lh-text-mute: #A9D5BA;
   --lh-card: rgba(10, 42, 32, 0.55);
@@ -387,52 +390,11 @@ video:-moz-full-screen {
 
   position: relative;
   width: 100%;
-  border-radius: 28px;
-  overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(31, 122, 71, 0.20), transparent 60%),
-    radial-gradient(80% 60% at 50% 110%, rgba(201, 169, 97, 0.10), transparent 60%),
-    linear-gradient(180deg, var(--lh-bg-0) 0%, var(--lh-bg-1) 45%, var(--lh-bg-2) 100%);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.04) inset,
-    0 0 0 1px rgba(115, 185, 141, 0.10),
-    0 30px 80px -30px rgba(0,0,0,0.7);
+  z-index: 1;
   font-family: var(--font-heebo), ui-sans-serif, system-ui, sans-serif;
   color: var(--lh-text);
   container-type: inline-size;
-}
-
-/* Subtle grid texture */
-.lidup-hero::before {
-  content: "";
-  position: absolute; inset: 0;
-  background-image: radial-gradient(rgba(115, 185, 141, 0.07) 1px, transparent 1px);
-  background-size: 26px 26px;
-  background-position: 0 0;
-  -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, black, transparent 75%);
-          mask-image: radial-gradient(120% 100% at 50% 50%, black, transparent 75%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Aurora glow that drifts */
-.lidup-hero::after {
-  content: "";
-  position: absolute; inset: -20%;
-  background:
-    radial-gradient(35% 30% at 30% 35%, rgba(31, 122, 71, 0.26), transparent 60%),
-    radial-gradient(30% 25% at 70% 40%, rgba(115, 185, 141, 0.20), transparent 60%),
-    radial-gradient(40% 30% at 50% 80%, rgba(201, 169, 97, 0.10), transparent 60%);
-  filter: blur(40px);
-  animation: lh-aurora 18s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-}
-@keyframes lh-aurora {
-  0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
-  50%  { transform: translate3d(2%, 1%, 0) scale(1.05); }
-  100% { transform: translate3d(-1%, 2%, 0) scale(1); }
 }
 
 /* Floating ambient sparks */
@@ -457,37 +419,38 @@ video:-moz-full-screen {
   100% { transform: translateY(-120px) scale(1.1); opacity: 0; }
 }
 
-/* Stage */
+/* Stage — generous bottom padding for floating lead cards.
+   Bigger gap between channels and core leaves room for the toast banner. */
 .lidup-hero .stage {
   position: relative;
   z-index: 3;
-  padding: clamp(14px, 2.8cqi, 28px) clamp(12px, 2.8cqi, 28px);
+  padding: clamp(18px, 2.6cqi, 36px) clamp(14px, 3cqi, 36px) clamp(180px, 30cqi, 280px);
   display: grid;
-  grid-template-rows: auto auto auto;
-  gap: clamp(8px, 1.6cqi, 18px);
+  grid-template-rows: auto auto;
+  gap: clamp(38px, 5cqi, 56px);
 }
 
 /* Channels row */
 .lidup-hero .channels {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(4px, 1.6cqi, 18px);
+  gap: clamp(6px, 2cqi, 24px);
   align-items: start;
-  padding: 0 clamp(2px, 2cqi, 20px);
-  height: clamp(56px, 7cqi, 80px);
+  padding: 0 clamp(4px, 3cqi, 32px);
+  height: clamp(70px, 9cqi, 100px);
   position: relative;
   z-index: 4;
 }
 .lidup-hero .channel {
   display: flex; flex-direction: column; align-items: center;
-  gap: 6px;
+  gap: 8px;
   position: relative;
 }
 .lidup-hero .channel-node {
   position: relative;
-  width: clamp(38px, 5.5cqi, 52px);
-  height: clamp(38px, 5.5cqi, 52px);
-  border-radius: 14px;
+  width: clamp(46px, 7cqi, 68px);
+  height: clamp(46px, 7cqi, 68px);
+  border-radius: 18px;
   background: #ffffff;
   display: grid; place-items: center;
   box-shadow:
@@ -503,33 +466,33 @@ video:-moz-full-screen {
 }
 .lidup-hero .channel-pulse {
   position: absolute;
-  inset: -5px;
-  border-radius: 20px;
+  inset: -6px;
+  border-radius: 24px;
   box-shadow: 0 0 0 0 var(--ring, var(--lh-primary-bright));
   animation: lh-pulseRing 2.6s cubic-bezier(.2,.7,.3,1) infinite;
   pointer-events: none;
 }
 @keyframes lh-pulseRing {
   0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ring, var(--lh-primary-bright)) 55%, transparent); }
-  70%  { box-shadow: 0 0 0 14px color-mix(in srgb, var(--ring, var(--lh-primary-bright)) 0%, transparent); }
+  70%  { box-shadow: 0 0 0 16px color-mix(in srgb, var(--ring, var(--lh-primary-bright)) 0%, transparent); }
   100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ring, var(--lh-primary-bright)) 0%, transparent); }
 }
 .lidup-hero .channel-label {
-  font-size: clamp(9px, 1.3cqi, 11px);
+  font-size: clamp(10px, 1.5cqi, 12px);
   color: var(--lh-text-mute);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 .lidup-hero .channel-count {
   position: absolute;
-  top: -6px;
+  top: -7px;
   inset-inline-start: -8px;
-  min-width: 18px; height: 18px;
-  padding: 0 5px;
+  min-width: 20px; height: 20px;
+  padding: 0 6px;
   border-radius: 999px;
   background: var(--lh-accent);
   color: #1a1106;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   display: grid; place-items: center;
   box-shadow: 0 3px 10px -2px color-mix(in srgb, var(--lh-accent) 70%, transparent);
@@ -541,7 +504,7 @@ video:-moz-full-screen {
   to   { transform: scale(1); opacity: 1; }
 }
 
-/* Pipes SVG */
+/* Pipes SVG (channels → core only) */
 .lidup-hero .pipes {
   position: absolute;
   inset: 0;
@@ -569,29 +532,29 @@ video:-moz-full-screen {
 /* Core card */
 .lidup-hero .core-wrap {
   align-self: center;
-  display: flex; justify-content: center;
+  display: flex; flex-direction: column; align-items: center;
   position: relative;
   z-index: 4;
-  margin-top: clamp(4px, 0.8cqi, 12px);
+  margin-top: clamp(6px, 1.4cqi, 20px);
 }
 .lidup-hero .core {
   position: relative;
-  width: min(880px, 98%);
-  border-radius: 18px;
-  padding: clamp(12px, 2.2cqi, 20px) clamp(14px, 2.4cqi, 22px);
+  width: min(880px, 96%);
+  border-radius: 22px;
+  padding: clamp(16px, 2.6cqi, 26px) clamp(18px, 2.8cqi, 28px);
   background:
     linear-gradient(180deg, rgba(31, 122, 71, 0.10), rgba(0,0,0,0) 60%),
     var(--lh-card-strong);
   border: 1px solid var(--lh-card-border-strong);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.06) inset,
-    0 20px 60px -25px rgba(0,0,0,0.6),
-    0 0 0 4px color-mix(in srgb, var(--lh-primary) 6%, transparent);
+    0 24px 60px -25px rgba(0,0,0,0.6),
+    0 0 0 5px color-mix(in srgb, var(--lh-primary) 6%, transparent);
 }
 .lidup-hero .core-header {
   display: flex; align-items: center; justify-content: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 .lidup-hero .core-text { text-align: start; flex: 1; min-width: 0; }
 .lidup-hero .core-brand {
@@ -616,23 +579,23 @@ video:-moz-full-screen {
   50% { opacity: 0.35; }
 }
 .lidup-hero .core-title {
-  font-size: clamp(14px, 2.2cqi, 20px);
+  font-size: clamp(18px, 2.6cqi, 26px);
   font-weight: 800;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.18;
   letter-spacing: -0.01em;
-  margin: 0 0 3px;
+  margin: 0 0 4px;
 }
 .lidup-hero .core-sub {
-  font-size: clamp(10px, 1.2cqi, 12px);
+  font-size: clamp(11px, 1.4cqi, 14px);
   color: var(--lh-text-mute);
   margin: 0;
 }
 .lidup-hero .core-radar {
   position: relative;
-  width: clamp(40px, 4.5cqi, 50px);
-  height: clamp(40px, 4.5cqi, 50px);
-  border-radius: 12px;
+  width: clamp(48px, 5.5cqi, 60px);
+  height: clamp(48px, 5.5cqi, 60px);
+  border-radius: 16px;
   background: linear-gradient(135deg, rgba(31, 122, 71, 0.32), rgba(31, 122, 71, 0.06));
   border: 1px solid var(--lh-card-border-strong);
   display: grid; place-items: center;
@@ -662,16 +625,18 @@ video:-moz-full-screen {
 }
 @keyframes lh-sweep { to { transform: rotate(360deg); } }
 
-/* New lead toast */
+/* New lead toast — absolutely positioned above the core card so it floats in
+   the channels→core gap without taking any layout space. No shift ever. */
 .lidup-hero .new-toast {
   position: absolute;
-  top: -16px; left: 50%;
-  transform: translateX(-50%) translateY(-100%);
+  bottom: calc(100% + clamp(6px, 1.2cqi, 14px));
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
   background: var(--lh-accent);
   color: #1a1106;
   font-weight: 800;
-  font-size: clamp(11px, 1.5cqi, 13px);
-  padding: 7px 12px;
+  font-size: clamp(10px, 1.3cqi, 13px);
+  padding: 6px 12px;
   border-radius: 999px;
   box-shadow: 0 10px 28px -8px color-mix(in srgb, var(--lh-accent) 70%, transparent);
   display: inline-flex; align-items: center; gap: 7px;
@@ -679,17 +644,17 @@ video:-moz-full-screen {
   pointer-events: none;
   white-space: nowrap;
   direction: rtl;
-  z-index: 6;
+  z-index: 9;
 }
 .lidup-hero .new-toast.show {
   animation: lh-toastPop 4.2s cubic-bezier(.2,.8,.2,1) forwards;
 }
 @keyframes lh-toastPop {
-  0%   { transform: translateX(-50%) translateY(-60%) scale(0.7); opacity: 0; }
-  12%  { transform: translateX(-50%) translateY(-110%) scale(1.05); opacity: 1; }
-  22%  { transform: translateX(-50%) translateY(-100%) scale(1); }
-  85%  { transform: translateX(-50%) translateY(-100%) scale(1); opacity: 1; }
-  100% { transform: translateX(-50%) translateY(-150%) scale(0.95); opacity: 0; }
+  0%   { transform: translateX(-50%) translateY(14px) scale(0.7); opacity: 0; }
+  12%  { transform: translateX(-50%) translateY(-2px) scale(1.05); opacity: 1; }
+  22%  { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+  85%  { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-8px) scale(0.95); opacity: 0; }
 }
 .lidup-hero .new-toast .pip {
   width: 6px; height: 6px;
@@ -702,16 +667,16 @@ video:-moz-full-screen {
 .lidup-hero .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 10px;
   margin-top: 2px;
 }
 .lidup-hero .stat {
   position: relative;
-  padding: clamp(7px, 1.3cqi, 11px) clamp(9px, 1.5cqi, 13px) clamp(7px, 1.2cqi, 10px);
-  border-radius: 11px;
+  padding: clamp(10px, 1.6cqi, 14px) clamp(12px, 1.8cqi, 16px) clamp(9px, 1.5cqi, 12px);
+  border-radius: 14px;
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
   border: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex; flex-direction: column; align-items: stretch; gap: 4px;
+  display: flex; flex-direction: column; align-items: stretch; gap: 5px;
   overflow: hidden;
 }
 .lidup-hero .stat::before {
@@ -727,7 +692,7 @@ video:-moz-full-screen {
   gap: 8px;
 }
 .lidup-hero .stat-num {
-  font-size: clamp(18px, 3cqi, 30px);
+  font-size: clamp(22px, 3.6cqi, 38px);
   font-weight: 800;
   color: #fff;
   line-height: 1;
@@ -742,7 +707,7 @@ video:-moz-full-screen {
   filter: drop-shadow(0 0 12px color-mix(in srgb, var(--stat-color, var(--lh-primary-bright)) 60%, transparent));
 }
 .lidup-hero .stat-label {
-  font-size: clamp(9px, 1.2cqi, 12px);
+  font-size: clamp(10px, 1.3cqi, 13px);
   color: var(--lh-text-mute);
   line-height: 1.25;
   font-weight: 500;
@@ -752,11 +717,11 @@ video:-moz-full-screen {
   font-weight: 800;
 }
 .lidup-hero .stat-trend {
-  font-size: clamp(8px, 1cqi, 10px);
+  font-size: clamp(8px, 1.05cqi, 11px);
   font-weight: 700;
   color: var(--stat-color, var(--lh-good));
   background: color-mix(in srgb, var(--stat-color, var(--lh-good)) 16%, transparent);
-  padding: 2px 6px;
+  padding: 3px 7px;
   border-radius: 999px;
   display: inline-flex; align-items: center; gap: 4px;
   border: 1px solid color-mix(in srgb, var(--stat-color, var(--lh-good)) 35%, transparent);
@@ -767,7 +732,7 @@ video:-moz-full-screen {
   height: 4px;
   border-radius: 999px;
   background: rgba(255,255,255,0.06);
-  margin-top: 4px;
+  margin-top: 3px;
   overflow: hidden;
 }
 .lidup-hero .stat-bar > span {
@@ -784,9 +749,9 @@ video:-moz-full-screen {
 }
 .lidup-hero .stat.urgent { --stat-color: var(--lh-urgent); }
 .lidup-hero .stat.active { --stat-color: var(--lh-good); }
-.lidup-hero .stat.success { --stat-color: var(--lh-primary-bright); }
+.lidup-hero .stat.success { --stat-color: var(--lh-info); }
 .lidup-hero .stat .live-dot {
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   border-radius: 999px;
   background: var(--stat-color);
   box-shadow: 0 0 0 0 var(--stat-color);
@@ -794,65 +759,81 @@ video:-moz-full-screen {
 }
 @keyframes lh-livePulse {
   0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stat-color) 70%, transparent); }
-  100% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--stat-color) 0%, transparent); }
+  100% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--stat-color) 0%, transparent); }
 }
 
-/* Lead cards row */
+/* ---------- Floating lead cards ---------- */
 .lidup-hero .leads {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(6px, 1.2cqi, 10px);
-  margin-top: clamp(4px, 0.8cqi, 10px);
-  position: relative;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   z-index: 5;
 }
 .lidup-hero .lead {
-  position: relative;
+  position: absolute;
+  width: clamp(190px, 32cqi, 260px);
   background: #ffffff;
   color: #0a2a22;
-  border-radius: 14px;
-  padding: clamp(7px, 1.3cqi, 11px) clamp(9px, 1.5cqi, 13px) clamp(7px, 1.2cqi, 10px);
+  border-radius: 18px;
+  padding: clamp(12px, 1.8cqi, 16px) clamp(13px, 2cqi, 17px) clamp(11px, 1.6cqi, 14px);
+  pointer-events: auto;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.6) inset,
-    0 1px 2px rgba(8, 32, 25, 0.04),
-    0 12px 26px -14px rgba(8, 32, 25, 0.35);
-  border: 1px solid rgba(232, 239, 235, 0.9);
-  display: flex; flex-direction: column; gap: clamp(6px, 1cqi, 8px);
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 1px 2px rgba(8, 32, 25, 0.05),
+    0 22px 48px -16px rgba(0, 0, 0, 0.55),
+    0 8px 16px -8px rgba(8, 32, 25, 0.4);
+  border: 1.5px solid color-mix(in srgb, var(--status, var(--lh-primary)) 55%, #fff);
+  display: flex; flex-direction: column; gap: clamp(9px, 1.4cqi, 12px);
   overflow: hidden;
   transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+/* Two-card layout: one right-of-center, one left-of-center, both centered under core */
+.lidup-hero .lead:nth-child(1) {
+  bottom: clamp(70px, 9cqi, 134px);
+  inset-inline-end: clamp(8px, 8cqi, 90px);
+  transform: rotate(-2.2deg);
+  animation: lh-floatA 7s ease-in-out infinite;
+}
+.lidup-hero .lead:nth-child(2) {
+  bottom: clamp(50px, 7cqi, 108px);
+  inset-inline-start: clamp(8px, 8cqi, 90px);
+  transform: rotate(1.8deg);
+  animation: lh-floatB 8.5s ease-in-out infinite;
+  animation-delay: -1.6s;
+  z-index: 7;
+}
+@keyframes lh-floatA {
+  0%, 100% { transform: rotate(-2.2deg) translateY(0); }
+  50%      { transform: rotate(-1.2deg) translateY(-8px); }
+}
+@keyframes lh-floatB {
+  0%, 100% { transform: rotate(1.8deg) translateY(0); }
+  50%      { transform: rotate(2.6deg) translateY(-10px); }
 }
 .lidup-hero .lead:hover {
-  transform: translateY(-2px);
+  animation-play-state: paused;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.6) inset,
-    0 22px 44px -18px rgba(8, 32, 25, 0.42);
-}
-.lidup-hero .lead::before {
-  content: "";
-  position: absolute;
-  top: 14px; bottom: 14px;
-  inset-inline-end: 0;
-  width: 3px;
-  border-radius: 999px;
-  background: var(--status, var(--lh-primary));
-  opacity: 0.7;
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 28px 60px -16px rgba(0, 0, 0, 0.65),
+    0 10px 20px -8px rgba(8, 32, 25, 0.5);
 }
 .lidup-hero .lead-top {
   display: flex;
   align-items: center;
-  gap: clamp(6px, 1.1cqi, 10px);
+  gap: clamp(8px, 1.4cqi, 12px);
 }
 .lidup-hero .lead-avatar {
   position: relative;
-  width: clamp(28px, 3.5cqi, 34px);
-  height: clamp(28px, 3.5cqi, 34px);
+  width: clamp(32px, 3.6cqi, 38px);
+  height: clamp(32px, 3.6cqi, 38px);
   border-radius: 999px;
   background: var(--avatar, var(--lh-primary));
   color: #fff;
   display: grid; place-items: center;
   font-weight: 800;
-  font-size: clamp(9px, 1.2cqi, 11px);
-  box-shadow: 0 3px 10px -3px color-mix(in srgb, var(--avatar, var(--lh-primary)) 50%, transparent);
+  font-size: clamp(10px, 1.2cqi, 12px);
+  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--avatar, var(--lh-primary)) 50%, transparent);
   flex: 0 0 auto;
 }
 .lidup-hero .lead-avatar-channel {
@@ -870,7 +851,7 @@ video:-moz-full-screen {
 .lidup-hero .lead-info { flex: 1; min-width: 0; }
 .lidup-hero .lead-name {
   font-weight: 800;
-  font-size: clamp(11px, 1.4cqi, 13px);
+  font-size: clamp(12px, 1.5cqi, 14px);
   color: #082019;
   line-height: 1.2;
   white-space: nowrap;
@@ -878,18 +859,24 @@ video:-moz-full-screen {
   text-overflow: ellipsis;
 }
 .lidup-hero .lead-source {
-  display: flex; align-items: center; gap: 5px;
-  font-size: clamp(9px, 1.1cqi, 11px);
+  display: flex; align-items: center; gap: 6px;
+  font-size: clamp(10px, 1.2cqi, 12px);
   color: #5d7770;
-  margin-top: 2px;
+  margin-top: 3px;
   font-weight: 500;
+  overflow: hidden;
+}
+.lidup-hero .lead-source span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .lidup-hero .lead-time {
-  font-size: clamp(8px, 1cqi, 10px);
+  font-size: clamp(9px, 1.1cqi, 11px);
   color: #7a8f87;
   font-weight: 700;
   background: #f3f7f5;
-  padding: 2px 7px;
+  padding: 3px 8px;
   border-radius: 999px;
   flex: 0 0 auto;
   align-self: flex-start;
@@ -905,15 +892,15 @@ video:-moz-full-screen {
 .lidup-hero .lead-bottom {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 8px;
 }
 .lidup-hero .lead-status {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: clamp(9px, 1.1cqi, 11px); font-weight: 700;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: clamp(10px, 1.25cqi, 12px); font-weight: 700;
   color: var(--status, #0a2a22);
   white-space: nowrap;
-  padding: 3px 8px;
+  padding: 4px 9px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--status, #0a2a22) 10%, transparent);
   border: 1px solid color-mix(in srgb, var(--status, #0a2a22) 22%, transparent);
@@ -929,59 +916,50 @@ video:-moz-full-screen {
   --stat-color: var(--status);
 }
 .lidup-hero .chev {
-  width: 20px; height: 20px;
-  border-radius: 6px;
+  width: 22px; height: 22px;
+  border-radius: 7px;
   display: grid; place-items: center;
   background: #f3f7f5;
   color: #5d7770;
   transition: background .15s ease, color .15s ease;
 }
-.lidup-hero .chev svg { width: 10px; height: 10px; }
+.lidup-hero .chev svg { width: 11px; height: 11px; }
 
+/* Urgent lead — colored border + pulsing inner ring */
 .lidup-hero .lead.urgent {
+  border: 1.5px solid color-mix(in srgb, var(--lh-urgent) 65%, #fff);
+}
+.lidup-hero .lead.urgent::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 14px;
   border: 1.5px solid color-mix(in srgb, var(--lh-urgent) 60%, transparent);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.7) inset,
-    0 14px 32px -14px color-mix(in srgb, var(--lh-urgent) 55%, transparent);
-  animation: lh-urgentGlow 2.4s ease-in-out infinite;
+  opacity: 0;
+  animation: lh-urgentRing 2.4s ease-out infinite;
+  pointer-events: none;
 }
-@keyframes lh-urgentGlow {
-  0%, 100% {
-    border-color: color-mix(in srgb, var(--lh-urgent) 50%, transparent);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 14px 32px -14px color-mix(in srgb, var(--lh-urgent) 50%, transparent);
-  }
-  50% {
-    border-color: color-mix(in srgb, var(--lh-urgent) 80%, transparent);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 14px 36px -14px color-mix(in srgb, var(--lh-urgent) 80%, transparent);
-  }
+@keyframes lh-urgentRing {
+  0%   { opacity: 0.9; transform: scale(0.94); }
+  100% { opacity: 0;   transform: scale(1.02); }
 }
 
-/* Tighten leads spacing on medium containers (~480-640px) */
-@container (max-width: 640px) {
-  .lidup-hero .leads { gap: 6px; }
-  .lidup-hero .lead { padding: 10px 12px; }
-  .lidup-hero .lead-time { font-size: 9px; padding: 2px 6px; }
-  .lidup-hero .lead-name { font-size: 12px; }
-  .lidup-hero .lead-source { font-size: 10px; }
-  .lidup-hero .lead-status { font-size: 10px; padding: 3px 7px; }
-  .lidup-hero .lead-avatar { width: 32px; height: 32px; font-size: 10px; }
-}
-
-/* Stack everything on very narrow containers (mobile single-column) */
-@container (max-width: 460px) {
-  .lidup-hero .leads { grid-template-columns: 1fr; gap: 8px; }
-  .lidup-hero .lead { padding: 12px 14px; }
-  .lidup-hero .lead-name { font-size: 13px; }
-  .lidup-hero .stats { gap: 6px; }
-  .lidup-hero .stat { padding: 10px 12px 8px; }
+/* Mobile fallback — stats stack vertically, lead cards go side-by-side */
+@container (max-width: 520px) {
+  .lidup-hero .stage {
+    padding-bottom: clamp(20px, 4cqi, 40px);
+  }
+  /* Stats: one per row */
+  .lidup-hero .stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  /* Lead cards: hidden on mobile */
+  .lidup-hero .leads { display: none; }
+  .lidup-hero .core-title { font-size: 18px; }
   .lidup-hero .stat-num { font-size: 22px; }
-  .lidup-hero .core-title { font-size: 16px; }
-  .lidup-hero .core-sub { font-size: 11px; }
-  .lidup-hero .channel-label { font-size: 9px; }
-  .lidup-hero .core-radar { width: 42px; height: 42px; }
 }
 
-/* Reduce motion: stop drift, sparks, pulses */
 @media (prefers-reduced-motion: reduce) {
   .lidup-hero::after,
   .lidup-hero .spark,

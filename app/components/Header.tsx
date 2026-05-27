@@ -117,18 +117,49 @@ export default function Header() {
         />
 
         <div className="relative container-x flex items-center justify-between h-14 md:h-16">
-          {/* Logo */}
-          <a href="/" aria-label="עמוד הבית" className="flex items-center gap-2.5 group">
-            <span
-              className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
-                lightChrome ? "text-brand-700" : "text-accent"
-              }`}
-            >
-              <Logo className="w-9 h-9" />
-            </span>
-          </a>
+          {/* Logo + mobile burger — first in DOM = right side in RTL */}
+          <div className="flex items-center gap-2">
+            <a href="/" aria-label="עמוד הבית" className="flex items-center group">
+              <span
+                className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
+                  lightChrome ? "text-brand-700" : "text-accent"
+                }`}
+              >
+                <Logo className="w-9 h-9" />
+              </span>
+            </a>
 
-          {/* Desktop nav */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className={`md:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
+                lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
+              }`}
+              aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+            >
+              <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                />
+              </span>
+            </button>
+          </div>
+
+          {/* Desktop nav — center */}
           <nav className="hidden md:flex items-center gap-7" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <a
@@ -151,7 +182,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA — last in DOM = left side in RTL, desktop only */}
           <a
             href={resolveHref("#contact")}
             className="hidden md:inline-flex btn-primary !py-2.5 !px-5 text-sm"
@@ -159,36 +190,6 @@ export default function Header() {
             <span>קבע שיחה</span>
             <span aria-hidden>←</span>
           </a>
-
-          {/* Mobile burger */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`md:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
-              lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
-            }`}
-            aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav"
-          >
-            <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
-              />
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
-              />
-            </span>
-          </button>
         </div>
 
         {/* Mobile menu */}

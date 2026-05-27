@@ -132,9 +132,6 @@ function PipesSVG({ reduced }: { reduced: boolean }) {
   const channelXs = [190, 397, 604, 811];
   const startY = 170;
   const coreTop = { x: 500, y: 263 };
-  const coreBottom = { x: 500, y: 683 };
-  const leadXs = [187, 500, 813];
-  const leadY = 752;
 
   const paths = channelXs.map((x) => {
     const dx = (coreTop.x - x) * 0.55;
@@ -143,14 +140,6 @@ function PipesSVG({ reduced }: { reduced: boolean }) {
     const c2x = x + dx;
     const c2y = coreTop.y - 40;
     return `M ${x} ${startY} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${coreTop.x} ${coreTop.y}`;
-  });
-
-  const outPaths = leadXs.map((x) => {
-    const c1x = coreBottom.x + (x - coreBottom.x) * 0.4;
-    const c1y = coreBottom.y + 40;
-    const c2x = x;
-    const c2y = leadY - 50;
-    return `M ${coreBottom.x} ${coreBottom.y} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x} ${leadY}`;
   });
 
   return (
@@ -171,15 +160,6 @@ function PipesSVG({ reduced }: { reduced: boolean }) {
         />
       ))}
 
-      {outPaths.map((d, i) => (
-        <path
-          key={`out-${i}`}
-          d={d}
-          className="pipe-path"
-          style={{ opacity: 0.6, animationDuration: `${1.6 + i * 0.15}s` }}
-        />
-      ))}
-
       {!reduced &&
         paths.map((d, i) => {
           const dur = 2.8 + i * 0.4;
@@ -195,16 +175,6 @@ function PipesSVG({ reduced }: { reduced: boolean }) {
                 <animateMotion dur={`${dur}s`} repeatCount="indefinite" path={d} rotate="auto" begin={`${i * 0.6 + dur * 0.35}s`} />
               </circle>
             </g>
-          );
-        })}
-
-      {!reduced &&
-        outPaths.map((d, i) => {
-          const dur = 3.2 + i * 0.3;
-          return (
-            <circle key={`trav-out-${i}`} r="2.5" fill="var(--lh-primary-bright)" opacity="0.55">
-              <animateMotion dur={`${dur}s`} repeatCount="indefinite" path={d} rotate="auto" begin={`${i * 0.8 + 1.5}s`} />
-            </circle>
           );
         })}
     </svg>
@@ -387,9 +357,19 @@ function useReducedMotion() {
 /* =========================================================
    The Lidup Hero Visual
    ========================================================= */
+const TOASTS = [
+  { name: "רונית מזרחי", src: "Instagram" },
+  { name: "אבי כהן", src: "WhatsApp" },
+  { name: "שירה אזולאי", src: "Gmail" },
+  { name: "תומר בן דוד", src: "Facebook" },
+  { name: "נועה לוי", src: "WhatsApp" },
+];
+
 export default function LidupHero() {
   const reduced = useReducedMotion();
   const [stats, setStats] = useState({ today: 3, waiting: 4, week: 12 });
+  const [toast, setToast] = useState<{ name: string; src: string; key: number } | null>(null);
+  const toastIdx = useRef(0);
 
   useEffect(() => {
     if (reduced) return;
@@ -402,6 +382,22 @@ export default function LidupHero() {
       });
     }, 5500);
     return () => clearInterval(tick);
+  }, [reduced]);
+
+  useEffect(() => {
+    if (reduced) return;
+    const fire = () => {
+      const item = TOASTS[toastIdx.current % TOASTS.length];
+      toastIdx.current++;
+      setToast({ ...item, key: Date.now() });
+      setTimeout(() => setToast(null), 4200);
+    };
+    const first = setTimeout(fire, 2400);
+    const id = setInterval(fire, 7500);
+    return () => {
+      clearTimeout(first);
+      clearInterval(id);
+    };
   }, [reduced]);
 
   const channelCounts = [2, 3, 1, 5];
@@ -434,6 +430,14 @@ export default function LidupHero() {
 
         {/* Core card */}
         <div className="core-wrap">
+          {toast && (
+            <div className="new-toast show" key={toast.key}>
+              <span className="pip" />
+              <span>
+                ליד חדש מ־{toast.src} — {toast.name}
+              </span>
+            </div>
+          )}
           <div className="core">
             <div className="core-header">
               <div className="core-radar" aria-hidden="true">
@@ -481,19 +485,9 @@ export default function LidupHero() {
         {/* Lead cards row */}
         <div className="leads">
           <LeadCard
-            initials='י"א'
-            name="יוסי אברהם"
-            time="אתמול"
-            source="form"
-            sourceLabel="טופס אתר"
-            status="פולואפ"
-            statusColor="#6b7d76"
-            avatarColor="var(--lh-primary)"
-          />
-          <LeadCard
             initials='מ"ל'
             name="מיכל לוי"
-            time="18 דק׳"
+            time="לפני 18 דק׳"
             source="facebook"
             sourceLabel="טופס אתר"
             status="נקבעה שיחה"
@@ -503,10 +497,10 @@ export default function LidupHero() {
           <LeadCard
             initials='ד"כ'
             name="דניאל כהן"
-            time="2 דק׳"
+            time="לפני 2 דק׳"
             source="whatsapp"
             sourceLabel="WhatsApp"
-            status="לחזור עכשיו"
+            status="צריך לחזור עכשיו"
             statusColor="var(--lh-urgent)"
             urgent
             avatarColor="var(--lh-accent)"
