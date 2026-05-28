@@ -974,3 +974,174 @@ video:-moz-full-screen {
     animation: none !important;
   }
 }
+
+/* =====================================================
+   SITES SHOWCASE MARQUEE
+   Auto-scrolling carousel of site screenshots with
+   a 3-D curved-ring tilt effect (driven by rAF in JS).
+   ===================================================== */
+
+.sites-marquee,
+.sites-marquee * { box-sizing: border-box; }
+
+.sites-marquee {
+  position: relative;
+  width: 100%;
+  /* Force LTR so the track scrolls left-to-right even on the RTL page */
+  direction: ltr;
+  /* Side-fade using mask so it works on any background colour */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+
+/* Very subtle ambient warmth — barely visible, safe on dark bg */
+.sites-marquee::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(201,169,97,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 70%, rgba(15,61,46,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Clip overflow horizontally, allow vertical room for card shadows */
+.sites-marquee__viewport {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-block: 28px;
+  perspective: 1800px;
+  perspective-origin: 50% 50%;
+}
+
+.sites-marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: showcase-scroll 52s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.sites-marquee__track > .showcase-card {
+  margin-inline-end: 32px;
+}
+
+/* One full set = 33.3333% of 3× the list */
+@keyframes showcase-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-33.3333%, 0, 0); }
+}
+
+/* ── Card ────────────────────────────────────────────── */
+.showcase-card {
+  flex: 0 0 auto;
+  /* ~40% of viewport width, narrower than original so it fits comfortably
+     inside the hero without dominating the whole section */
+  width: clamp(300px, 40vw, 640px);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 0   rgba(15,61,46,0.04),
+    0 2px 4px rgba(15,61,46,0.05),
+    0 20px 44px -16px rgba(15,61,46,0.28),
+    0 40px 80px -30px rgba(15,61,46,0.18);
+  overflow: hidden;
+  border: 1px solid rgba(15,61,46,0.09);
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  contain: paint;
+}
+
+/* macOS-style title bar */
+.showcase-card__bar {
+  height: 28px;
+  background: #F5F2EB;
+  border-bottom: 1px solid rgba(15,61,46,0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+  direction: ltr;
+}
+
+.showcase-card__dots {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.showcase-card__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+}
+
+.showcase-card__dots span:nth-child(1) { background: #FF5F57; }
+.showcase-card__dots span:nth-child(2) { background: #FEBC2E; }
+.showcase-card__dots span:nth-child(3) { background: #28C840; }
+
+.showcase-card__url {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid rgba(15,61,46,0.08);
+  border-radius: 5px;
+  height: 18px;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #2A3E36;
+  font-weight: 500;
+  max-width: 200px;
+  margin: 0 auto;
+  letter-spacing: 0.01em;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+.showcase-card__url svg { flex-shrink: 0; color: #6B7C75; }
+
+.showcase-card__bar-spacer { width: 38px; flex-shrink: 0; }
+
+/* Screenshot area — matches the original site screenshots aspect ratio */
+.showcase-card__screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2910 / 1400;
+  background: #f3f0e8;
+  overflow: hidden;
+}
+
+.showcase-card__screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Pause scrolling + disable tilt on reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .sites-marquee__track { animation-play-state: paused; }
+  .showcase-card        { transform: none !important; }
+}

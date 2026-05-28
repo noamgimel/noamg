@@ -2,12 +2,12 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import SitesShowcase from "./SitesShowcase";
 
 const fadeUp = {
   initial: { y: 28, opacity: 0 },
   animate: { y: 0, opacity: 1 },
 };
-
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -22,21 +22,21 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[100svh] overflow-hidden mesh-emerald text-cream flex flex-col justify-center pt-24 sm:pt-28 md:pt-28 pb-24 md:pb-28"
+      className="relative overflow-hidden mesh-emerald text-cream flex flex-col pt-20 sm:pt-22"
     >
       {/* Grain overlay */}
       <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none" />
 
-      {/* Floating orbs */}
+      {/* Floating orbs — repositioned to stay in the text area */}
       <motion.div
         aria-hidden="true"
         style={{ y: yShape1, opacity: opacityFade }}
-        className="orb orb-accent w-80 h-80 top-[12%] left-[6%]"
+        className="orb orb-accent w-72 h-72 top-[8%] left-[4%]"
       />
       <motion.div
         aria-hidden="true"
         style={{ y: yShape2, opacity: opacityFade }}
-        className="orb orb-brand w-[24rem] h-[24rem] bottom-[8%] right-[4%]"
+        className="orb orb-brand w-80 h-80 top-[30%] right-[3%]"
       />
 
       {/* Subtle dot grid */}
@@ -53,14 +53,15 @@ export default function Hero() {
         <rect width="100%" height="100%" fill="url(#hero-dots)" />
       </svg>
 
-      <div className="container-x relative z-10 w-full">
-        {/* Headline */}
+      {/* ── Text content — top-anchored, no vertical stretch ─── */}
+      <div className="container-x relative z-10 w-full pt-10 sm:pt-12 md:pt-16 pb-6 sm:pb-8">
+
         <motion.h1
           variants={fadeUp}
           initial="initial"
           animate="animate"
           transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="h-display text-[2rem] sm:text-[2.75rem] md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5rem] max-w-5xl"
+          className="h-display text-[1.7rem] sm:text-[2.1rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.5rem] 2xl:text-[4rem] max-w-3xl"
         >
           אתרים שמייצרים{" "}
           <span className="gradient-text whitespace-nowrap">אמון, פניות ולקוחות</span>
@@ -68,13 +69,12 @@ export default function Hero() {
           — לא רק נוכחות באינטרנט.
         </motion.h1>
 
-        {/* Subheadline */}
         <motion.p
           variants={fadeUp}
           initial="initial"
           animate="animate"
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 md:mt-8 text-base md:text-lg lg:text-xl text-cream/80 max-w-2xl leading-relaxed"
+          className="mt-5 md:mt-6 text-sm md:text-base lg:text-lg text-cream/80 max-w-xl leading-relaxed"
         >
           אני בונה לעסקים אתרים מעוצבים, מהירים ומדויקים שמסבירים{" "}
           <span className="text-accent font-semibold">
@@ -83,15 +83,14 @@ export default function Hero() {
           {" "}— ומחוברים לטפסים, וואטסאפ ואוטומציות כדי שאף ליד לא ילך לאיבוד.
         </motion.p>
 
-        {/* CTAs — full width on mobile, inline on tablet+ */}
         <motion.div
           variants={fadeUp}
           initial="initial"
           animate="animate"
           transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
+          className="mt-7 md:mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
         >
-          <a href="#contact" className="btn-primary shine text-base sm:!px-9 sm:!py-4 justify-center">
+          <a href="#contact" className="btn-primary shine text-base sm:!px-8 sm:!py-3.5 justify-center">
             <span>קבע שיחת ייעוץ ללא עלות</span>
             <span aria-hidden>←</span>
           </a>
@@ -99,10 +98,19 @@ export default function Hero() {
             ראה דוגמאות לאתרים שבניתי
           </a>
         </motion.div>
-
       </div>
 
-      {/* Social proof trust bar */}
+      {/* ── Sites Showcase Marquee — pushed to bottom ────────── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.75, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 w-full pb-[68px]"
+      >
+        <SitesShowcase />
+      </motion.div>
+
+      {/* ── Social proof trust bar ────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

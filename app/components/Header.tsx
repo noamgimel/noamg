@@ -6,20 +6,14 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 /**
- * Nav links during Phase 1 of the new positioning:
- *   - `#how-it-works` is a placeholder anchor for the new section that will
- *     be added in the next phase. Until it exists, the link is a no-op scroll
- *     but doesn't error.
- *   - `/websites` hosts the legacy website-building landing.
- *
- * Other links (about / process / testimonials / faq) were removed for now
- * because their sections no longer live on home; they'll be re-added as new
- * funnel-themed sections come online.
+ * Nav links — Phase 2 (2026-05):
+ * תוכן בניית האתרים חזר לדף הבית, ולכן הקישורים מצביעים לעוגנים בתוך /.
+ * /websites מנותב ישירות ל-/ (redirect), אז אין צורך בקישור נפרד.
  */
 type NavLink = { label: string; href: string };
 const navLinks: NavLink[] = [
-  { label: "איך זה עובד", href: "#how-it-works" },
-  { label: "בניית אתרים", href: "/websites" },
+  { label: "תהליך העבודה", href: "#process" },
+  { label: "שאלות נפוצות", href: "#faq" },
 ];
 
 export default function Header() {
@@ -27,7 +21,8 @@ export default function Header() {
   const isHome = pathname === "/";
   // Pages that render a dark hero behind the header — keep the chrome dark
   // at the top until the user scrolls.
-  const isOverDarkHero = isHome || pathname === "/websites";
+  // /websites now redirects to /, so only / needs the dark-hero treatment.
+  const isOverDarkHero = isHome;
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lightChrome, setLightChrome] = useState(!isOverDarkHero);
