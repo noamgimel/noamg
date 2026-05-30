@@ -4,10 +4,10 @@ import Testimonials from "./components/Testimonials";
 import LeadFunnelHero from "./components/LeadFunnelHero";
 import Hook from "./components/Hook";
 import WhatsIncluded from "./components/WhatsIncluded";
-import Differentiators from "./components/Differentiators";
+// import Differentiators from "./components/Differentiators"; // "למה איתי" מוסתר זמנית (2026-05)
 import Process from "./components/Process";
 import RiskReversal from "./components/RiskReversal";
-import AIObjection from "./components/AIObjection";
+// import AIObjection from "./components/AIObjection"; // "שאלה הוגנת" מוסתר זמנית (2026-05)
 import About from "./components/About";
 import WhoFor from "./components/WhoFor";
 import FAQ from "./components/FAQ";
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
  * דף הבית (Phase 2 / 2026-05):
  *
  * תוכן "בניית אתרים" חזר לכאן כדף הראשי.
- * LeadFunnelHero (מיצוב משפך + LeadSync) הוכנס אחרי Testimonials
- * כדי להציג את הערך המוסף מעבר לאתר עצמו.
+ * סדר פתיחה: Hero → LeadFunnelHero (משפך + LeadSync) → Testimonials → About.
+ * LeadFunnelHero מוצג מיד אחרי ה-Hero כדי להבליט את הערך המוסף מעבר לאתר עצמו.
  *
  * הדף הקודם (LeadFunnelHero + FinalCTA בלבד) נשמר ב-app/_funnel-draft/page.tsx
  * ויחזור כעמוד הבית כשהמשפך יהיה מוכן לגמרי.
@@ -34,15 +34,15 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Testimonials />
       <LeadFunnelHero />
+      <Testimonials />
+      <About />
       <Hook />
       <WhatsIncluded />
-      <Differentiators />
+      {/* <Differentiators /> — "למה איתי" מוסתר זמנית (2026-05) */}
       <Process />
       <RiskReversal />
-      <AIObjection />
-      <About />
+      {/* <AIObjection /> — "שאלה הוגנת" מוסתר זמנית (2026-05) */}
       <WhoFor />
       <FAQ />
       <FinalCTA />

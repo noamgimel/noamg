@@ -112,6 +112,26 @@ html, body { background: var(--cream); color: #0A0A0A; overflow-x: hidden; }
 }
 .orb-accent { background: radial-gradient(circle, rgba(201,169,97,0.50), transparent 70%); }
 .orb-brand  { background: radial-gradient(circle, rgba(31,122,71,0.50), transparent 70%); }
+
+/* ===== SECTION-WIDE AMBIENT SPARKS (LeadFunnelHero) =====
+   Mirrors the floating glints behind the LeadSync visual, but spread
+   across the whole section. Uses the global `lh-floatUp` keyframe. */
+.funnel-sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.funnel-spark {
+  position: absolute;
+  border-radius: 999px;
+  background: #73B98D;
+  box-shadow: 0 0 8px #73B98D;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: lh-floatUp linear infinite;
+}
 .orb-deep   { background: radial-gradient(circle, rgba(15,61,46,0.55), transparent 70%); }
 
 /* ===== GRADIENT TEXT ===== */
@@ -424,7 +444,7 @@ video:-moz-full-screen {
 .lidup-hero .stage {
   position: relative;
   z-index: 3;
-  padding: clamp(18px, 2.6cqi, 36px) clamp(14px, 3cqi, 36px) clamp(180px, 30cqi, 280px);
+  padding: clamp(18px, 2.6cqi, 36px) clamp(14px, 3cqi, 36px) clamp(120px, 20cqi, 180px);
   display: grid;
   grid-template-rows: auto auto;
   gap: clamp(38px, 5cqi, 56px);

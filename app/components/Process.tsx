@@ -6,35 +6,35 @@ import InlineCTA from "./InlineCTA";
 const steps = [
   {
     num: "01",
-    title: "שיחת מיקוד",
-    subtitle: "מבינים מה האתר צריך למכור",
-    body: "אני מתקשר אליך. בלי טפסים מקדימים, בלי שאלון, בלי 'תכין חומרים'. אני שואל, אתה מספר על העסק — ויחד אנחנו מבררים מה האתר צריך לעשות בפועל ואם יש לנו התאמה לעבודה יחד.",
+    title: "שיחת התאמה ואפיון",
+    subtitle: "מבינים מה האתר צריך למכור ומי קהל היעד",
+    body: "שיחה קצרה. בלי טפסים, בלי שאלון, בלי 'תכין חומרים'. אני שואל, אתה מספר על העסק — ויחד אנחנו מבררים מה האתר צריך לעשות בפועל ואם יש לנו התאמה לעבודה יחד.",
     outcome: "כיוון ברור — מה האתר אמור להשיג, ואם בכלל נכון להמשיך יחד.",
     badge: "₪0 · ללא התחייבות",
   },
   {
     num: "02",
     title: "אסטרטגיה ותוכן",
-    subtitle: "מחדדים מסרים לפני עיצוב",
-    body: "לפני שאני נוגע בפיקסל, אנחנו סוגרים מסרים, היררכיה ותוכן. מי הקהל, מה הוא צריך להרגיש, מה אומרים ראשון — ומה לא נכנס בכלל. כך לא מבזבזים זמן על עיצוב שלא יחזיק את הסיפור.",
+    subtitle: "חידוד מסרים לפני העיצוב",
+    body: "לפני שאני בכלל מתחיל את ההקמה והעיצוב בפועל, אנחנו נסגרים על המסרים, היררכיה ותוכן. מי הקהל, מה הוא צריך להרגיש, ואיזה עמודים אנחנו רוצים שיופיעו באתר.",
     outcome: "מסרים מנוסחים, סדר עדיפויות ברור, ותוכן מוכן לעיצוב.",
-    badge: "סבבי שינויים",
+    badge: "ת'כלס",
   },
   {
     num: "03",
     title: "עיצוב ובנייה",
-    subtitle: "אתר מהיר, יפה ומחובר לפניות",
-    body: "אתר חי, רספונסיבי לכל מסך, מאובטח, עם SEO בסיסי, עם טפסים שמגיעים אליך, עם וואטסאפ ואוטומציות שעובדות גם בלילה. אתה מאשר כל שלב — ורואה את הקצב מתקדם.",
-    outcome: "אתר באוויר, מחובר לכל ערוצי הפנייה, ועם מדידה ברקע.",
-    badge: "תהליך מתוקתק",
+    subtitle: "שלב הקמת ועיצוב האתר בפועל",
+    body: "פה הקסם מתחיל. אחרי שהבנתי בדיוק את החזון שלך אני מתחיל בהקמת האתר בפועל, אתה מאשר כל שלב — ורואה את הקצב מתקדם.",
+    outcome: "אתר ראשוני באוויר.",
+    badge: "שקוף לך",
   },
   {
     num: "04",
-    title: "ליווי אחרי השקה",
-    subtitle: "לא נעלם ברגע שהאתר באוויר",
-    body: "30 יום של 'תקן לי את זה', 'תוסיף את זה', 'תזיז את זה'. בלי לספור זמן, בלי 'זה לא בחבילה'. ואחרי? אתה יודע איפה למצוא אותי.",
-    outcome: "מערכת שעובדת בשבילך — ואחראי שאפשר לחזור אליו.",
-    badge: "כלול במחיר",
+    title: "השקת האתר",
+    subtitle: "מוודאים שלא שכחנו כלום",
+    body: "סבבי תיקונים, חיבור האתר לאחסון ודומיין לבחירתכם, ואינטגרציה מלאה למערכת LeadSync.",
+    outcome: "אתר חי באוויר, מחובר לכל ערוצי הפנייה ולמערכת ניהול הלידים.",
+    badge: "סגירת פינות",
   },
 ];
 
@@ -66,9 +66,9 @@ export default function Process() {
           transition={{ duration: 0.8 }}
           className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-900 max-w-4xl"
         >
-          מהשיחה הראשונה ועד אתר חי.
+          מהשיחה הראשונה ועד אתר בלייב.
           <br />
-          <span className="gradient-text-emerald">תהליך מתוקתק, ללא בזבוז זמן.</span>
+          <span className="gradient-text-emerald">תהליך מתוקתק אבל יסודי.</span>
         </motion.h2>
 
         {/* Steps — motion wrapper handles transform; inner card handles glass (static) */}
@@ -82,16 +82,28 @@ export default function Process() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Inner card: backdrop-filter and shadow stay on a static element. */}
-              <div className="group relative grid md:grid-cols-[6rem_1fr] gap-6 md:gap-10 items-start p-6 md:p-8 rounded-3xl glass-light card-glow card-glow-hover transition-shadow duration-500">
-                {/* Step number */}
-                <div className="relative">
-                  <div className="grid place-items-center w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 text-cream text-2xl font-black tabular-num transition-transform duration-500 group-hover:scale-105">
+              <div className="group relative overflow-hidden grid md:grid-cols-[auto_1fr] gap-5 md:gap-10 items-start p-6 md:p-8 lg:p-9 rounded-3xl glass-light card-glow card-glow-hover transition-shadow duration-500">
+                {/* Decorative oversized ghost number — bleeds off the start edge */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none select-none absolute -top-8 -right-3 md:-top-10 md:-right-2 text-[8rem] md:text-[11rem] leading-none font-black tabular-num text-brand-900/[0.04] group-hover:text-accent/[0.07] transition-colors duration-500"
+                >
+                  {step.num}
+                </span>
+
+                {/* Step number — large gradient numeral with accent bar */}
+                <div className="relative shrink-0">
+                  <span className="block text-[3.5rem] md:text-[4.5rem] leading-none font-black tabular-num bg-clip-text text-transparent bg-gradient-to-br from-brand-700 to-brand-900/40 group-hover:from-accent group-hover:to-accent/50 transition-all duration-500">
                     {step.num}
-                  </div>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="block mt-2 h-1 w-10 md:w-14 rounded-full bg-accent/30 group-hover:bg-accent group-hover:w-16 transition-all duration-500"
+                  />
                 </div>
 
                 {/* Content */}
-                <div className="pt-1">
+                <div className="relative pt-1">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <h3 className="text-2xl md:text-[1.65rem] font-extrabold text-brand-900">
                       {step.title}
@@ -106,18 +118,22 @@ export default function Process() {
                   <p className="text-base md:text-lg text-brand-900/70 leading-relaxed max-w-2xl">
                     {step.body}
                   </p>
-                  <div className="mt-4 inline-flex items-start gap-2 text-sm text-brand-900/80 font-medium">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 mt-0.5 text-accent shrink-0" fill="none">
-                      <path
-                        d="M3 8l4 4 6-8"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>
-                      <span className="text-brand-900/70">בסוף השלב יהיה לך: </span>
+
+                  {/* Outcome band */}
+                  <div className="mt-6 flex items-center gap-3 rounded-2xl bg-brand-700/[0.06] border border-brand-700/10 px-4 py-3">
+                    <span className="grid place-items-center w-7 h-7 rounded-full bg-gradient-to-br from-accent to-accent/70 text-brand-900 shrink-0 shadow-sm shadow-accent/30">
+                      <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none">
+                        <path
+                          d="M3 8l4 4 6-8"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-sm md:text-[0.95rem] text-brand-900/80 leading-snug">
+                      <span className="font-bold text-brand-700">בסוף השלב: </span>
                       {step.outcome}
                     </span>
                   </div>
@@ -126,25 +142,6 @@ export default function Process() {
             </motion.div>
           ))}
         </div>
-
-        {/* Speed punchline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
-          className="mt-20 max-w-3xl pr-6 border-r-2 border-accent"
-        >
-          <p className="text-2xl md:text-3xl font-bold text-brand-900 leading-snug">
-            בזמן שהמתחרים עוד עובדים על האפיון —{" "}
-            <span className="gradient-text-emerald">
-              האתר שלך כבר באוויר ומכניס לידים.
-            </span>
-          </p>
-          <p className="mt-3 text-brand-900/60">
-            השאלה היא לא איך אני מהיר. היא למה האחרים איטיים.
-          </p>
-        </motion.div>
 
         <InlineCTA text="יאללה, נבדוק התאמה" />
       </div>

@@ -70,7 +70,7 @@ export default function Hook() {
             <div className="relative">
               <div className="text-7xl font-black text-accent/30 mb-4 leading-none tabular-num">02</div>
               <h3 className="text-2xl font-extrabold mb-4">
-                אתר ש<span className="text-accent">עובד</span>
+                אתר <span className="text-accent">שעובד</span>
               </h3>
               <p className="text-cream/85 leading-relaxed">
                 שמסביר תוך 5 שניות למה לבחור דווקא בך. שמרכז את כל הפניות במקום

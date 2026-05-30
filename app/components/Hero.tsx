@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import SitesShowcase from "./SitesShowcase";
+import SectionSparks from "./SectionSparks";
 
 const fadeUp = {
   initial: { y: 28, opacity: 0 },
@@ -27,6 +28,9 @@ export default function Hero() {
     >
       {/* Grain overlay */}
       <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none" />
+
+      {/* Ambient sparks across the whole section */}
+      <SectionSparks count={38} />
 
       {/* Floating orbs */}
       <motion.div

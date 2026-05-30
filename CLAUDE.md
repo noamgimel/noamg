@@ -20,14 +20,26 @@
 ## מצב נוכחי — Phase 2 (2026-05)
 
 **החלטה:** עמוד "בניית אתרים" חזר להיות העמוד הראשי (`/`).
-`LeadFunnelHero` הוכנס אחרי `Testimonials` (לקוחות מספרים) כדי להציג
-את ערך המשפך והחיבור ל-LeadSync בהמשך הדף — לא כדף עצמאי.
+`LeadFunnelHero` מוצג מיד אחרי ה-`Hero` כדי להבליט את ערך המשפך והחיבור
+ל-LeadSync בראש הדף — לא כדף עצמאי.
+
+**סדר פתיחה:** `Hero` → `LeadFunnelHero` → `Testimonials` → `About` → שאר הסקשנים.
 
 | עמוד | מה קרה |
 |------|--------|
-| `/` | **כעת:** Hero + Testimonials + **LeadFunnelHero** + שאר הסקשנים |
+| `/` | **כעת:** Hero + **LeadFunnelHero** + Testimonials + About + שאר הסקשנים |
 | `/websites` | redirect קבוע (308) ל-`/` |
 | `app/_funnel-draft/` | **גיבוי** — הדף הישן (LeadFunnelHero + FinalCTA). תיקייה private ב-Next.js (קידומת `_`) → לא נגישה כ-route. ישוחזר כעמוד הבית כשהמשפך יהיה מוכן. |
+
+### סקשנים מוסתרים זמנית (2026-05)
+
+שני קומפוננטים קיימים בקוד אך **מוסתרים מ-`app/page.tsx`** (ה-`import` וה-render מסומנים כהערה).
+הקבצים נשמרים כדי שאפשר יהיה להחזיר אותם בקלות — לבטל את ההערה ב-`page.tsx`.
+
+| קומפוננטה | כותרת בסקשן | סטטוס |
+|-----------|-------------|-------|
+| `Differentiators.tsx` | "למה איתי" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
+| `AIObjection.tsx` | "שאלה הוגנת" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
 
 ---
 
@@ -55,7 +67,7 @@ npm run lint     # ESLint
 ```
 app/
   layout.tsx              # Root layout: Header, Footer, WhatsAppButton, SkipLink
-  page.tsx                # דף הבית — Hero…FinalCTA + LeadFunnelHero אחרי Testimonials
+  page.tsx                # דף הבית — Hero → LeadFunnelHero → Testimonials → About → …FinalCTA
   globals.css             # כל הסגנונות הגלובליים, utility classes, design tokens
   icon.svg                # Favicon
   _funnel-draft/
@@ -66,15 +78,15 @@ app/
   components/
     Header.tsx            # Header — dark-hero רק ב-/ ; nav: תהליך + שאלות
     Footer.tsx
-    LeadFunnelHero.tsx    # משפך לידים → LeadSync → כרטיסי ליד (מוכנס אחרי Testimonials)
+    LeadFunnelHero.tsx    # משפך לידים → LeadSync → כרטיסי ליד (מוצג מיד אחרי ה-Hero)
     Hero.tsx              # Hero ראשי — כותרת + SitesShowcase marquee בתחתית
     SitesShowcase.tsx     # Marquee קרוסלה של screenshots עם אפקט 3D curved-ring
     Hook.tsx              # Section hooks / why you need this
     Testimonials.tsx      # עדויות לקוחות (כוללות וידאו)
-    AIObjection.tsx       # התמודדות עם ההתנגדות "למה לא AI?"
+    AIObjection.tsx       # "שאלה הוגנת" — התמודדות עם "למה לא AI?" ⚠️ מוסתר מ-page.tsx (2026-05)
     About.tsx             # סקשן אודות נועם
     Process.tsx           # תהליך העבודה  (id="process")
-    Differentiators.tsx   # מה מייחד
+    Differentiators.tsx   # "למה איתי" — מה מייחד ⚠️ מוסתר מ-page.tsx (2026-05)
     WhatsIncluded.tsx     # מה כלול בשירות
     RiskReversal.tsx      # ביטול סיכון / ערבות
     FAQ.tsx               # שאלות נפוצות  (id="faq")
@@ -183,7 +195,7 @@ ink:       #0A0A0A  ← טקסט כהה
 
 | נתיב | תיאור |
 |------|-------|
-| `/` | דף הבית — בניית אתרים + LeadFunnelHero מוכנס אחרי Testimonials. |
+| `/` | דף הבית — בניית אתרים. סדר: Hero → LeadFunnelHero → Testimonials → About → שאר. |
 | `/websites` | redirect (308) ל-`/` — נשמר לתאימות אחורית וקישורים ישנים. |
 | `/terms` | תנאי שימוש |
 | `/accessibility` | הצהרת נגישות |
