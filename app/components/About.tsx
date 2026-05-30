@@ -91,9 +91,9 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="mt-8 pr-6 border-r-2 border-accent text-xl md:text-2xl text-brand-900/85 font-medium leading-snug"
             >
-              "אתר אינטרנט טוב לא נמדד רק בעיצוב שלו —{" "}
+              אתר אינטרנט טוב לא נמדד רק בעיצוב שלו —{" "}
               <span className="text-brand-700">
-                אלא בחוויית הגולש שהוא יוצר."
+                אלא בחוויית הגלישה שהוא יוצר.
               </span>
             </motion.blockquote>
 
@@ -110,18 +110,18 @@ export default function About() {
                 קטנים וחברות בינוניות.
               </p>
               <p>
-                לפני שאני מעצב מסך אחד, אני מבין מה{" "}
-                <strong className="text-brand-900">הלקוח שלך</strong> צריך
-                להרגיש כדי לבחור דווקא בך — ביטחון, מקצועיות, יחס אישי או
-                מומחיות. <strong className="text-brand-700">משם</strong> נבנה
-                האתר.
+                לפני שאני מתחיל לעצב בכלל, אני מבין מה{" "}
+                <strong className="text-brand-700">
+                  הלקוחות שלך צריכים להרגיש כדי לבחור דווקא בך
+                </strong>{" "}
+                — ביטחון, מקצועיות, יחס אישי או מומחיות. משם כבר נבנה את האתר.
               </p>
               <p>
-                עבורי, הצלחה היא לא אתר שאני גאה בו.{" "}
+                עבורי, הצלחה היא לא רק עוד אתר שאני גאה בו.{" "}
                 <strong className="text-brand-700">
-                  הצלחה היא לקוח חדש שמתקשר אליך
-                </strong>{" "}
-                ואומר "ראיתי באתר ואני רוצה לדבר". זה מה שאני בונה.
+                  עבורי ההצלחה היא כשבעל העסק מתקשר אליי מבסוט אחרי שראה את האתר
+                  לראשונה.
+                </strong>
               </p>
             </motion.div>
 
@@ -131,21 +131,20 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-10 grid grid-cols-3 gap-3 max-w-md"
+              className="mt-10 grid grid-cols-2 gap-4 max-w-sm"
             >
               {[
-                { num: "+15", label: "אתרים שהושקו" },
+                { num: "+20", label: "אתרים שהוקמו" },
                 { num: "100%", label: "ליווי אישי" },
-                { num: "30", label: "ימי ליווי" },
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="p-4 rounded-2xl glass-light card-glow"
+                  className="p-5 rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 border border-accent/25 shadow-lg shadow-brand-900/15"
                 >
-                  <div className="text-2xl md:text-3xl font-extrabold tabular-num gradient-text-emerald">
+                  <div className="text-3xl md:text-4xl font-extrabold tabular-num gradient-text">
                     {s.num}
                   </div>
-                  <div className="mt-1 text-xs text-brand-900/60">{s.label}</div>
+                  <div className="mt-1 text-xs font-semibold text-cream/75">{s.label}</div>
                 </div>
               ))}
             </motion.div>
