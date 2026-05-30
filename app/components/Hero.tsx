@@ -55,7 +55,7 @@ export default function Hero() {
       </svg>
 
       {/* ── Content ──────────────────────────────────────────── */}
-      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-center py-10 sm:py-12 pb-[96px] lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-14 lg:items-center">
+      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-center py-10 sm:py-12 pb-[96px] lg:grid lg:grid-cols-[3fr_2fr] lg:gap-10 xl:gap-8 lg:items-center">
 
         {/* Text block — centered on mobile/tablet, right-aligned beside the
             carousel on desktop (first DOM column → right side in RTL) */}
@@ -65,12 +65,13 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="h-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] mx-auto"
+            className="h-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[2.6rem] xl:text-[3.2rem] mx-auto"
           >
-            אתרים שמייצרים{" "}
-            <span className="gradient-text whitespace-nowrap lg:whitespace-normal">אמון, פניות ולקוחות</span>
+            בונים אתר שלא
+            <br className="lg:hidden" />
+            {" "}רק נראה טוב-
             <br />
-            — לא רק נוכחות באינטרנט.
+            <span className="gradient-text">אלא גורם ללקוחות לבחור בך.</span>
           </motion.h1>
 
           <motion.p
@@ -80,9 +81,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 md:mt-6 text-sm md:text-base lg:text-lg text-cream/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
-            אני בונה לעסקים אתרים מעוצבים, מהירים ומדויקים שמסבירים{" "}
-            <span className="text-accent font-semibold">למה לבחור דווקא בהם</span>
-            {" "}— ומחוברים לטפסים, וואטסאפ ואוטומציות כדי שאף ליד לא ילך לאיבוד.
+            אני בונה לעסקים אתרים מקצועיים, חדים ומדויקים שמציגים את הערך שלהם בצורה ברורה, יוצרים אמון מהרגע הראשון —{" "}
+            <span className="text-accent font-semibold">והופכים מבקרים באתר לפניות אמיתיות.</span>
           </motion.p>
 
           <motion.div
