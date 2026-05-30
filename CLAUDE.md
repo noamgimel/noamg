@@ -1,7 +1,28 @@
 # CLAUDE.md — Tavniot Website
 
-אתר תדמית אישי של **נועם גמליאל** — מעצב ובונה אתרים.  
-מטרת האתר: יצירת אמון, הנעה לפניות, והמרת מבקרים ללידים.
+אתר תדמית אישי של **נועם גמליאל**.
+
+**מיצוב (2026-05):** נועם בונה לעסקים **משפך דיגיטלי** —
+אתר מקצועי, טופס סינון חכם וסנכרון למערכת ניהול לידים **Lidup**, כך שאף ליד
+רציני לא ייפול בין הכיסאות. השירות מיועד לעסקים שכבר מקבלים פניות ורוצים
+לנהל אותן נכון יותר — לא לעסקים שרוצים שמישהו "ייצר להם לידים".
+
+**אסור** לטעון שנועם מייצר לידים, לכתוב "נביא לך פניות", להציג את Lidup
+כ-SaaS קר/נפרד, או להפוך את האתר לדף מכירה של CRM בלבד.
+
+---
+
+## מצב נוכחי — Phase 2 (2026-05)
+
+**החלטה:** עמוד "בניית אתרים" חזר להיות העמוד הראשי (`/`).
+`LeadFunnelHero` הוכנס אחרי `Testimonials` (לקוחות מספרים) כדי להציג
+את ערך המשפך והחיבור ל-Lidup בהמשך הדף — לא כדף עצמאי.
+
+| עמוד | מה קרה |
+|------|--------|
+| `/` | **כעת:** Hero + Testimonials + **LeadFunnelHero** + שאר הסקשנים |
+| `/websites` | redirect קבוע (308) ל-`/` |
+| `app/_funnel-draft/` | **גיבוי** — הדף הישן (LeadFunnelHero + FinalCTA). תיקייה private ב-Next.js (קידומת `_`) → לא נגישה כ-route. ישוחזר כעמוד הבית כשהמשפך יהיה מוכן. |
 
 ---
 
@@ -29,32 +50,42 @@ npm run lint     # ESLint
 ```
 app/
   layout.tsx              # Root layout: Header, Footer, WhatsAppButton, SkipLink
-  page.tsx                # דף הבית — מחבר את כל ה-sections לפי סדר
+  page.tsx                # דף הבית — Hero…FinalCTA + LeadFunnelHero אחרי Testimonials
   globals.css             # כל הסגנונות הגלובליים, utility classes, design tokens
   icon.svg                # Favicon
+  _funnel-draft/
+    page.tsx              # גיבוי: הדף הישן (LeadFunnelHero + FinalCTA) — לא נגיש כ-route
   accessibility/page.tsx  # דף הצהרת נגישות
   terms/page.tsx          # דף תנאי שימוש
+  websites/page.tsx       # redirect ל-/ (308)
   components/
-    Header.tsx            # Header עם scroll-aware transitions (framer-motion)
+    Header.tsx            # Header — dark-hero רק ב-/ ; nav: תהליך + שאלות
     Footer.tsx
-    Hero.tsx              # Section ראשון — קריאה לפעולה ראשית
+    LeadFunnelHero.tsx    # משפך לידים → Lidup → כרטיסי ליד (מוכנס אחרי Testimonials)
+    Hero.tsx              # Hero ראשי — כותרת + SitesShowcase marquee בתחתית
+    SitesShowcase.tsx     # Marquee קרוסלה של screenshots עם אפקט 3D curved-ring
     Hook.tsx              # Section hooks / why you need this
     Testimonials.tsx      # עדויות לקוחות (כוללות וידאו)
     AIObjection.tsx       # התמודדות עם ההתנגדות "למה לא AI?"
     About.tsx             # סקשן אודות נועם
-    Process.tsx           # תהליך העבודה
+    Process.tsx           # תהליך העבודה  (id="process")
     Differentiators.tsx   # מה מייחד
     WhatsIncluded.tsx     # מה כלול בשירות
     RiskReversal.tsx      # ביטול סיכון / ערבות
-    FAQ.tsx               # שאלות נפוצות
+    FAQ.tsx               # שאלות נפוצות  (id="faq")
     WhoFor.tsx            # למי מתאים
-    FinalCTA.tsx          # טופס יצירת קשר (השאר פרטים)
+    FinalCTA.tsx          # טופס יצירת קשר (id="contact")
     Logo.tsx              # SVG לוגו
     LegalPageLayout.tsx   # Layout לדפי terms/accessibility
     SkipLink.tsx          # Skip to content לנגישות
     WhatsAppButton.tsx    # כפתור WhatsApp צף
 public/
   og-image.png            # Open Graph image
+  icons/                  # SVG icons למקורות הלידים ב-LeadFunnelHero
+    whatsapp.svg facebook.svg instagram.svg gmail.svg google-calendar.svg
+  showcase/               # Screenshots של אתרים לקרוסלה ב-Hero
+    site-benpaz.png site-saason.png site-avital.png
+    site-adar.png site-onlystyle.png site-timely.png
 ```
 
 ---
@@ -102,6 +133,7 @@ ink:       #0A0A0A  ← טקסט כהה
 - `lightChrome` boolean (מסף 45%) שולט בצבעי טקסט ו-burger
 - בדפים שאינם Home (`/terms`, `/accessibility`) — תמיד במצב "scrolled"
 - כולל scroll progress bar בראש הדף
+- `isOverDarkHero = isHome` (רק `/` — `/websites` הוא redirect ולא מרנדר)
 
 ---
 
@@ -146,9 +178,21 @@ ink:       #0A0A0A  ← טקסט כהה
 
 | נתיב | תיאור |
 |------|-------|
-| `/` | דף הבית — כל ה-landing page sections |
+| `/` | דף הבית — בניית אתרים + LeadFunnelHero מוכנס אחרי Testimonials. |
+| `/websites` | redirect (308) ל-`/` — נשמר לתאימות אחורית וקישורים ישנים. |
 | `/terms` | תנאי שימוש |
 | `/accessibility` | הצהרת נגישות |
+
+### Header navigation
+- `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`).
+- קישורי הניווט: `{ label, href }`. `resolveHref` ממיר hash ל-`/#hash` כשלא ב-`/`.
+- **nav links נוכחיים:** "תהליך העבודה" → `#process` + "שאלות נפוצות" → `#faq`.
+- CTA: "קבע שיחה" → `#contact`.
+
+### לשחזור דף המשפך בעתיד
+1. העתק `app/_funnel-draft/page.tsx` → `app/page.tsx`
+2. שנה `app/websites/page.tsx` לתוכן websites (או השאר redirect)
+3. עדכן Header nav לקישורי המשפך
 
 ---
 

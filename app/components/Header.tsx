@@ -5,19 +5,27 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
-const navLinks = [
-  { label: "עליי", hash: "#about" },
-  { label: "תהליך", hash: "#process" },
-  { label: "לקוחות", hash: "#testimonials" },
-  { label: "שאלות", hash: "#faq" },
+/**
+ * Nav links — Phase 2 (2026-05):
+ * תוכן בניית האתרים חזר לדף הבית, ולכן הקישורים מצביעים לעוגנים בתוך /.
+ * /websites מנותב ישירות ל-/ (redirect), אז אין צורך בקישור נפרד.
+ */
+type NavLink = { label: string; href: string };
+const navLinks: NavLink[] = [
+  { label: "תהליך העבודה", href: "#process" },
+  { label: "שאלות נפוצות", href: "#faq" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Pages that render a dark hero behind the header — keep the chrome dark
+  // at the top until the user scrolls.
+  // /websites now redirects to /, so only / needs the dark-hero treatment.
+  const isOverDarkHero = isHome;
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lightChrome, setLightChrome] = useState(!isHome);
+  const [lightChrome, setLightChrome] = useState(!isOverDarkHero);
 
   // Scroll progress bar
   const { scrollY, scrollYProgress } = useScroll();
@@ -28,8 +36,8 @@ export default function Header() {
 
   // Normalized 0→1 progress over the first 90px of scroll
   const rawProgress = useTransform(smoothY, [0, 90], [0, 1], { clamp: true });
-  // Non-home pages always look "scrolled"
-  const progress = useTransform(rawProgress, (v) => (!isHome ? 1 : v));
+  // Pages without a dark hero always look "scrolled"
+  const progress = useTransform(rawProgress, (v) => (!isOverDarkHero ? 1 : v));
 
   // Two background layers that cross-fade instead of swapping gradients (which CSS can't tween)
   const darkBgOpacity = useTransform(progress, [0, 1], [1, 0]);
@@ -40,9 +48,9 @@ export default function Header() {
 
   // Keep a boolean for text-color classes (threshold at 50% of scroll)
   useEffect(() => {
-    if (!isHome) return;
+    if (!isOverDarkHero) return;
     return progress.on("change", (v) => setLightChrome(v > 0.45));
-  }, [progress, isHome]);
+  }, [progress, isOverDarkHero]);
 
   // Close mobile menu on Escape
   useEffect(() => {
@@ -54,7 +62,14 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  const homeHash = (hash: string) => (isHome ? hash : `/${hash}`);
+  /** Resolve a nav href against the current page.
+   *  - Pure hashes (`#foo`) stay as `#foo` on home and become `/#foo` elsewhere.
+   *  - Absolute paths and external hrefs are returned unchanged.
+   */
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#")) return isHome ? href : `/${href}`;
+    return href;
+  };
 
   return (
     <>
@@ -97,23 +112,54 @@ export default function Header() {
         />
 
         <div className="relative container-x flex items-center justify-between h-14 md:h-16">
-          {/* Logo */}
-          <a href="/" aria-label="עמוד הבית" className="flex items-center gap-2.5 group">
-            <span
-              className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
-                lightChrome ? "text-brand-700" : "text-accent"
-              }`}
-            >
-              <Logo className="w-9 h-9" />
-            </span>
-          </a>
+          {/* Logo + mobile burger — first in DOM = right side in RTL */}
+          <div className="flex items-center gap-2">
+            <a href="/" aria-label="עמוד הבית" className="flex items-center group">
+              <span
+                className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
+                  lightChrome ? "text-brand-700" : "text-accent"
+                }`}
+              >
+                <Logo className="w-9 h-9" />
+              </span>
+            </a>
 
-          {/* Desktop nav */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className={`md:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
+                lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
+              }`}
+              aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+            >
+              <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 transition-all duration-300 ${
+                    lightChrome ? "bg-brand-900" : "bg-cream"
+                  } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                />
+              </span>
+            </button>
+          </div>
+
+          {/* Desktop nav — center */}
           <nav className="hidden md:flex items-center gap-7" aria-label="ניווט ראשי">
             {navLinks.map((link) => (
               <a
-                key={link.hash}
-                href={homeHash(link.hash)}
+                key={link.href}
+                href={resolveHref(link.href)}
                 className={`relative text-sm font-medium transition-colors duration-500 group ${
                   lightChrome
                     ? "text-brand-900/80 hover:text-brand-700"
@@ -131,44 +177,14 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA — last in DOM = left side in RTL, desktop only */}
           <a
-            href={homeHash("#contact")}
+            href={resolveHref("#contact")}
             className="hidden md:inline-flex btn-primary !py-2.5 !px-5 text-sm"
           >
             <span>קבע שיחה</span>
             <span aria-hidden>←</span>
           </a>
-
-          {/* Mobile burger */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`md:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
-              lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
-            }`}
-            aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-nav"
-          >
-            <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
-              />
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`block h-0.5 transition-all duration-300 ${
-                  lightChrome ? "bg-brand-900" : "bg-cream"
-                } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
-              />
-            </span>
-          </button>
         </div>
 
         {/* Mobile menu */}
@@ -183,8 +199,8 @@ export default function Header() {
           <nav className="container-x py-6 flex flex-col gap-5" aria-label="ניווט ראשי במובייל">
             {navLinks.map((link) => (
               <a
-                key={link.hash}
-                href={homeHash(link.hash)}
+                key={link.href}
+                href={resolveHref(link.href)}
                 onClick={() => setMobileOpen(false)}
                 tabIndex={mobileOpen ? 0 : -1}
                 className="text-base font-medium text-brand-900/80 hover:text-brand-700 transition-colors"
@@ -193,7 +209,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href={homeHash("#contact")}
+              href={resolveHref("#contact")}
               onClick={() => setMobileOpen(false)}
               tabIndex={mobileOpen ? 0 : -1}
               className="btn-primary justify-center"

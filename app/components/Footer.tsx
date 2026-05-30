@@ -19,23 +19,17 @@ export default function Footer() {
                 נועם גמליאל
               </span>
               <span className="block text-xs text-cream/65 mt-0.5">
-                אתרי תדמית שמייצרים פניות
+                משפכי לידים ואתרים לעסקים
               </span>
             </span>
           </a>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="ניווט תחתון">
-            <a href="/#about" className="hover:text-cream transition-colors">
-              עליי
+            <a href="/" className="hover:text-cream transition-colors">
+              עמוד הבית
             </a>
-            <a href="/#process" className="hover:text-cream transition-colors">
-              תהליך
-            </a>
-            <a href="/#testimonials" className="hover:text-cream transition-colors">
-              לקוחות
-            </a>
-            <a href="/#faq" className="hover:text-cream transition-colors">
-              שאלות
+            <a href="/websites" className="hover:text-cream transition-colors">
+              בניית אתרים
             </a>
             <a
               href="/#contact"

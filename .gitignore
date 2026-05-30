@@ -38,3 +38,6 @@ next-env.d.ts
 # local notes
 /ASSETS-NEEDED.md
 /content-draft.md
+
+# claude code worktrees (ephemeral, local only)
+.claude/worktrees/
