@@ -205,15 +205,15 @@ export default function LeadFunnelHero() {
               </span>{" "}
               — שמתחבר ישירות לאתר ומרכזת את כל הפניות במקום אחד.
             </p>
-            <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 text-start w-full">
+            <ul className="mt-5 grid grid-cols-2 gap-x-8 gap-y-3">
               {[
                 "מתריעה בזמן אמת על לידים חדשים",
                 "מתאמת עבורכם פגישות ביומן",
                 "מעקב צמוד אחר כל פנייה",
                 "אוטומציות שמעלות את אחוזי הסגירה",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-cream/85">
-                  <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 mt-1.5" />
+                <li key={item} className="flex items-center gap-2.5 text-sm sm:text-base text-cream/85">
+                  <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

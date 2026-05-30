@@ -51,17 +51,6 @@ export default function Testimonials() {
       <div aria-hidden="true" className="orb orb-brand w-[28rem] h-[28rem] -bottom-40 -left-40 opacity-50 drift" />
 
       <div className="container-x relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-xs font-semibold text-accent tracking-wide"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          לקוחות + עבודות
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,21 +58,10 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl"
         >
-          לקוחות מספרים.
+          לקוחות
           <br />
-          <span className="gradient-text">העבודות מדברות.</span>
+          <span className="gradient-text">ממליצים.</span>
         </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="mt-6 text-lg text-cream/75 max-w-2xl"
-        >
-          לא הבטחות שיווק, לא טקסטים מצוחצחים. שמע ישירות מהלקוחות שעבדתי
-          איתם — ואם תרצה, צא לאתרים שלהם וראה את התוצאה במו עיניך.
-        </motion.p>
 
         {/* Mobile: carousel */}
         <MobileCarousel />

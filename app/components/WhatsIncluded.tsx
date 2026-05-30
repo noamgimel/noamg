@@ -24,7 +24,7 @@ const categories = [
     ],
   },
   {
-    title: "חיבורים, SEO ונגישות",
+    title: "הקמת אתר בראש שקט",
     desc: "נוכחות שעובדת מהיום הראשון",
     items: [
       "התראה מיידית כאשר ליד חדש נקלט",
@@ -34,7 +34,7 @@ const categories = [
     ],
   },
   {
-    title: "מעטפת מלאה לעסק",
+    title: "מעטפת עסקית מלאה",
     desc: "כי הפרויקט לא נגמר בהשקה",
     items: [
       "3 סבבי תיקון לפי בקשה",
@@ -44,7 +44,7 @@ const categories = [
   },
 ];
 
-function GiftIcon() {
+function GiftIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ function GiftIcon() {
       strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="w-6 h-6"
+      className={className}
       aria-hidden="true"
     >
       <rect x="3" y="8" width="18" height="4" rx="1" />
@@ -114,22 +114,30 @@ export default function WhatsIncluded() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-10 p-6 rounded-3xl glass-dark max-w-md group hover:bg-accent/8 transition-colors duration-500"
+              className="mt-10 relative overflow-hidden rounded-3xl max-w-md border border-accent/40 bg-gradient-to-br from-accent/10 via-accent/4 to-transparent shadow-[0_0_40px_rgba(201,169,97,0.10)] hover:shadow-[0_0_55px_rgba(201,169,97,0.17)] transition-shadow duration-500 p-6"
             >
-              <div className="flex items-start gap-4">
-                <div className="grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-accent/80 text-brand-900 shrink-0 shine">
-                  <GiftIcon />
+              {/* Leading gold bar */}
+              <span aria-hidden="true" className="absolute inset-y-0 right-0 w-1 rounded-r-3xl bg-gradient-to-b from-accent/90 via-accent/55 to-accent/10" />
+              {/* Subtle background orb */}
+              <div aria-hidden="true" className="absolute -top-10 -left-10 w-36 h-36 rounded-full bg-accent/10 blur-2xl pointer-events-none" />
+
+              {/* "Free" badge */}
+              <span className="inline-flex items-center gap-1.5 mb-4 px-3 py-1 rounded-full bg-accent/15 border border-accent/25 text-accent text-xs font-bold tracking-wide">
+                <GiftIcon className="w-3.5 h-3.5" />
+                כלול בחינם בכל חבילה
+              </span>
+
+              <div className="flex items-center gap-3 mb-2">
+                <div className="grid place-items-center w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-accent/70 text-brand-900 shrink-0 shadow-lg shadow-accent/25 shine">
+                  <GiftIcon className="w-5 h-5" />
                 </div>
-                <div>
-                  <div className="font-extrabold text-cream text-lg">
-                    שימוש חינמי ב-{" "}
-                    <span dir="ltr" className="font-extrabold tracking-wide">LeadSync</span>
-                  </div>
-                  <p className="mt-1 text-sm text-cream/70">
-                    הקמה ושימוש במערכת ניהול הלידים — כלול בחבילה, ללא תוספת עלות.
-                  </p>
+                <div className="font-extrabold text-cream text-xl leading-tight">
+                  שימוש חינמי ב-<span dir="ltr" className="tracking-wide">LeadSync</span>
                 </div>
               </div>
+              <p className="text-sm text-cream/70 leading-relaxed pr-1">
+                הקמה ושימוש מלא במערכת ניהול הלידים — ללא תוספת עלות, לצמיתות.
+              </p>
             </motion.div>
           </div>
 
