@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import LidupHero from "./LidupHero";
+import SectionSparks from "./SectionSparks";
 
 const fadeUp = {
   initial: { y: 28, opacity: 0 },
@@ -58,46 +59,12 @@ function ArrowLeft({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-/* Section-wide ambient sparks — same floating glints used behind the
-   LeadSync visual, spread across the whole section. Client-only to avoid
-   SSR/CSR hydration mismatch from Math.random(). */
-function FunnelSparks({ count = 34 }: { count?: number }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const sparks = useMemo(
-    () =>
-      Array.from({ length: count }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        dur: 7 + Math.random() * 10,
-        delay: -Math.random() * 12,
-        size: 1 + Math.random() * 2.4,
-        op: 0.3 + Math.random() * 0.5,
-      })),
-    [count]
-  );
-
-  if (!mounted) return null;
-
+/* Check icon — marks each LeadSync capability */
+function CheckIcon({ className = "w-3 h-3" }: { className?: string }) {
   return (
-    <div className="funnel-sparks" aria-hidden="true">
-      {sparks.map((s, i) => (
-        <span
-          key={i}
-          className="funnel-spark"
-          style={{
-            left: `${s.left}%`,
-            top: `${s.top}%`,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-            animationDuration: `${s.dur}s`,
-            animationDelay: `${s.delay}s`,
-            opacity: s.op,
-          }}
-        />
-      ))}
-    </div>
+    <svg viewBox="0 0 12 12" fill="none" className={className} aria-hidden="true">
+      <path d="M2.5 6.5l2 2 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -138,7 +105,7 @@ export default function LeadFunnelHero() {
       <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none" />
 
       {/* Ambient sparks across the whole section */}
-      <FunnelSparks count={38} />
+      <SectionSparks count={38} />
 
       {/* Floating orbs */}
       <motion.div
@@ -205,15 +172,23 @@ export default function LeadFunnelHero() {
               </span>{" "}
               — שמתחבר ישירות לאתר ומרכזת את כל הפניות במקום אחד.
             </p>
-            <ul className="mt-5 grid grid-cols-2 gap-x-8 gap-y-3">
+            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-right">
               {[
                 "מתריעה בזמן אמת על לידים חדשים",
                 "מתאמת עבורכם פגישות ביומן",
                 "מעקב צמוד אחר כל פנייה",
                 "אוטומציות שמעלות את אחוזי הסגירה",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm sm:text-base text-cream/85">
-                  <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                <li
+                  key={item}
+                  className="flex items-center gap-3 rounded-xl bg-cream/[0.04] border border-cream/10 px-4 py-3 text-sm sm:text-[0.95rem] text-cream/90 leading-snug"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="grid place-items-center w-5 h-5 rounded-full bg-accent/15 text-accent shrink-0"
+                  >
+                    <CheckIcon className="w-3 h-3" />
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}

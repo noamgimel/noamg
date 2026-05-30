@@ -82,16 +82,28 @@ export default function Process() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Inner card: backdrop-filter and shadow stay on a static element. */}
-              <div className="group relative grid md:grid-cols-[6rem_1fr] gap-6 md:gap-10 items-start p-6 md:p-8 rounded-3xl glass-light card-glow card-glow-hover transition-shadow duration-500">
-                {/* Step number */}
-                <div className="relative">
-                  <div className="grid place-items-center w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-700 to-brand-900 text-cream text-2xl font-black tabular-num transition-transform duration-500 group-hover:scale-105">
+              <div className="group relative overflow-hidden grid md:grid-cols-[auto_1fr] gap-5 md:gap-10 items-start p-6 md:p-8 lg:p-9 rounded-3xl glass-light card-glow card-glow-hover transition-shadow duration-500">
+                {/* Decorative oversized ghost number — bleeds off the start edge */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none select-none absolute -top-8 -right-3 md:-top-10 md:-right-2 text-[8rem] md:text-[11rem] leading-none font-black tabular-num text-brand-900/[0.04] group-hover:text-accent/[0.07] transition-colors duration-500"
+                >
+                  {step.num}
+                </span>
+
+                {/* Step number — large gradient numeral with accent bar */}
+                <div className="relative shrink-0">
+                  <span className="block text-[3.5rem] md:text-[4.5rem] leading-none font-black tabular-num bg-clip-text text-transparent bg-gradient-to-br from-brand-700 to-brand-900/40 group-hover:from-accent group-hover:to-accent/50 transition-all duration-500">
                     {step.num}
-                  </div>
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="block mt-2 h-1 w-10 md:w-14 rounded-full bg-accent/30 group-hover:bg-accent group-hover:w-16 transition-all duration-500"
+                  />
                 </div>
 
                 {/* Content */}
-                <div className="pt-1">
+                <div className="relative pt-1">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <h3 className="text-2xl md:text-[1.65rem] font-extrabold text-brand-900">
                       {step.title}
@@ -106,18 +118,22 @@ export default function Process() {
                   <p className="text-base md:text-lg text-brand-900/70 leading-relaxed max-w-2xl">
                     {step.body}
                   </p>
-                  <div className="mt-4 inline-flex items-start gap-2 text-sm text-brand-900/80 font-medium">
-                    <svg viewBox="0 0 16 16" className="w-4 h-4 mt-0.5 text-accent shrink-0" fill="none">
-                      <path
-                        d="M3 8l4 4 6-8"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>
-                      <span className="text-brand-900/70">בסוף השלב יהיה לך: </span>
+
+                  {/* Outcome band */}
+                  <div className="mt-6 flex items-center gap-3 rounded-2xl bg-brand-700/[0.06] border border-brand-700/10 px-4 py-3">
+                    <span className="grid place-items-center w-7 h-7 rounded-full bg-gradient-to-br from-accent to-accent/70 text-brand-900 shrink-0 shadow-sm shadow-accent/30">
+                      <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none">
+                        <path
+                          d="M3 8l4 4 6-8"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-sm md:text-[0.95rem] text-brand-900/80 leading-snug">
+                      <span className="font-bold text-brand-700">בסוף השלב: </span>
                       {step.outcome}
                     </span>
                   </div>
