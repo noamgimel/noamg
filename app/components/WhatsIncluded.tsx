@@ -8,9 +8,9 @@ const categories = [
     title: "אסטרטגיה ותוכן",
     desc: "מה אומרים, למי, ובאיזה סדר",
     items: [
+      "אפיון מלא של קהל היעד",
       "אפיון מסרים — מה הגולש צריך להבין ב-5 שניות הראשונות",
-      "ניסוח טקסטים יחד איתך, בעברית של בני אדם",
-      "סדר עדיפויות ברור — מה ראשון, מה שני, ומה לא נכנס בכלל",
+      "ניסוח קופי ואינפוגרפיקה",
     ],
   },
   {
@@ -20,29 +20,48 @@ const categories = [
       "עיצוב מותאם אישית — לא תבנית, לא 'וריאציה' של עיצוב קיים",
       "רספונסיביות מלאה — מובייל, טאבלט, דסקטופ, כל גודל מסך",
       "מהירות טעינה שלא תאט את הגולש",
-      "הדרכה אישית כדי שתוכל לעדכן בעצמך",
+      "הדרכה אישית לשימוש באתר",
     ],
   },
   {
-    title: "חיבור לפניות ולמדידה",
-    desc: "אף ליד לא נעלם",
+    title: "חיבורים, SEO ונגישות",
+    desc: "נוכחות שעובדת מהיום הראשון",
     items: [
-      "טפסים שמגיעים אליך ישירות — כדי שלא תפספס פנייה",
-      "כפתור וואטסאפ פעיל בכל הדפים",
-      "בסיס נכון לגוגל — כותרות, תיאורים ומבנה שמאפשר להיסרק כמו שצריך",
+      "התראה מיידית כאשר ליד חדש נקלט",
+      "SEO בסיסי לאתר",
+      "הנגשת אתר — מונגש לפי החוק",
       "חיבורים קטנים שחוסכים התעסקות — מיילים, מדידה, או כלים רלוונטיים לעסק",
-      "דומיין + אחסון לשנה הראשונה",
     ],
   },
   {
-    title: "ליווי אחרי השקה",
-    desc: "אתה לא נשאר לבד",
+    title: "מעטפת מלאה לעסק",
+    desc: "כי הפרויקט לא נגמר בהשקה",
     items: [
-      "30 יום ליווי מלא — כל בקשת שינוי, ללא ספירת זמן",
-      "אחראי זמין שאפשר לחזור אליו, גם אחרי שנה",
+      "3 סבבי תיקון לפי בקשה",
+      "הקמת אינטגרציות ואוטומציות המותאמות לצרכי העסק שלכם",
+      "זמינות גם לאחר סיום הפרויקט (כן, גם אחרי שנה)",
     ],
   },
 ];
+
+function GiftIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-6 h-6"
+      aria-hidden="true"
+    >
+      <rect x="3" y="8" width="18" height="4" rx="1" />
+      <path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
+      <path d="M12 8S11 3 8 3a2.5 2.5 0 0 0 0 5h4zM12 8s1-5 4-5a2.5 2.5 0 0 1 0 5h-4z" />
+    </svg>
+  );
+}
 
 export default function WhatsIncluded() {
   return (
@@ -74,9 +93,9 @@ export default function WhatsIncluded() {
               transition={{ duration: 0.8 }}
               className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
             >
-              אתר תדמית מלא.
+              אתר מלא,
               <br />
-              <span className="gradient-text">בלי כוכביות.</span>
+              <span className="gradient-text">בלי תדמית.</span>
             </motion.h2>
 
             <motion.p
@@ -86,11 +105,10 @@ export default function WhatsIncluded() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="mt-6 text-lg text-cream/75 leading-relaxed max-w-md"
             >
-              מחיר סגור, חבילה מלאה, ללא תוספות מפתיעות. הנה בדיוק מה שאתה
-              מקבל בכל פרויקט.
+              מחיר סגור, חבילה מלאה, ללא תוספות מפתיעות. הנה מה שאתם הולכים לקבל.
             </motion.p>
 
-            {/* Bonus highlight */}
+            {/* Bonus highlight — LeadSync */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -99,15 +117,16 @@ export default function WhatsIncluded() {
               className="mt-10 p-6 rounded-3xl glass-dark max-w-md group hover:bg-accent/8 transition-colors duration-500"
             >
               <div className="flex items-start gap-4">
-                <div className="grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-accent-bright text-brand-900 font-extrabold shrink-0 text-base shine">
-                  +30
+                <div className="grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-accent/80 text-brand-900 shrink-0 shine">
+                  <GiftIcon />
                 </div>
                 <div>
                   <div className="font-extrabold text-cream text-lg">
-                    יום ליווי מלא, ללא תוספת
+                    שימוש חינמי ב-{" "}
+                    <span dir="ltr" className="font-extrabold tracking-wide">LeadSync</span>
                   </div>
                   <p className="mt-1 text-sm text-cream/70">
-                    כל בקשת שינוי, ללא ספירת זמן, ללא 'זה לא בחבילה'.
+                    הקמה ושימוש במערכת ניהול הלידים — כלול בחבילה, ללא תוספת עלות.
                   </p>
                 </div>
               </div>
