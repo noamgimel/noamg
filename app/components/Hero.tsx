@@ -55,7 +55,7 @@ export default function Hero() {
       </svg>
 
       {/* ── Content ──────────────────────────────────────────── */}
-      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-center py-10 sm:py-12 pb-[96px] lg:grid lg:grid-cols-[3fr_2fr] lg:gap-10 xl:gap-8 lg:items-center">
+      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-start pt-8 sm:pt-10 pb-[96px] lg:grid lg:grid-cols-[3fr_2fr] lg:gap-10 xl:gap-8 lg:items-center lg:pt-0 lg:justify-center">
 
         {/* Text block — centered on mobile/tablet, right-aligned beside the
             carousel on desktop (first DOM column → right side in RTL) */}

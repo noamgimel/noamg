@@ -1034,12 +1034,12 @@ video:-moz-full-screen {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: showcase-scroll 52s linear infinite;
+  animation: showcase-scroll 38s linear infinite;
   transform-style: preserve-3d;
 }
 
 .sites-marquee__track > .showcase-card {
-  margin-inline-end: 32px;
+  margin-inline-end: 24px;
 }
 
 /* One full set = 33.3333% of 3× the list */
@@ -1053,7 +1053,7 @@ video:-moz-full-screen {
   flex: 0 0 auto;
   /* Medium size — visible & attractive but doesn't dominate the hero.
      Several cards stay in view at once so the auto-scroll reads clearly. */
-  width: clamp(230px, 24vw, 360px);
+  width: clamp(190px, 21vw, 240px);
   border-radius: 12px;
   background: #ffffff;
   box-shadow:
