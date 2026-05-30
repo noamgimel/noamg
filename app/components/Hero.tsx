@@ -55,10 +55,11 @@ export default function Hero() {
       </svg>
 
       {/* ── Content ──────────────────────────────────────────── */}
-      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-center py-10 sm:py-12 pb-[96px]">
+      <div className="container-x relative z-10 flex-1 min-w-0 w-full flex flex-col justify-center py-10 sm:py-12 pb-[96px] lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-14 lg:items-center">
 
-        {/* Text block — centered, capped width */}
-        <div className="text-center mx-auto max-w-3xl">
+        {/* Text block — centered on mobile/tablet, right-aligned beside the
+            carousel on desktop (first DOM column → right side in RTL) */}
+        <div className="text-center lg:text-right mx-auto lg:mx-0 max-w-3xl lg:max-w-none">
           <motion.h1
             variants={fadeUp}
             initial="initial"
@@ -67,7 +68,7 @@ export default function Hero() {
             className="h-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[3.4rem] mx-auto"
           >
             אתרים שמייצרים{" "}
-            <span className="gradient-text whitespace-nowrap">אמון, פניות ולקוחות</span>
+            <span className="gradient-text whitespace-nowrap lg:whitespace-normal">אמון, פניות ולקוחות</span>
             <br />
             — לא רק נוכחות באינטרנט.
           </motion.h1>
@@ -77,7 +78,7 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 md:mt-6 text-sm md:text-base lg:text-lg text-cream/80 max-w-xl mx-auto leading-relaxed"
+            className="mt-5 md:mt-6 text-sm md:text-base lg:text-lg text-cream/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
             אני בונה לעסקים אתרים מעוצבים, מהירים ומדויקים שמסבירים{" "}
             <span className="text-accent font-semibold">למה לבחור דווקא בהם</span>
@@ -89,7 +90,7 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 md:mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-center gap-3"
+            className="mt-7 md:mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start gap-3"
           >
             <a
               href="#contact"
@@ -109,7 +110,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-9 md:mt-12 w-full min-w-0 max-w-full overflow-hidden"
+          className="mt-9 md:mt-12 lg:mt-0 w-full min-w-0 max-w-full overflow-hidden"
         >
           <SitesShowcase />
         </motion.div>
