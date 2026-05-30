@@ -17,7 +17,7 @@ const SITE_URL = "https://noamgamliel.com"; // ⚠️ עדכן לדומיין ה
 const SITE_NAME = "נועם גמליאל · בניית אתרים לעסקים";
 const TITLE = "נועם גמליאל — בניית אתרים לעסקים";
 const DESCRIPTION =
-  "אתר תדמית מקצועי שמייצר אמון ופניות — מחובר לטפסים, וואטסאפ ומערכת ניהול לידים Lidup, עם ליווי אישי מקצה לקצה.";
+  "אתר תדמית מקצועי שמייצר אמון ופניות — מחובר לטפסים, וואטסאפ ומערכת ניהול לידים LeadSync, עם ליווי אישי מקצה לקצה.";
 
 export const viewport: Viewport = {
   themeColor: "#0F3D2E",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   keywords: [
     "משפך לידים",
     "ניהול לידים",
-    "Lidup",
+    "LeadSync",
     "מערכת לידים",
     "אתרי תדמית",
     "בניית אתרים",

@@ -445,7 +445,7 @@ export default function LidupHero() {
                 <span className="dot" />
               </div>
               <div className="core-text">
-                <div className="core-brand">LIDUP</div>
+                <div className="core-brand">LeadSync</div>
                 <h3 className="core-title">משפך לידים אוטומטי שעובד בשבילך</h3>
                 <p className="core-sub">סינון, קליטה, מענה מיידי, מעקב ותזכורות</p>
               </div>
