@@ -9,21 +9,32 @@ const fadeUp = {
   animate: { y: 0, opacity: 1 },
 };
 
-/* Lock icon — reused from previous Hero for the trust line */
-function LockIcon({ className = "w-4 h-4" }: { className?: string }) {
+/* Gift icon — marks the "included free" benefit */
+function GiftIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.6"
+      strokeWidth="1.7"
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
       aria-hidden="true"
     >
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      <rect x="3" y="8" width="18" height="4" rx="1" />
+      <path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
+      <path d="M12 8S11 3 8 3a2.5 2.5 0 0 0 0 5h4zM12 8s1-5 4-5a2.5 2.5 0 0 1 0 5h-4z" />
+    </svg>
+  );
+}
+
+/* Spark / AI icon — marks the automation & AI benefit and the divider */
+function SparkIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2l1.7 6.6L20 10.5l-6.3 1.9L12 19l-1.7-6.6L4 10.5l6.3-1.9L12 2z" />
+      <path d="M19 3l.7 2.6L22 6.3l-2.3.7L19 9.5l-.7-2.5L16 6.3l2.3-.7L19 3z" opacity="0.7" />
     </svg>
   );
 }
@@ -46,25 +57,6 @@ function ArrowLeft({ className = "w-4 h-4" }: { className?: string }) {
     </svg>
   );
 }
-
-/* Funnel / sparkles icon for eyebrow */
-function FunnelIcon({ className = "w-4 h-4" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
-    </svg>
-  );
-}
-
 
 export default function LeadFunnelHero() {
   const ref = useRef<HTMLElement>(null);
@@ -115,39 +107,101 @@ export default function LeadFunnelHero() {
           {/* === COPY SIDE === */}
           <div>
             {/* Headline */}
-            <motion.h1
+            <motion.h2
               variants={fadeUp}
               initial="initial"
               animate="animate"
               transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="h-display text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] xl:text-[3.75rem]"
+              className="h-display text-[1.9rem] sm:text-[2.4rem] md:text-[2.8rem] lg:text-[2.9rem] xl:text-[3.4rem] leading-[1.12]"
             >
-              הלידים כבר נכנסים.
+              זה לא רק הקמת אתר
               <br />
-              השאלה היא{" "}
-              <span className="gradient-text">מי מטפל בהם כמו שצריך.</span>
-            </motion.h1>
+              אלא משפך דיגיטלי
+              <br />
+              <span className="gradient-text">שעובד בשבילכם 24/7</span>
+            </motion.h2>
 
-            {/* Subheadline */}
-            <motion.p
+            {/* Benefit 1 — LeadSync (included free) */}
+            <motion.div
               variants={fadeUp}
               initial="initial"
               animate="animate"
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 md:mt-8 text-base md:text-lg text-cream/80 max-w-2xl leading-relaxed"
+              className="mt-7 md:mt-8 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 sm:p-6 max-w-2xl"
             >
-              אני בונה לעסקים{" "}
-              <span className="text-accent font-semibold">משפך דיגיטלי</span>{" "}
-              שמסנן פניות לא רלוונטיות, מחמם לידים שבאמת מעוניינים, ומרכז את כולם במקום אחד מסודר —
-              כדי שאף ליד רציני לא יפול בין הכיסאות.
-            </motion.p>
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-accent/80 via-accent/50 to-accent/10"
+              />
+              <div className="flex items-center gap-2 mb-3 text-accent">
+                <GiftIcon className="w-[18px] h-[18px]" />
+                <span className="text-[0.7rem] sm:text-xs font-bold tracking-[0.12em] uppercase">
+                  כלול ללא עלות
+                </span>
+              </div>
+              <p className="text-base md:text-[1.05rem] text-cream/85 leading-relaxed">
+                בסיום התהליך{" "}
+                <span className="font-semibold text-accent">תקבלו גישה חינמית ל־</span>
+                <span
+                  dir="ltr"
+                  className="rounded-md border border-accent/35 bg-accent/15 px-1.5 py-0.5 font-bold text-accent whitespace-nowrap"
+                >
+                  LeadSync
+                </span>{" "}
+                — מערכת ניהול לידים חכמה שמתחברת ישירות לאתר, מרכזת את כל הפניות
+                במקום אחד, מתריעה בזמן אמת על לידים חדשים, מתאמת עבורכם פגישות ביומן
+                ועוזרת לכם לעקוב אחרי כל פנייה מהרגע שהיא נכנסת ועד שהיא נסגרת.
+              </p>
+            </motion.div>
+
+            {/* Divider — "but that's not all" */}
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{ duration: 0.8, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              className="my-5 md:my-6 flex items-center gap-3 max-w-2xl"
+            >
+              <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-accent/45" />
+              <span className="flex items-center gap-1.5 text-accent font-bold text-sm sm:text-base whitespace-nowrap">
+                <SparkIcon className="w-4 h-4" />
+                אבל זה לא הכל
+              </span>
+              <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-accent/45" />
+            </motion.div>
+
+            {/* Benefit 2 — AI automations */}
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              animate="animate"
+              transition={{ duration: 0.8, delay: 0.54, ease: [0.22, 1, 0.36, 1] }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 sm:p-6 max-w-2xl"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-accent/80 via-accent/50 to-accent/10"
+              />
+              <div className="flex items-center gap-2 mb-3 text-accent">
+                <SparkIcon className="w-[18px] h-[18px]" />
+                <span className="text-[0.7rem] sm:text-xs font-bold tracking-[0.12em] uppercase">
+                  אוטומציה ו־AI מותאם אישית
+                </span>
+              </div>
+              <p className="text-base md:text-[1.05rem] text-cream/85 leading-relaxed">
+                ניתן לבנות עבורכם{" "}
+                <span className="font-semibold text-accent">אוטומציות וסוכני AI</span>{" "}
+                מותאמים אישית לעסק שלכם — כאלה שעונים לפניות, מסננים לקוחות לא
+                רלוונטיים, שולחים הודעות וחוסכים לכם שעות של עבודה ידנית בכל חודש.
+              </p>
+            </motion.div>
 
             {/* CTAs */}
             <motion.div
               variants={fadeUp}
               initial="initial"
               animate="animate"
-              transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
             >
               {/* Primary CTA scrolls to the contact form. The dedicated
@@ -163,20 +217,6 @@ export default function LeadFunnelHero() {
                 איך זה עובד?
               </a>
             </motion.div>
-
-            {/* Trust line */}
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.85 }}
-              className="mt-7 sm:mt-8 flex items-start gap-2 text-xs sm:text-sm text-cream/75 leading-relaxed max-w-2xl"
-            >
-              <LockIcon className="w-4 h-4 sm:w-[17px] sm:h-[17px] mt-0.5 text-cream/70 shrink-0" />
-              <span>
-                <span className="font-bold text-cream">הקמה אישית לעסק</span>
-                {" "}— בלי תבניות גנריות, בלי SaaS קר, סנכרון מלא לתהליך שלך.
-              </span>
-            </motion.p>
           </div>
 
           {/* === VISUAL SIDE === */}
@@ -190,22 +230,6 @@ export default function LeadFunnelHero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-cream/55 text-[0.65rem] tracking-widest uppercase pointer-events-none"
-      >
-        <span>גלול</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-px h-7 bg-cream/40"
-        />
-      </motion.div>
     </section>
   );
 }

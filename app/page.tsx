@@ -24,7 +24,7 @@ export const metadata: Metadata = {
  * דף הבית (Phase 2 / 2026-05):
  *
  * תוכן "בניית אתרים" חזר לכאן כדף הראשי.
- * LeadFunnelHero (מיצוב משפך + Lidup) הוכנס אחרי Testimonials
+ * LeadFunnelHero (מיצוב משפך + LeadSync) הוכנס אחרי Testimonials
  * כדי להציג את הערך המוסף מעבר לאתר עצמו.
  *
  * הדף הקודם (LeadFunnelHero + FinalCTA בלבד) נשמר ב-app/_funnel-draft/page.tsx
