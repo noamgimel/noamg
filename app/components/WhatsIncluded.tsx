@@ -95,7 +95,7 @@ export default function WhatsIncluded() {
             >
               אתר מלא,
               <br />
-              <span className="gradient-text">בלי תדמית.</span>
+              <span className="gradient-text">בלי כוכביות.</span>
             </motion.h2>
 
             <motion.p

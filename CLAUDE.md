@@ -31,6 +31,16 @@
 | `/websites` | redirect קבוע (308) ל-`/` |
 | `app/_funnel-draft/` | **גיבוי** — הדף הישן (LeadFunnelHero + FinalCTA). תיקייה private ב-Next.js (קידומת `_`) → לא נגישה כ-route. ישוחזר כעמוד הבית כשהמשפך יהיה מוכן. |
 
+### סקשנים מוסתרים זמנית (2026-05)
+
+שני קומפוננטים קיימים בקוד אך **מוסתרים מ-`app/page.tsx`** (ה-`import` וה-render מסומנים כהערה).
+הקבצים נשמרים כדי שאפשר יהיה להחזיר אותם בקלות — לבטל את ההערה ב-`page.tsx`.
+
+| קומפוננטה | כותרת בסקשן | סטטוס |
+|-----------|-------------|-------|
+| `Differentiators.tsx` | "למה איתי" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
+| `AIObjection.tsx` | "שאלה הוגנת" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
+
 ---
 
 ## Stack
@@ -73,10 +83,10 @@ app/
     SitesShowcase.tsx     # Marquee קרוסלה של screenshots עם אפקט 3D curved-ring
     Hook.tsx              # Section hooks / why you need this
     Testimonials.tsx      # עדויות לקוחות (כוללות וידאו)
-    AIObjection.tsx       # התמודדות עם ההתנגדות "למה לא AI?"
+    AIObjection.tsx       # "שאלה הוגנת" — התמודדות עם "למה לא AI?" ⚠️ מוסתר מ-page.tsx (2026-05)
     About.tsx             # סקשן אודות נועם
     Process.tsx           # תהליך העבודה  (id="process")
-    Differentiators.tsx   # מה מייחד
+    Differentiators.tsx   # "למה איתי" — מה מייחד ⚠️ מוסתר מ-page.tsx (2026-05)
     WhatsIncluded.tsx     # מה כלול בשירות
     RiskReversal.tsx      # ביטול סיכון / ערבות
     FAQ.tsx               # שאלות נפוצות  (id="faq")

@@ -4,10 +4,10 @@ import Testimonials from "./components/Testimonials";
 import LeadFunnelHero from "./components/LeadFunnelHero";
 import Hook from "./components/Hook";
 import WhatsIncluded from "./components/WhatsIncluded";
-import Differentiators from "./components/Differentiators";
+// import Differentiators from "./components/Differentiators"; // "למה איתי" מוסתר זמנית (2026-05)
 import Process from "./components/Process";
 import RiskReversal from "./components/RiskReversal";
-import AIObjection from "./components/AIObjection";
+// import AIObjection from "./components/AIObjection"; // "שאלה הוגנת" מוסתר זמנית (2026-05)
 import About from "./components/About";
 import WhoFor from "./components/WhoFor";
 import FAQ from "./components/FAQ";
@@ -39,10 +39,10 @@ export default function Home() {
       <About />
       <Hook />
       <WhatsIncluded />
-      <Differentiators />
+      {/* <Differentiators /> — "למה איתי" מוסתר זמנית (2026-05) */}
       <Process />
       <RiskReversal />
-      <AIObjection />
+      {/* <AIObjection /> — "שאלה הוגנת" מוסתר זמנית (2026-05) */}
       <WhoFor />
       <FAQ />
       <FinalCTA />
