@@ -1051,9 +1051,9 @@ video:-moz-full-screen {
 /* ── Card ────────────────────────────────────────────── */
 .showcase-card {
   flex: 0 0 auto;
-  /* ~40% of viewport width, narrower than original so it fits comfortably
-     inside the hero without dominating the whole section */
-  width: clamp(300px, 40vw, 640px);
+  /* Medium size — visible & attractive but doesn't dominate the hero.
+     Several cards stay in view at once so the auto-scroll reads clearly. */
+  width: clamp(230px, 24vw, 360px);
   border-radius: 12px;
   background: #ffffff;
   box-shadow:
