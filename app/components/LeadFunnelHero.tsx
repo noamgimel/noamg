@@ -134,23 +134,25 @@ export default function LeadFunnelHero() {
                 className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-accent/80 via-accent/50 to-accent/10"
               />
               <div className="flex items-center gap-2 mb-3 text-accent">
-                <GiftIcon className="w-[18px] h-[18px]" />
                 <span className="text-[0.7rem] sm:text-xs font-bold tracking-[0.12em] uppercase">
                   כלול ללא עלות
                 </span>
+                <GiftIcon className="w-[18px] h-[18px]" />
               </div>
               <p className="text-base md:text-[1.05rem] text-cream/85 leading-relaxed">
-                בסיום התהליך{" "}
-                <span className="font-semibold text-accent">תקבלו גישה חינמית ל־</span>
-                <span
-                  dir="ltr"
-                  className="rounded-md border border-accent/35 bg-accent/15 px-1.5 py-0.5 font-bold text-accent whitespace-nowrap"
-                >
+                בסיום התהליך תקבלו{" "}
+                <span className="font-semibold text-accent">גישה חינמית</span>{" "}
+                למערכת ניהול הלידים החכמה{" "}
+                <span dir="ltr" className="relative inline-block font-extrabold tracking-wide text-cream">
                   LeadSync
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-0.5 h-[2px] rounded-full bg-gradient-to-l from-accent/30 via-accent to-accent/30"
+                  />
                 </span>{" "}
-                — מערכת ניהול לידים חכמה שמתחברת ישירות לאתר, מרכזת את כל הפניות
-                במקום אחד, מתריעה בזמן אמת על לידים חדשים, מתאמת עבורכם פגישות ביומן
-                ועוזרת לכם לעקוב אחרי כל פנייה מהרגע שהיא נכנסת ועד שהיא נסגרת.
+                — שמתחברת ישירות לאתר, מרכזת את כל הפניות במקום אחד, מתריעה בזמן
+                אמת על לידים חדשים, מתאמת עבורכם פגישות ביומן ועוזרת לכם לעקוב
+                אחרי כל פנייה מהרגע שהיא נכנסת ועד שהיא נסגרת.
               </p>
             </motion.div>
 
@@ -164,8 +166,8 @@ export default function LeadFunnelHero() {
             >
               <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-accent/45" />
               <span className="flex items-center gap-1.5 text-accent font-bold text-sm sm:text-base whitespace-nowrap">
-                <SparkIcon className="w-4 h-4" />
                 אבל זה לא הכל
+                <SparkIcon className="w-4 h-4" />
               </span>
               <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-accent/45" />
             </motion.div>
@@ -183,10 +185,10 @@ export default function LeadFunnelHero() {
                 className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-accent/80 via-accent/50 to-accent/10"
               />
               <div className="flex items-center gap-2 mb-3 text-accent">
-                <SparkIcon className="w-[18px] h-[18px]" />
                 <span className="text-[0.7rem] sm:text-xs font-bold tracking-[0.12em] uppercase">
                   אוטומציה ו־AI מותאם אישית
                 </span>
+                <SparkIcon className="w-[18px] h-[18px]" />
               </div>
               <p className="text-base md:text-[1.05rem] text-cream/85 leading-relaxed">
                 ניתן לבנות עבורכם{" "}

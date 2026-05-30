@@ -24,8 +24,8 @@ export const metadata: Metadata = {
  * דף הבית (Phase 2 / 2026-05):
  *
  * תוכן "בניית אתרים" חזר לכאן כדף הראשי.
- * LeadFunnelHero (מיצוב משפך + LeadSync) הוכנס אחרי Testimonials
- * כדי להציג את הערך המוסף מעבר לאתר עצמו.
+ * סדר פתיחה: Hero → LeadFunnelHero (משפך + LeadSync) → Testimonials → About.
+ * LeadFunnelHero מוצג מיד אחרי ה-Hero כדי להבליט את הערך המוסף מעבר לאתר עצמו.
  *
  * הדף הקודם (LeadFunnelHero + FinalCTA בלבד) נשמר ב-app/_funnel-draft/page.tsx
  * ויחזור כעמוד הבית כשהמשפך יהיה מוכן לגמרי.
@@ -34,15 +34,15 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Testimonials />
       <LeadFunnelHero />
+      <Testimonials />
+      <About />
       <Hook />
       <WhatsIncluded />
       <Differentiators />
       <Process />
       <RiskReversal />
       <AIObjection />
-      <About />
       <WhoFor />
       <FAQ />
       <FinalCTA />
