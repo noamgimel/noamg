@@ -270,9 +270,10 @@ export default function LeadFunnelHero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 text-sm text-cream/45"
+            className="mt-8 max-w-2xl text-lg sm:text-xl md:text-2xl font-bold text-cream/85 leading-snug"
           >
-            אתר טוב לא מסתיים בהשארת הפרטים של הליד — הוא מתחיל משם.
+            אתר טוב לא מסתיים בהשארת הפרטים של הליד —{" "}
+            <span className="gradient-text">הוא מתחיל משם.</span>
           </motion.p>
         </div>
       </div>

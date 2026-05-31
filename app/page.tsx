@@ -6,7 +6,7 @@ import Hook from "./components/Hook";
 import WhatsIncluded from "./components/WhatsIncluded";
 // import Differentiators from "./components/Differentiators"; // "למה איתי" מוסתר זמנית (2026-05)
 import Process from "./components/Process";
-import RiskReversal from "./components/RiskReversal";
+// import RiskReversal from "./components/RiskReversal"; // "ביטול סיכון" מוסתר זמנית (2026-05)
 // import AIObjection from "./components/AIObjection"; // "שאלה הוגנת" מוסתר זמנית (2026-05)
 import About from "./components/About";
 import WhoFor from "./components/WhoFor";
@@ -41,7 +41,7 @@ export default function Home() {
       <WhatsIncluded />
       {/* <Differentiators /> — "למה איתי" מוסתר זמנית (2026-05) */}
       <Process />
-      <RiskReversal />
+      {/* <RiskReversal /> — "ביטול סיכון" מוסתר זמנית (2026-05) */}
       {/* <AIObjection /> — "שאלה הוגנת" מוסתר זמנית (2026-05) */}
       <WhoFor />
       <FAQ />
