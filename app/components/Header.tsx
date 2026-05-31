@@ -12,6 +12,10 @@ import Logo from "./Logo";
  */
 type NavLink = { label: string; href: string };
 const navLinks: NavLink[] = [
+  { label: "המשפך הדיגיטלי", href: "#funnel" },
+  { label: "המלצות", href: "#testimonials" },
+  { label: "עליי", href: "#about" },
+  { label: "מה כלול", href: "#whats-included" },
   { label: "תהליך העבודה", href: "#process" },
   { label: "שאלות נפוצות", href: "#faq" },
 ];
@@ -112,75 +116,78 @@ export default function Header() {
         />
 
         <div className="relative container-x flex items-center justify-between h-14 md:h-16">
-          {/* Logo + mobile burger — first in DOM = right side in RTL */}
-          <div className="flex items-center gap-2">
-            <a href="/" aria-label="עמוד הבית" className="flex items-center group">
-              <span
-                className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
-                  lightChrome ? "text-brand-700" : "text-accent"
-                }`}
-              >
-                <Logo className="w-9 h-9" />
-              </span>
-            </a>
-
-            <button
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className={`md:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
-                lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
-              }`}
-              aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
-              aria-expanded={mobileOpen}
-              aria-controls="mobile-nav"
-            >
-              <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
+          {/* Logo + nav grouped together — first in DOM = right side in RTL */}
+          <div className="flex items-center gap-6 lg:gap-9">
+            {/* Logo + mobile burger */}
+            <div className="flex items-center gap-2">
+              <a href="/" aria-label="עמוד הבית" className="flex items-center group">
                 <span
-                  className={`block h-0.5 transition-all duration-300 ${
-                    lightChrome ? "bg-brand-900" : "bg-cream"
-                  } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
-                />
-                <span
-                  className={`block h-0.5 transition-all duration-300 ${
-                    lightChrome ? "bg-brand-900" : "bg-cream"
-                  } ${mobileOpen ? "opacity-0" : ""}`}
-                />
-                <span
-                  className={`block h-0.5 transition-all duration-300 ${
-                    lightChrome ? "bg-brand-900" : "bg-cream"
-                  } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
-                />
-              </span>
-            </button>
-          </div>
-
-          {/* Desktop nav — center */}
-          <nav className="hidden md:flex items-center gap-7" aria-label="ניווט ראשי">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={resolveHref(link.href)}
-                className={`relative text-sm font-medium transition-colors duration-500 group ${
-                  lightChrome
-                    ? "text-brand-900/80 hover:text-brand-700"
-                    : "text-cream hover:text-cream"
-                }`}
-              >
-                {link.label}
-                <span
-                  aria-hidden="true"
-                  className={`absolute -bottom-1.5 right-0 w-0 h-px transition-all duration-300 group-hover:w-full ${
-                    lightChrome ? "bg-brand-700" : "bg-accent"
+                  className={`grid place-items-center w-10 h-10 transition-colors duration-500 ${
+                    lightChrome ? "text-brand-700" : "text-accent"
                   }`}
-                />
+                >
+                  <Logo className="w-9 h-9" />
+                </span>
               </a>
-            ))}
-          </nav>
+
+              <button
+                type="button"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className={`lg:hidden grid place-items-center w-11 h-11 rounded-full transition-colors duration-500 ${
+                  lightChrome ? "bg-brand-700/8 hover:bg-brand-700/15" : "bg-cream/10 hover:bg-cream/20"
+                }`}
+                aria-label={mobileOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-nav"
+              >
+                <span className="w-5 flex flex-col gap-1.5" aria-hidden="true">
+                  <span
+                    className={`block h-0.5 transition-all duration-300 ${
+                      lightChrome ? "bg-brand-900" : "bg-cream"
+                    } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+                  />
+                  <span
+                    className={`block h-0.5 transition-all duration-300 ${
+                      lightChrome ? "bg-brand-900" : "bg-cream"
+                    } ${mobileOpen ? "opacity-0" : ""}`}
+                  />
+                  <span
+                    className={`block h-0.5 transition-all duration-300 ${
+                      lightChrome ? "bg-brand-900" : "bg-cream"
+                    } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                  />
+                </span>
+              </button>
+            </div>
+
+            {/* Desktop nav — right beside the logo */}
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-7" aria-label="ניווט ראשי">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={resolveHref(link.href)}
+                  className={`relative text-[0.95rem] xl:text-base font-medium whitespace-nowrap transition-colors duration-500 group ${
+                    lightChrome
+                      ? "text-brand-900/80 hover:text-brand-700"
+                      : "text-cream hover:text-cream"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -bottom-1.5 right-0 w-0 h-px transition-all duration-300 group-hover:w-full ${
+                      lightChrome ? "bg-brand-700" : "bg-accent"
+                    }`}
+                  />
+                </a>
+              ))}
+            </nav>
+          </div>
 
           {/* CTA — last in DOM = left side in RTL, desktop only */}
           <a
             href={resolveHref("#contact")}
-            className="hidden md:inline-flex btn-primary !py-2.5 !px-5 text-sm"
+            className="!hidden lg:!inline-flex btn-primary !py-2.5 !px-5 text-sm"
           >
             <span>קבע שיחה</span>
             <span aria-hidden>←</span>
@@ -194,7 +201,7 @@ export default function Header() {
           animate={{ height: mobileOpen ? "auto" : 0, opacity: mobileOpen ? 1 : 0 }}
           transition={{ duration: 0.35 }}
           aria-hidden={!mobileOpen}
-          className="relative md:hidden overflow-hidden bg-cream/95 backdrop-blur-xl border-b border-brand-700/10"
+          className="relative lg:hidden overflow-hidden bg-cream/95 backdrop-blur-xl border-b border-brand-700/10"
         >
           <nav className="container-x py-6 flex flex-col gap-5" aria-label="ניווט ראשי במובייל">
             {navLinks.map((link) => (
