@@ -89,7 +89,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="mt-8 pr-6 border-r-2 border-accent text-xl md:text-2xl text-brand-900/85 font-medium leading-snug"
+              className="mt-8 pr-6 border-r-2 border-accent font-handwriting font-bold text-brand-900/90 text-[2.1rem] md:text-[2.7rem] lg:text-[3rem] leading-[1.15]"
             >
               אתר אינטרנט טוב לא נמדד רק בעיצוב שלו —{" "}
               <span className="text-brand-700">

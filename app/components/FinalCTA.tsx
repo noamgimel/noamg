@@ -120,34 +120,10 @@ export default function FinalCTA() {
             >
               השאר פרטים ואחזור אליך לשיחת ייעוץ קצרה. נבין{" "}
               <span className="text-accent font-bold">
-                מה חסר באתר הנוכחי שלך
+                מה הכי נכון לבנות לעסק שלך
               </span>
-              , מה נכון לבנות, והאם בכלל יש התאמה לעבודה יחד.
+              , והאם בכלל יש התאמה לעבודה יחד.
             </motion.p>
-
-            {/* Trust signals */}
-            <motion.ul
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-10 space-y-3 text-sm text-cream/75 hidden lg:block"
-            >
-              {[
-                "מחיר ותהליך ברורים מראש",
-                "ליווי אישי — ישירות מול נועם",
-                "30 יום ליווי אחרי העלייה לאוויר",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-3">
-                  <span className="grid place-items-center w-6 h-6 rounded-full bg-accent/15 text-accent">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                      <path d="M2.5 6.5l2 2 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </motion.ul>
           </div>
 
           {/* Right — form */}

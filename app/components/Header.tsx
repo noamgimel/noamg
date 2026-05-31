@@ -4,21 +4,7 @@ import { motion, useMotionValue, useScroll, useSpring, useTransform } from "fram
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-
-/**
- * Nav links — Phase 2 (2026-05):
- * תוכן בניית האתרים חזר לדף הבית, ולכן הקישורים מצביעים לעוגנים בתוך /.
- * /websites מנותב ישירות ל-/ (redirect), אז אין צורך בקישור נפרד.
- */
-type NavLink = { label: string; href: string };
-const navLinks: NavLink[] = [
-  { label: "המשפך הדיגיטלי", href: "#funnel" },
-  { label: "המלצות", href: "#testimonials" },
-  { label: "עליי", href: "#about" },
-  { label: "מה כלול", href: "#whats-included" },
-  { label: "תהליך העבודה", href: "#process" },
-  { label: "שאלות נפוצות", href: "#faq" },
-];
+import { navLinks } from "./navLinks";
 
 export default function Header() {
   const pathname = usePathname();

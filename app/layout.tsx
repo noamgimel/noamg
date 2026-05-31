@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Heebo } from "next/font/google";
+import { Heebo, Amatic_SC } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -10,6 +10,14 @@ const heebo = Heebo({
   subsets: ["hebrew", "latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-heebo",
+  display: "swap",
+});
+
+// Hebrew handwriting/hand-drawn font — used for the personal pull-quote in About
+const amaticSC = Amatic_SC({
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-handwriting",
   display: "swap",
 });
 
@@ -99,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="he" dir="rtl" className={heebo.variable}>
+    <html lang="he" dir="rtl" className={`${heebo.variable} ${amaticSC.variable}`}>
       <body className="font-sans antialiased bg-cream text-ink">
         <SkipLink />
         <Header />

@@ -44,6 +44,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-heebo)", "system-ui", "sans-serif"],
         display: ["var(--font-heebo)", "system-ui", "sans-serif"],
+        handwriting: ["var(--font-handwriting)", "cursive"],
       },
       letterSpacing: {
         tightest: "-0.04em",

@@ -200,14 +200,18 @@ ink:       #0A0A0A  ← טקסט כהה
 | `/terms` | תנאי שימוש |
 | `/accessibility` | הצהרת נגישות |
 
-### Header navigation
-- `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`).
-- קישורי הניווט: `{ label, href }`. `resolveHref` ממיר hash ל-`/#hash` כשלא ב-`/`.
-- **nav links נוכחיים** (לפי סדר הגלילה, ממוקמים צמוד ללוגו בצד ימין):
-  "המשפך הדיגיטלי" → `#funnel` (LeadFunnelHero) · "המלצות" → `#testimonials` ·
+### Header / Footer navigation
+- **מקור אמת יחיד:** `app/components/navLinks.ts` מייצא את מערך `navLinks`
+  (`{ label, href }`). גם ה-`Header` וגם ה-`Footer` צורכים אותו כדי שהתפריטים
+  לא יסטו זה מזה. **לעדכון קישורי תפריט — לערוך רק את `navLinks.ts`.**
+- `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`). `resolveHref` ממיר
+  hash ל-`/#hash` כשלא ב-`/`. ה-nav ממוקם צמוד ללוגו בצד ימין; מוצג מ-`lg` ומעלה
+  (מתחת לכך — תפריט המבורגר).
+- `Footer.tsx` מציג את אותם קישורים עם קידומת `/` (כדי שיעבדו גם מדפים משפטיים).
+- **nav links נוכחיים** (לפי סדר הגלילה): "המלצות" → `#testimonials` ·
   "עליי" → `#about` · "מה כלול" → `#whats-included` · "תהליך העבודה" → `#process` ·
   "שאלות נפוצות" → `#faq`.
-- CTA: "קבע שיחה" → `#contact`.
+- CTA: "קבע שיחה" / "צור קשר" → `#contact`.
 
 ### לשחזור דף המשפך בעתיד
 1. העתק `app/_funnel-draft/page.tsx` → `app/page.tsx`

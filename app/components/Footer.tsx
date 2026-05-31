@@ -1,6 +1,7 @@
 "use client";
 
 import Logo from "./Logo";
+import { navLinks } from "./navLinks";
 
 export default function Footer() {
   return (
@@ -25,12 +26,15 @@ export default function Footer() {
           </a>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="ניווט תחתון">
-            <a href="/" className="hover:text-cream transition-colors">
-              עמוד הבית
-            </a>
-            <a href="/websites" className="hover:text-cream transition-colors">
-              בניית אתרים
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={`/${link.href}`}
+                className="hover:text-cream transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
             <a
               href="/#contact"
               className="text-accent hover:text-accent-bright transition-colors font-semibold"
