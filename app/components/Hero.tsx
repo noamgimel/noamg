@@ -69,13 +69,13 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="h-display text-[1.8rem] sm:text-[2.2rem] md:text-[2.6rem] lg:text-[2.6rem] xl:text-[3.2rem] mx-auto"
+            className="h-display text-balance text-[2.05rem] sm:text-[2.45rem] md:text-[2.85rem] lg:text-[2.8rem] xl:text-[3.4rem] mx-auto"
           >
             בונים אתר שלא
             <br className="lg:hidden" />
             {" "}רק נראה טוב-
             <br />
-            <span className="gradient-text">אלא גורם ללקוחות לבחור בך.</span>
+            <span className="gradient-text">אלא גורם ללקוחות לבחור{" "}בך.</span>
           </motion.h1>
 
           <motion.p
@@ -83,7 +83,7 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 md:mt-6 text-sm md:text-base lg:text-lg text-cream/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            className="mt-5 md:mt-6 text-pretty text-[0.95rem] md:text-lg lg:text-xl text-cream/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
             אני בונה לעסקים אתרים מקצועיים, חדים ומדויקים שמציגים את הערך שלהם בצורה ברורה, יוצרים אמון מהרגע הראשון —{" "}
             <span className="text-accent font-semibold">והופכים מבקרים באתר לפניות אמיתיות.</span>
@@ -136,8 +136,9 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
               </span>
               <span>
-                <span className="font-bold text-cream">מקבל 4 לקוחות חדשים בחודש בלבד</span>
-                {" "}— כדי לשמור על איכות, זמינות וליווי אישי.
+                <span className="font-bold text-cream">מקבל 4 לקוחות חדשים בחודש בלבד —</span>
+                <br className="sm:hidden" />
+                {" "}כדי לשמור על איכות, זמינות וליווי אישי.
               </span>
             </div>
 

@@ -129,10 +129,11 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* CTA — last in DOM = left side in RTL, desktop only */}
+          {/* CTA — last in DOM = left side in RTL. Shown on every breakpoint
+              (compact on mobile, fuller on desktop). */}
           <a
             href={resolveHref("#contact")}
-            className="!hidden lg:!inline-flex btn-primary !py-2.5 !px-5 text-sm"
+            className="btn-primary whitespace-nowrap !py-2 !px-4 lg:!py-2.5 lg:!px-5 text-sm"
           >
             <span>קבע שיחה</span>
             <span aria-hidden>←</span>
@@ -160,15 +161,6 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href={resolveHref("#contact")}
-              onClick={() => setMobileOpen(false)}
-              tabIndex={mobileOpen ? 0 : -1}
-              className="btn-primary justify-center mt-3"
-            >
-              <span>קבע שיחה</span>
-              <span aria-hidden="true">←</span>
-            </a>
           </nav>
         </motion.div>
       </motion.header>

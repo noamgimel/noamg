@@ -58,9 +58,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl"
         >
-          לקוחות
-          <br />
-          <span className="gradient-text">ממליצים.</span>
+          לקוחות <span className="gradient-text">ממליצים.</span>
         </motion.h2>
 
         {/* Mobile: carousel */}

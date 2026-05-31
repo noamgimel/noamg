@@ -64,7 +64,7 @@ export default function Process() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8 }}
-          className="h-section text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-900 max-w-4xl"
+          className="h-section text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-900 max-w-4xl"
         >
           מהשיחה הראשונה ועד אתר בלייב.
           <br />
