@@ -76,7 +76,7 @@ app/
   terms/page.tsx          # דף תנאי שימוש
   websites/page.tsx       # redirect ל-/ (308)
   components/
-    Header.tsx            # Header — dark-hero רק ב-/ ; nav: תהליך + שאלות
+    Header.tsx            # Header — dark-hero רק ב-/ ; nav צמוד ללוגו (6 קישורים)
     Footer.tsx
     LeadFunnelHero.tsx    # משפך לידים → LeadSync → כרטיסי ליד (מוצג מיד אחרי ה-Hero)
     Hero.tsx              # Hero ראשי — כותרת + SitesShowcase marquee בתחתית
@@ -203,7 +203,10 @@ ink:       #0A0A0A  ← טקסט כהה
 ### Header navigation
 - `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`).
 - קישורי הניווט: `{ label, href }`. `resolveHref` ממיר hash ל-`/#hash` כשלא ב-`/`.
-- **nav links נוכחיים:** "תהליך העבודה" → `#process` + "שאלות נפוצות" → `#faq`.
+- **nav links נוכחיים** (לפי סדר הגלילה, ממוקמים צמוד ללוגו בצד ימין):
+  "המשפך הדיגיטלי" → `#funnel` (LeadFunnelHero) · "המלצות" → `#testimonials` ·
+  "עליי" → `#about` · "מה כלול" → `#whats-included` · "תהליך העבודה" → `#process` ·
+  "שאלות נפוצות" → `#faq`.
 - CTA: "קבע שיחה" → `#contact`.
 
 ### לשחזור דף המשפך בעתיד

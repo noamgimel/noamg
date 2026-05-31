@@ -65,7 +65,7 @@ function GiftIcon({ className = "w-6 h-6" }: { className?: string }) {
 
 export default function WhatsIncluded() {
   return (
-    <section className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-dark text-cream overflow-hidden">
+    <section id="whats-included" className="relative py-20 sm:py-24 md:py-28 lg:py-36 mesh-dark text-cream overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 grain pointer-events-none opacity-50" />
 
       {/* Floating orbs */}

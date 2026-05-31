@@ -99,6 +99,7 @@ export default function LeadFunnelHero() {
   return (
     <section
       ref={ref}
+      id="funnel"
       className="relative overflow-hidden mesh-emerald text-cream pt-28 sm:pt-32 pb-20 md:pb-28"
     >
       {/* Grain overlay */}
