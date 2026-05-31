@@ -259,7 +259,7 @@ export default function LeadFunnelHero() {
               <span>בדוק אם העסק שלך מפספס לידים</span>
               <ArrowLeft className="w-4 h-4" />
             </a>
-            <a href="#how-it-works" className="btn-ghost-light justify-center">
+            <a href="#how-it-works" className="!hidden sm:!inline-flex btn-ghost-light justify-center">
               איך זה עובד?
             </a>
           </motion.div>
@@ -270,9 +270,11 @@ export default function LeadFunnelHero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 max-w-2xl text-lg sm:text-xl md:text-2xl font-bold text-cream/85 leading-snug"
+            className="mt-8 max-w-2xl text-balance text-lg sm:text-xl md:text-2xl font-bold text-cream/85 leading-snug"
           >
-            אתר טוב לא מסתיים בהשארת הפרטים של הליד — הוא מתחיל משם.
+            אתר טוב לא מסתיים בהשארת הפרטים של הליד —{" "}
+            <br className="hidden md:block" />
+            <span className="gradient-text">הוא מתחיל משם.</span>
           </motion.p>
         </div>
       </div>

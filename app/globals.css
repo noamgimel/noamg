@@ -1123,23 +1123,27 @@ video:-moz-full-screen {
   background: #ffffff;
   border: 1px solid rgba(15,61,46,0.08);
   border-radius: 5px;
-  height: 18px;
-  font-size: 9px;
+  height: 17px;
+  font-size: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   color: #2A3E36;
   font-weight: 500;
-  max-width: 200px;
+  max-width: 230px;
   margin: 0 auto;
+  padding: 0 6px;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 .showcase-card__url svg { flex-shrink: 0; color: #6B7C75; }
 
-.showcase-card__bar-spacer { width: 38px; flex-shrink: 0; }
+.showcase-card__bar-spacer { width: 14px; flex-shrink: 0; }
 
 /* Screenshot area — matches the original site screenshots aspect ratio */
 .showcase-card__screen {

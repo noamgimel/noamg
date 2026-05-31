@@ -65,10 +65,6 @@ export default function Footer() {
 
           <div className="flex flex-col gap-1 text-xs text-cream/65 md:items-end">
             <div>© {new Date().getFullYear()} נועם גמליאל. כל הזכויות שמורות.</div>
-            <div>
-              עוצב ונבנה{" "}
-              <span className="text-cream/65">בליווי אישי מקצה לקצה.</span>
-            </div>
           </div>
         </div>
       </div>
