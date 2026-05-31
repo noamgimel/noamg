@@ -34,9 +34,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <About />
       <LeadFunnelHero />
       <Testimonials />
-      <About />
       <Hook />
       <WhatsIncluded />
       {/* <Differentiators /> — "למה איתי" מוסתר זמנית (2026-05) */}
