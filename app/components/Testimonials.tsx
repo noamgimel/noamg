@@ -329,17 +329,6 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           </a>
         )}
       </div>
-
-      {/* Domain — display only */}
-      {t.siteLabel && (
-        <span
-          dir="ltr"
-          aria-hidden="true"
-          className="text-[0.7rem] text-cream/65 px-1 truncate font-mono tabular-num"
-        >
-          {t.siteLabel} ↗
-        </span>
-      )}
     </div>
   );
 }

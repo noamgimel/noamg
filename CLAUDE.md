@@ -33,13 +33,14 @@
 
 ### סקשנים מוסתרים זמנית (2026-05)
 
-שני קומפוננטים קיימים בקוד אך **מוסתרים מ-`app/page.tsx`** (ה-`import` וה-render מסומנים כהערה).
+שלושה קומפוננטים קיימים בקוד אך **מוסתרים מ-`app/page.tsx`** (ה-`import` וה-render מסומנים כהערה).
 הקבצים נשמרים כדי שאפשר יהיה להחזיר אותם בקלות — לבטל את ההערה ב-`page.tsx`.
 
 | קומפוננטה | כותרת בסקשן | סטטוס |
 |-----------|-------------|-------|
 | `Differentiators.tsx` | "למה איתי" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
 | `AIObjection.tsx` | "שאלה הוגנת" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
+| `RiskReversal.tsx` | "ביטול סיכון / ערבות" | מוסתר — לבטל הערה ב-`page.tsx` כדי להחזיר |
 
 ---
 
@@ -88,7 +89,7 @@ app/
     Process.tsx           # תהליך העבודה  (id="process")
     Differentiators.tsx   # "למה איתי" — מה מייחד ⚠️ מוסתר מ-page.tsx (2026-05)
     WhatsIncluded.tsx     # מה כלול בשירות
-    RiskReversal.tsx      # ביטול סיכון / ערבות
+    RiskReversal.tsx      # "ביטול סיכון / ערבות" ⚠️ מוסתר מ-page.tsx (2026-05)
     FAQ.tsx               # שאלות נפוצות  (id="faq")
     WhoFor.tsx            # למי מתאים
     FinalCTA.tsx          # טופס יצירת קשר (id="contact")
@@ -200,14 +201,18 @@ ink:       #0A0A0A  ← טקסט כהה
 | `/terms` | תנאי שימוש |
 | `/accessibility` | הצהרת נגישות |
 
-### Header navigation
-- `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`).
-- קישורי הניווט: `{ label, href }`. `resolveHref` ממיר hash ל-`/#hash` כשלא ב-`/`.
-- **nav links נוכחיים** (לפי סדר הגלילה, ממוקמים צמוד ללוגו בצד ימין):
-  "המשפך הדיגיטלי" → `#funnel` (LeadFunnelHero) · "המלצות" → `#testimonials` ·
+### Header / Footer navigation
+- **מקור אמת יחיד:** `app/components/navLinks.ts` מייצא את מערך `navLinks`
+  (`{ label, href }`). גם ה-`Header` וגם ה-`Footer` צורכים אותו כדי שהתפריטים
+  לא יסטו זה מזה. **לעדכון קישורי תפריט — לערוך רק את `navLinks.ts`.**
+- `Header.tsx` משתמש ב-`isOverDarkHero = isHome` (רק `/`). `resolveHref` ממיר
+  hash ל-`/#hash` כשלא ב-`/`. ה-nav ממוקם צמוד ללוגו בצד ימין; מוצג מ-`lg` ומעלה
+  (מתחת לכך — תפריט המבורגר).
+- `Footer.tsx` מציג את אותם קישורים עם קידומת `/` (כדי שיעבדו גם מדפים משפטיים).
+- **nav links נוכחיים** (לפי סדר הגלילה): "המלצות" → `#testimonials` ·
   "עליי" → `#about` · "מה כלול" → `#whats-included` · "תהליך העבודה" → `#process` ·
   "שאלות נפוצות" → `#faq`.
-- CTA: "קבע שיחה" → `#contact`.
+- CTA: "קבע שיחה" / "צור קשר" → `#contact`.
 
 ### לשחזור דף המשפך בעתיד
 1. העתק `app/_funnel-draft/page.tsx` → `app/page.tsx`
