@@ -25,16 +25,19 @@ const testimonials: Testimonial[] = [
   },
   {
     name: "אדר מלכה",
-    role: "המלצת לקוח",
+    role: "בעל סוכנות שיווק דיגיטלית",
     videoSrc: "/videos/testimonial-2.mp4",
     poster: "/videos/testimonial-2-poster.jpg",
     siteUrl: "https://noamgamliel.wixstudio.com/site",
     siteLabel: "wixstudio.com/site",
   },
   {
-    name: "המלצה שלישית",
-    role: "בקרוב",
-    placeholder: true,
+    name: "טלי",
+    role: "יועצת ארגונית להנהלות",
+    videoSrc: "/videos/testimonial-3.mp4",
+    poster: "/videos/testimonial-3-poster.jpg",
+    siteUrl: "https://www.avital-sahar.com/",
+    siteLabel: "avital-sahar.com",
   },
 ];
 
