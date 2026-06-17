@@ -1,6 +1,5 @@
 "use client";
 
-import Logo from "./Logo";
 import { navLinks } from "./navLinks";
 
 export default function Footer() {
@@ -11,17 +10,17 @@ export default function Footer() {
 
       <div className="container-x relative">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <a href="/" aria-label="עמוד הבית" className="flex items-center gap-3">
-            <span className="grid place-items-center w-10 h-10 text-accent">
-              <Logo className="w-9 h-9" />
-            </span>
-            <span>
-              <span className="block font-extrabold text-cream tracking-tight text-base">
-                נועם גמליאל
-              </span>
-              <span className="block text-xs text-cream/65 mt-0.5">
-                משפכי לידים ואתרים לעסקים
-              </span>
+          <a href="/" aria-label="NoamG — עמוד הבית" className="flex flex-col items-start gap-2.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo/noamg-wordmark-white.png"
+              alt="NoamG"
+              width={802}
+              height={283}
+              className="h-12 w-auto"
+            />
+            <span className="text-xs text-cream/65">
+              משפכי לידים ואתרים לעסקים
             </span>
           </a>
 

@@ -207,7 +207,10 @@ function MobileCarousel() {
 /* ===== Card ===== */
 function TestimonialCard({ t }: { t: Testimonial }) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
+  // Once playback has begun we keep the native controls mounted permanently.
+  // Tying `controls` to a play/pause state caused the bar (and the seek) to be
+  // interrupted whenever a transient `pause` fired mid-scrub.
+  const [started, setStarted] = useState(false);
 
   // Robust fullscreen fix: when video enters fullscreen, force object-fit:contain
   // (CSS pseudo-class isn't always honored consistently across browsers).
@@ -236,16 +239,19 @@ function TestimonialCard({ t }: { t: Testimonial }) {
     };
   }, []);
 
-  const togglePlay = () => {
-    const video = ref.current;
-    if (!video) return;
-    if (video.paused) {
-      video.play();
-      setPlaying(true);
-    } else {
-      video.pause();
-      setPlaying(false);
-    }
+  // Start this video (from the custom overlay).
+  const startPlayback = () => {
+    ref.current?.play();
+  };
+
+  // Fired by the <video> itself on any play (overlay OR native controls):
+  // pause every other video on the page so only one runs at a time.
+  const handlePlay = () => {
+    setStarted(true);
+    const me = ref.current;
+    document.querySelectorAll("video").forEach((v) => {
+      if (v !== me) v.pause();
+    });
   };
 
   if (t.placeholder) {
@@ -275,19 +281,18 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           src={t.videoSrc}
           poster={t.poster}
           playsInline
-          controls={playing}
+          controls={started}
           preload="metadata"
           aria-label={`סרטון המלצה של ${t.name}`}
-          onPause={() => setPlaying(false)}
-          onEnded={() => setPlaying(false)}
+          onPlay={handlePlay}
           className="absolute inset-0 w-full h-full object-cover bg-brand-900"
         />
 
-        {/* Play overlay */}
-        {!playing && (
+        {/* Play overlay — only before the first play; native controls take over after */}
+        {!started && (
           <button
             type="button"
-            onClick={togglePlay}
+            onClick={startPlayback}
             className="absolute inset-0 grid place-items-center bg-gradient-to-t from-brand-900/80 via-brand-900/20 to-brand-900/40 hover:bg-brand-900/30 transition-colors duration-300"
             aria-label={`נגן את ההמלצה של ${t.name}`}
           >

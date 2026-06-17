@@ -68,16 +68,25 @@ function CheckIcon({ className = "w-3 h-3" }: { className?: string }) {
   );
 }
 
-/* Eyebrow badge — highlights a message's headline label in its own pill */
+/* Eyebrow badge — highlights a message's headline label in its own pill.
+   `light` renders a bright/white chip with dark text (used for the gift badge). */
 function MessageBadge({
   label,
   icon,
+  light = false,
 }: {
   label: string;
   icon: React.ReactNode;
+  light?: boolean;
 }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent shadow-sm shadow-accent/5">
+    <span
+      className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full shadow-sm ${
+        light
+          ? "bg-cream border border-brand-900/10 text-brand-900 shadow-brand-900/15"
+          : "bg-accent/10 border border-accent/30 text-accent shadow-accent/5"
+      }`}
+    >
       <span className="text-xs sm:text-sm font-bold tracking-[0.1em] uppercase">
         {label}
       </span>
@@ -159,7 +168,7 @@ export default function LeadFunnelHero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 md:mt-12 max-w-2xl"
           >
-            <MessageBadge label="כלול ללא עלות" icon={<GiftIcon className="w-[18px] h-[18px]" />} />
+            <MessageBadge label="מתנה · כלול ללא עלות" light icon={<GiftIcon className="w-[18px] h-[18px] text-[#8B5CF6]" />} />
             <p className="mt-5 text-lg sm:text-xl md:text-[1.35rem] leading-relaxed text-cream/90">
               בסיום התהליך תקבלו{" "}
               <span className="font-semibold text-accent">גישה חינמית</span>{" "}

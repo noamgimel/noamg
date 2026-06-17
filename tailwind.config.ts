@@ -9,37 +9,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand palette — replace with user's official green when received
+        // Brand palette — emerald/teal green
         brand: {
-          50:  "#EEF7F2",
-          100: "#D6ECDF",
-          200: "#A9D5BA",
-          300: "#73B98D",
-          400: "#3F9C66",
-          500: "#1F7A47",
-          600: "#0F5C36",
-          700: "#0F3D2E", // primary — dark forest green
-          800: "#0A2A20",
-          900: "#061811",
-          950: "#03100A",
+          50:  "#E9FAF4",
+          100: "#CBF3E6",
+          200: "#97E6D0",
+          300: "#5FD6B0",
+          400: "#1FBF8C",
+          500: "#12B07A",
+          600: "#0E9F6E", // vivid emerald — accent / brand identity
+          700: "#0A6B49", // deep emerald — text & structure (readable on light)
+          800: "#0A4231",
+          900: "#0B2E24", // dark background / brand dark
+          950: "#061B14",
         },
         accent: {
-          // muted gold — energetic but elegant
-          DEFAULT: "#C9A961",
-          bright: "#E1C46C",
-          50:  "#FBF7EC",
-          100: "#F5ECCF",
-          200: "#EDDA9E",
-          300: "#E1C46C",
-          400: "#D2B048",
-          500: "#C9A961",
-          600: "#A38644",
-          700: "#7C6633",
-          800: "#544722",
-          900: "#2B2511",
+          // warm amber — energetic but elegant
+          DEFAULT: "#F4B740",
+          bright: "#F7C863",
+          50:  "#FEF8EC",
+          100: "#FDEFCB",
+          200: "#FAE0A0",
+          300: "#F7C863",
+          400: "#EBA92A",
+          500: "#F4B740",
+          600: "#C7902B",
+          700: "#997023",
+          800: "#6B4E18",
+          900: "#3A2C0E",
         },
-        cream: "#FAFAF7",
-        ink: "#0A0A0A",
+        cream: "#FBFDFC",
+        ink: "#0E1A15",
       },
       fontFamily: {
         sans: ["var(--font-heebo)", "system-ui", "sans-serif"],

@@ -3,7 +3,6 @@
 import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
 import { navLinks } from "./navLinks";
 
 export default function Header() {
@@ -69,7 +68,7 @@ export default function Header() {
           style={{ opacity: barActive ? 1 : 0 }}
           className="absolute inset-0 pointer-events-none transition-opacity duration-500 ease-out
                      bg-brand-900/70 backdrop-blur-xl border-b border-accent/15
-                     shadow-[0_10px_40px_-16px_rgba(6,24,17,0.7)]"
+                     shadow-[0_10px_40px_-16px_rgba(11,46,36,0.7)]"
         >
           {/* faint top sheen + gold hairline for depth */}
           <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-cream/15 to-transparent" />
@@ -89,10 +88,15 @@ export default function Header() {
           <div className="flex items-center gap-6 lg:gap-9">
             {/* Logo + mobile burger */}
             <div className="flex items-center gap-1.5">
-              <a href="/" aria-label="עמוד הבית" className="flex items-center group">
-                <span className="grid place-items-center w-10 h-10 text-accent transition-transform duration-300 group-hover:scale-105">
-                  <Logo className="w-9 h-9" />
-                </span>
+              <a href="/" aria-label="NoamG — עמוד הבית" className="flex items-center group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/logo/noamg-wordmark-white.png"
+                  alt="NoamG"
+                  width={802}
+                  height={283}
+                  className="h-9 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                />
               </a>
 
               <button
