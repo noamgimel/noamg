@@ -268,9 +268,6 @@ export default function LeadFunnelHero() {
               <span>בדוק אם העסק שלך מפספס לידים</span>
               <ArrowLeft className="w-4 h-4" />
             </a>
-            <a href="#how-it-works" className="!hidden sm:!inline-flex btn-ghost-light justify-center">
-              איך זה עובד?
-            </a>
           </motion.div>
 
           {/* Tagline below CTAs */}
