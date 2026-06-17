@@ -84,7 +84,7 @@ export default function Portfolio() {
                 className={`group relative block aspect-[4/5] rounded-[2rem] overflow-hidden transition-shadow duration-500 ${
                   p.placeholder
                     ? "glass-light border-2 border-dashed border-brand-700/20"
-                    : `bg-gradient-to-br ${p.accent} glow-brand hover:shadow-[0_30px_60px_-12px_rgba(15,61,46,0.5)]`
+                    : `bg-gradient-to-br ${p.accent} glow-brand hover:shadow-[0_30px_60px_-12px_rgba(14,159,110,0.5)]`
                 }`}
               >
                 {!p.placeholder && (

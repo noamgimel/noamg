@@ -114,7 +114,7 @@ export default function WhatsIncluded() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-10 relative overflow-hidden rounded-3xl max-w-md border border-accent/40 bg-gradient-to-br from-accent/10 via-accent/4 to-transparent shadow-[0_0_40px_rgba(201,169,97,0.10)] hover:shadow-[0_0_55px_rgba(201,169,97,0.17)] transition-shadow duration-500 p-6"
+              className="mt-10 relative overflow-hidden rounded-3xl max-w-md border border-accent/40 bg-gradient-to-br from-accent/10 via-accent/4 to-transparent shadow-[0_0_40px_rgba(244,183,64,0.10)] hover:shadow-[0_0_55px_rgba(244,183,64,0.17)] transition-shadow duration-500 p-6"
             >
               {/* Leading gold bar */}
               <span aria-hidden="true" className="absolute inset-y-0 right-0 w-1 rounded-r-3xl bg-gradient-to-b from-accent/90 via-accent/55 to-accent/10" />

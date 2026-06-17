@@ -38,7 +38,7 @@ const InstagramIcon = () => (
   <svg viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="ig-grad" cx="28%" cy="105%" r="135%">
-        <stop offset="0" stopColor="#FED373" />
+        <stop offset="0" stopColor="#F7C863" />
         <stop offset="0.22" stopColor="#F47A30" />
         <stop offset="0.46" stopColor="#E0276A" />
         <stop offset="0.72" stopColor="#A52FB4" />
@@ -86,7 +86,7 @@ const SourceMini = ({ kind }: { kind: string }) => {
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <defs>
           <linearGradient id="mig" x1="0" x2="1" y1="1" y2="0">
-            <stop offset="0" stopColor="#FED373" />
+            <stop offset="0" stopColor="#F7C863" />
             <stop offset=".5" stopColor="#D92E7F" />
             <stop offset="1" stopColor="#9B36B7" />
           </linearGradient>

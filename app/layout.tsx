@@ -28,7 +28,7 @@ const DESCRIPTION =
   "אתר תדמית מקצועי שמייצר אמון ופניות — מחובר לטפסים, וואטסאפ ומערכת ניהול לידים LeadSync, עם ליווי אישי מקצה לקצה.";
 
 export const viewport: Viewport = {
-  themeColor: "#0F3D2E",
+  themeColor: "#0B2E24",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -92,9 +92,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   formatDetection: {
     telephone: false,
